@@ -312,6 +312,7 @@
 				DC1A8C641EA92D7A00E0DEC2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
