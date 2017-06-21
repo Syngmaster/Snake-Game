@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -21,75 +20,8 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1oq-wL-Mi6">
-                                <rect key="frame" x="172" y="594" width="30" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="30" id="96b-ee-Com"/>
-                                    <constraint firstAttribute="height" constant="30" id="UJJ-yv-EHX"/>
-                                </constraints>
-                                <state key="normal" title="T"/>
-                                <connections>
-                                    <action selector="moveUp:" destination="BYZ-38-t0r" eventType="touchUpInside" id="exm-0u-aBp"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yn0-g9-wAe">
-                                <rect key="frame" x="172" y="629" width="30" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="30" id="ZRK-YK-sGB"/>
-                                    <constraint firstAttribute="height" constant="30" id="zf1-Gs-cSf"/>
-                                </constraints>
-                                <state key="normal" title="B"/>
-                                <connections>
-                                    <action selector="moveDown:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wKi-Rc-ou0"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NIn-J0-Tha">
-                                <rect key="frame" x="210" y="609" width="30" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="30" id="Hgi-74-Skx"/>
-                                    <constraint firstAttribute="height" constant="30" id="d23-np-Rq5"/>
-                                </constraints>
-                                <state key="normal" title="R"/>
-                                <connections>
-                                    <action selector="moveRight:" destination="BYZ-38-t0r" eventType="touchUpInside" id="kS0-oq-RhL"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sl8-KS-8Op">
-                                <rect key="frame" x="134" y="609" width="30" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="2tW-xB-W8v"/>
-                                    <constraint firstAttribute="width" constant="30" id="xnd-UN-dws"/>
-                                </constraints>
-                                <state key="normal" title="L"/>
-                                <connections>
-                                    <action selector="moveLeft:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ML5-aX-f89"/>
-                                </connections>
-                            </button>
-                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="1oq-wL-Mi6" firstAttribute="leading" secondItem="Sl8-KS-8Op" secondAttribute="trailing" constant="8" id="DyW-AA-8OK"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Sl8-KS-8Op" secondAttribute="bottom" constant="28" id="JzT-As-JVZ"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="NIn-J0-Tha" secondAttribute="trailing" constant="119" id="KBh-In-Rnt"/>
-                            <constraint firstItem="NIn-J0-Tha" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="589" id="P18-kI-LfO"/>
-                            <constraint firstItem="yn0-g9-wAe" firstAttribute="top" secondItem="1oq-wL-Mi6" secondAttribute="bottom" constant="5" id="chd-hr-zog"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="yn0-g9-wAe" secondAttribute="bottom" constant="8" id="dWz-2X-D05"/>
-                            <constraint firstItem="Sl8-KS-8Op" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="589" id="eVu-f6-k5w"/>
-                            <constraint firstItem="NIn-J0-Tha" firstAttribute="leading" secondItem="yn0-g9-wAe" secondAttribute="trailing" constant="8" id="lFB-Zk-Dgj"/>
-                            <constraint firstItem="1oq-wL-Mi6" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="574" id="mb3-7K-mHX"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="NIn-J0-Tha" secondAttribute="bottom" constant="28" id="nKS-Ng-hSt"/>
-                            <constraint firstItem="Sl8-KS-8Op" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="118" id="p57-Ry-DGE"/>
-                            <constraint firstItem="yn0-g9-wAe" firstAttribute="leading" secondItem="Sl8-KS-8Op" secondAttribute="trailing" constant="8" id="vpp-rp-1LI"/>
-                            <constraint firstItem="NIn-J0-Tha" firstAttribute="leading" secondItem="1oq-wL-Mi6" secondAttribute="trailing" constant="8" id="ysr-qn-IIc"/>
-                        </constraints>
                     </view>
-                    <connections>
-                        <outlet property="bottomButton" destination="yn0-g9-wAe" id="frY-V9-8si"/>
-                        <outlet property="leftButton" destination="Sl8-KS-8Op" id="pYy-IR-vBo"/>
-                        <outlet property="rightButton" destination="NIn-J0-Tha" id="D6J-Bc-Cgd"/>
-                        <outlet property="topButton" destination="1oq-wL-Mi6" id="En8-gP-2Yf"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
