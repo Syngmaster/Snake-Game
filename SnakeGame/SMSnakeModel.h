@@ -8,16 +8,38 @@
 
 #import <UIKit/UIKit.h>
 
+typedef NS_ENUM(int, SnakeDirectionOption) {
+    
+    SnakeDirectionOptionUp = -1,
+    SnakeDirectionOptionDown = 1,
+    SnakeDirectionOptionLeft = -1,
+    SnakeDirectionOptionRight = 1
+    
+};
+
+typedef NS_ENUM(NSInteger, SnakePartsOption) {
+    
+    SnakePartsOptionBody = 1,
+    SnakePartsOptionNewSegment
+    
+};
+
 @interface SMSnakeModel : NSObject
 
 @property (strong, nonatomic) NSMutableArray* views;
+@property (assign, nonatomic) CGRect playingGround;
 
 - (instancetype)initSnakeInView:(UIView *) view;
 
 - (void)generateRandomSnakeBodyInView:(UIView *) view;
-- (void)addOneSegmentInView:(UIView *) view;
-- (void)snakeMovement:(NSArray *) snake inView:(UIView *)playgroundView withDirectionX:(CGFloat) stepX andY:(CGFloat) stepY;
-- (void)removeSnakeViewWithTag:(NSInteger) tag inView:(UIView *) playgroundView;
-- (void)removeAnimationFromViews:(NSArray *) views;
+
+/************** Method with a timer ******************/
+
+- (void)snakeNewMovement:(NSArray *)snake inView:(UIView *)playgroundView withDirectionX:(int)directionX andDirectionY:(int)directionY;
+
+/************** Method using animations ******************/
+
+- (void)snakeMovement:(NSArray *) snake inView:(UIView *)playgroundView withDirectionX:(NSInteger) stepX andY:(NSInteger) stepY;
+
 
 @end

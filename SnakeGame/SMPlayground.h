@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@interface SMPlayground : NSObject
+@interface SMPlayground : UIView
+
+- (instancetype)initWithView:(UIView *) view;
 
 @end

@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  SMViewController.h
 //  SnakeGame
 //
 //  Created by Syngmaster on 20/04/2017.
@@ -10,9 +10,9 @@
 
 extern const CGFloat bodySize;
 
-@interface ViewController : UIViewController
+@interface SMViewController : UIViewController
 
-
+@property (strong, nonatomic) NSTimer *timer;
 
 @end
 

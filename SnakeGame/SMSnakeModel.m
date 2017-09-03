@@ -7,22 +7,17 @@
 //
 
 #import "SMSnakeModel.h"
-
-typedef NS_ENUM(NSInteger, SnakePartsOption) {
-    
-    SnakePartsOptionBody = 1,
-    SnakePartsOptionNewSegment
-    
-};
+#import "SMViewController.h"
 
 @interface SMSnakeModel ()
 
-@property (assign, nonatomic) CGFloat newX;
-@property (assign, nonatomic) CGFloat newY;
+@property (assign, nonatomic) NSInteger newX;
+@property (assign, nonatomic) NSInteger newY;
 
-@property (assign, nonatomic) CGFloat snakeBodySize;
-@property (assign, nonatomic) CGRect playingGround;
+@property (assign, nonatomic) NSInteger snakeBodySize;
 @property (assign, nonatomic) CGRect randomViewRect;
+
+@property (assign, nonatomic) CGPoint currentPoint;
 
 @end
 
@@ -35,20 +30,24 @@ typedef NS_ENUM(NSInteger, SnakePartsOption) {
     if (self) {
         
         self.views = [NSMutableArray array];
-        self.playingGround = CGRectMake(0, 0, CGRectGetWidth(view.bounds), CGRectGetHeight(view.bounds));
+        //self.playingGround = CGRectMake(0, 0, CGRectGetWidth(view.bounds), CGRectGetHeight(view.bounds));
         
-        CGFloat body = 20.f;
+        NSInteger body = 30;
         self.snakeBodySize = body;
 
-        CGFloat startX = body * arc4random_uniform(CGRectGetMaxX(view.bounds)/body);
-        CGFloat startY = body * arc4random_uniform(CGRectGetMaxY(view.bounds)/body);
+        NSInteger startX = body * arc4random_uniform(CGRectGetMaxX(view.bounds)/body);
+        NSInteger startY = body * arc4random_uniform(CGRectGetMaxY(view.bounds)/body);
+        
+        NSLog(@"headView - %ld %ld", (long)startX, (long)startY);
+        
         
         UIView *snakeView = [[UIView alloc] initWithFrame:CGRectMake(startX, startY, body, body)];
-        snakeView.backgroundColor = [UIColor clearColor];
-        snakeView.layer.borderColor = [UIColor blackColor].CGColor;
-        snakeView.layer.borderWidth = 1.0;
+
         snakeView.tag = SnakePartsOptionBody;
-        
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:snakeView.bounds];
+        imageView.image = [UIImage imageNamed:@"snake_head.png"];
+        [snakeView addSubview:imageView];
+
         [view addSubview:snakeView];
         [self.views addObject:snakeView];
         
@@ -61,29 +60,39 @@ typedef NS_ENUM(NSInteger, SnakePartsOption) {
 - (void)generateRandomSnakeBodyInView:(UIView *) view {
     
     // generating random coordinates for a new body view
-    CGFloat newX = self.snakeBodySize * arc4random_uniform(CGRectGetMaxX(view.bounds)/self.snakeBodySize);
-    CGFloat newY = self.snakeBodySize * arc4random_uniform(CGRectGetMaxY(view.bounds)/self.snakeBodySize);
+    NSInteger newX = self.snakeBodySize * arc4random_uniform(CGRectGetMaxX(view.bounds)/self.snakeBodySize);
+    NSInteger newY = self.snakeBodySize * arc4random_uniform(CGRectGetMaxY(view.bounds)/self.snakeBodySize);
     
     self.newX = newX;
     self.newY = newY;
     
+    NSLog(@"newBodyView - %li %li", (long)newX, (long)newY);
+
+    
     UIView *newBodyView = [[UIView alloc] initWithFrame:CGRectMake(self.newX, self.newY, self.snakeBodySize, self.snakeBodySize)];
-    newBodyView.backgroundColor = [UIColor grayColor];
-    newBodyView.layer.borderColor = [UIColor blackColor].CGColor;
-    newBodyView.layer.borderWidth = 1.0;
+
     newBodyView.tag = SnakePartsOptionNewSegment;
+    
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:newBodyView.bounds];
+    imageView.image = [UIImage imageNamed:@"snake_body.png"];
+    [newBodyView addSubview:imageView];
+    
     self.randomViewRect = newBodyView.frame;
     [view addSubview:newBodyView];
     
 }
 
-- (void)addOneSegmentInView:(UIView *) view {
+- (void)addOneSegmentToSnake:(NSArray *)snake inView:(UIView *)view {
     
-    UIView *newSegment = [[UIView alloc] initWithFrame:CGRectMake(self.newX, self.newY, self.snakeBodySize, self.snakeBodySize)];
-    newSegment.backgroundColor = [UIColor grayColor];
-    newSegment.layer.borderColor = [UIColor blackColor].CGColor;
-    newSegment.layer.borderWidth = 1.0;
+    UIView *lastBody = snake[[snake count]-1];
+    
+    UIView *newSegment = [[UIView alloc] initWithFrame:CGRectMake(CGRectGetMinX(lastBody.frame), CGRectGetMinY(lastBody.frame), self.snakeBodySize, self.snakeBodySize)];
+
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:newSegment.bounds];
+    imageView.image = [UIImage imageNamed:@"snake_body.png"];
+    
     newSegment.tag = SnakePartsOptionBody;
+    [newSegment addSubview:imageView];
     [view addSubview:newSegment];
     [self.views addObject:newSegment];
     
@@ -91,13 +100,78 @@ typedef NS_ENUM(NSInteger, SnakePartsOption) {
 
 #pragma mark - Moving method
 
-- (void)snakeMovement:(NSArray *) snake inView:(UIView *)playgroundView withDirectionX:(CGFloat) stepX andY:(CGFloat) stepY {
+
+/************** Method with a timer ******************/
+
+- (void)snakeNewMovement:(NSArray *) snake inView:(UIView *)playgroundView withDirectionX:(int)directionX andDirectionY:(int)directionY {
+    
+    UIView *snakeHead = snake[0];
+    if (directionY < 0) {
+        snakeHead.layer.affineTransform = CGAffineTransformMakeRotation(0);
+    } else if (directionY > 0) {
+        snakeHead.layer.affineTransform = CGAffineTransformMakeRotation(M_PI);
+    }
+    
+    if (directionX < 0) {
+        snakeHead.layer.affineTransform = CGAffineTransformMakeRotation(-M_PI/2);
+    } else if (directionX > 0) {
+        snakeHead.layer.affineTransform = CGAffineTransformMakeRotation(M_PI/2);
+    }
+    
     
     UIView *headView = snake[0];
-    [self removeAnimationFromViews:snake];
+    
+    NSLog(@"head frame - %@", NSStringFromCGRect(headView.frame));
+    NSLog(@"head center - %@", NSStringFromCGPoint(headView.center));
+    
+    for (NSInteger i = [snake count]-1; i > 0; i--) {
+        
+        UIView *view = snake[i-1];
+        UIView *nextView = snake[i];
+        
+        nextView.center = view.center;
+    }
+    
+    headView.center = CGPointMake(headView.center.x + directionX, headView.center.y + directionY );
+    
+    
+    if (CGRectIntersectsRect(headView.frame, self.randomViewRect)) {
+        
+        [self addOneSegmentToSnake:snake inView:playgroundView];
+        [self removeSnakeViewWithTag:SnakePartsOptionNewSegment inView:playgroundView];
+        [self generateRandomSnakeBodyInView:playgroundView];
+    }
+    
+    [self gameOverAfterIntersection:snake withHeadView:headView inView:playgroundView];
+    
+}
+
+
+/************** Method using animations ******************/
+
+- (void)snakeMovement:(NSArray *) snake inView:(UIView *)playgroundView withDirectionX:(NSInteger) stepX andY:(NSInteger) stepY {
+    
+    UIView *snakeHead = snake[0];
+    if (stepY == SnakeDirectionOptionUp*40) {
+        snakeHead.layer.affineTransform = CGAffineTransformMakeRotation(0);
+    } else if (stepY == SnakeDirectionOptionDown*40) {
+        snakeHead.layer.affineTransform = CGAffineTransformMakeRotation(M_PI);
+    }
+    
+    if (stepX == SnakeDirectionOptionLeft*40) {
+        snakeHead.layer.affineTransform = CGAffineTransformMakeRotation(-M_PI/2);
+    } else if (stepX == SnakeDirectionOptionRight*40) {
+        snakeHead.layer.affineTransform = CGAffineTransformMakeRotation(M_PI/2);
+    }
+    
+    
+    UIView *headView = snake[0];
+    //[self removeAnimationFromViews:snake];
+    
+
     
     [UIView animateWithDuration:0.3 delay:0
-                        options: UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveEaseOut
+                        options:  UIViewAnimationOptionCurveLinear | UIViewAnimationOptionBeginFromCurrentState
                      animations:^{
                          
                          for (NSInteger i = [snake count]-1; i > 0; i--) {
@@ -110,27 +184,38 @@ typedef NS_ENUM(NSInteger, SnakePartsOption) {
                          
                          headView.center = CGPointMake(headView.center.x + stepX, headView.center.y + stepY);
                          
-                     } completion:^(BOOL finished) {
-                         
-                         //adding a body view to the snake main view
                          if (CGRectIntersectsRect(headView.frame, self.randomViewRect)) {
                              
-                             [self addOneSegmentInView:playgroundView];
+                             [self addOneSegmentToSnake:snake inView:playgroundView];
                              [self removeSnakeViewWithTag:SnakePartsOptionNewSegment inView:playgroundView];
                              [self generateRandomSnakeBodyInView:playgroundView];
                          }
+                         
+                         
+                     } completion:^(BOOL finished) {
+                         
+                         //adding a body view to the snake main view
+                         /*if (CGRectIntersectsRect(headView.frame, self.randomViewRect)) {
+                             
+                             [self addOneSegmentToSnake:snake inView:playgroundView];
+                             [self removeSnakeViewWithTag:SnakePartsOptionNewSegment inView:playgroundView];
+                             [self generateRandomSnakeBodyInView:playgroundView];
+                         }*/
                          
                          if (finished == YES) {
                              
                              //continue to animate if previous animation wasn't canceled
 
                              __weak SMSnakeModel* weakSelf = self;
-                             //[weakSelf snakeMoving:views withDirectionX:stepX andY:stepY];
                              [weakSelf snakeMovement:snake inView:playgroundView withDirectionX: stepX andY: stepY];
                              
                              //method checks whether a condition for intersection is satisfied
                              [self gameOverAfterIntersection:snake withHeadView:headView inView:playgroundView];
+
+                         } else {
                              
+
+
                          }
                          
                      }];
@@ -141,10 +226,10 @@ typedef NS_ENUM(NSInteger, SnakePartsOption) {
 - (void)gameOverAfterIntersection:(NSArray *) views withHeadView:(UIView *) head inView:(UIView *) playgroundView {
     
     //game stops if the head view goes beyond the playground
-    if (!(CGRectContainsRect(self.playingGround, head.frame))) {
-        
-        [self gameOverAlertControllerInView:playgroundView];
-        [self removeAnimationFromViews:views];
+    if (!(CGRectContainsRect(playgroundView.bounds, head.frame))) {
+
+        //[self gameOverAlertControllerInView:playgroundView];
+        //[self removeAnimationFromViews:views];
     }
     
     //game stops if head view intersects with a body view
@@ -152,10 +237,14 @@ typedef NS_ENUM(NSInteger, SnakePartsOption) {
         
         UIView *bodyView = views[i+1];
         
-        if (CGRectIntersectsRect(head.frame, bodyView.frame)) {
+        if ([views count] > 2) {
             
-            [self gameOverAlertControllerInView:playgroundView];
-            [self removeAnimationFromViews:views];
+            if (CGRectIntersectsRect(head.frame, bodyView.frame)) {
+                
+                [self gameOverAlertControllerInView:playgroundView];
+                [self removeAnimationFromViews:views];
+            }
+            
         }
     }
 }
@@ -184,9 +273,10 @@ typedef NS_ENUM(NSInteger, SnakePartsOption) {
 
 - (void)gameOverAlertControllerInView:(UIView *) playgroundView {
     
-    UIViewController *mainVC = [UIApplication sharedApplication].windows.firstObject.rootViewController;
+    SMViewController *mainVC = (SMViewController *)[UIApplication sharedApplication].windows.firstObject.rootViewController;
     
-    __weak UIViewController* weakMain = mainVC;
+    __weak SMViewController* weakMain = mainVC;
+    [weakMain.timer invalidate];
     
     UIAlertController *contr = [UIAlertController alertControllerWithTitle:@"Game Over!" message:@"" preferredStyle:UIAlertControllerStyleAlert];
     

@@ -15,6 +15,13 @@
     self = [super init];
     if (self) {
         
+        CGRect frame = CGRectMake(0, 0, CGRectGetWidth(view.bounds)*0.8, CGRectGetHeight(view.bounds)*0.8);
+        self.frame = frame;
+        self.center = view.center;
+        
+        self.layer.borderColor = [UIColor blackColor].CGColor;
+        self.layer.borderWidth = 2.0;
+        
     }
     return self;
 }

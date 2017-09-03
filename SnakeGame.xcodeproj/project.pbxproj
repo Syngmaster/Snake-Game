@@ -9,13 +9,14 @@
 /* Begin PBXBuildFile section */
 		DC1A8C501EA92D7A00E0DEC2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1A8C4F1EA92D7A00E0DEC2 /* main.m */; };
 		DC1A8C531EA92D7A00E0DEC2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1A8C521EA92D7A00E0DEC2 /* AppDelegate.m */; };
-		DC1A8C561EA92D7A00E0DEC2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1A8C551EA92D7A00E0DEC2 /* ViewController.m */; };
+		DC1A8C561EA92D7A00E0DEC2 /* SMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1A8C551EA92D7A00E0DEC2 /* SMViewController.m */; };
 		DC1A8C591EA92D7A00E0DEC2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC1A8C571EA92D7A00E0DEC2 /* Main.storyboard */; };
 		DC1A8C5B1EA92D7A00E0DEC2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC1A8C5A1EA92D7A00E0DEC2 /* Assets.xcassets */; };
 		DC1A8C5E1EA92D7A00E0DEC2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC1A8C5C1EA92D7A00E0DEC2 /* LaunchScreen.storyboard */; };
 		DC6B60C81EFA8613007D1D00 /* SMPlayground.m in Sources */ = {isa = PBXBuildFile; fileRef = DC6B60C71EFA8613007D1D00 /* SMPlayground.m */; };
 		DC6B60C91EFA8D5E007D1D00 /* SMSnakeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DC6B60C41EFA8602007D1D00 /* SMSnakeModel.m */; };
 		DC6B60CA1EFA9AB2007D1D00 /* SMSnakeModel.h in Sources */ = {isa = PBXBuildFile; fileRef = DC6B60C31EFA8602007D1D00 /* SMSnakeModel.h */; };
+		DCE0DFFA1F4B09E300AAB030 /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCE0DFF91F4B09E300AAB030 /* SpriteKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,8 +24,8 @@
 		DC1A8C4F1EA92D7A00E0DEC2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DC1A8C511EA92D7A00E0DEC2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		DC1A8C521EA92D7A00E0DEC2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		DC1A8C541EA92D7A00E0DEC2 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		DC1A8C551EA92D7A00E0DEC2 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		DC1A8C541EA92D7A00E0DEC2 /* SMViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SMViewController.h; sourceTree = "<group>"; };
+		DC1A8C551EA92D7A00E0DEC2 /* SMViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SMViewController.m; sourceTree = "<group>"; };
 		DC1A8C581EA92D7A00E0DEC2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DC1A8C5A1EA92D7A00E0DEC2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DC1A8C5D1EA92D7A00E0DEC2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -33,6 +34,7 @@
 		DC6B60C41EFA8602007D1D00 /* SMSnakeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMSnakeModel.m; sourceTree = "<group>"; };
 		DC6B60C61EFA8613007D1D00 /* SMPlayground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMPlayground.h; sourceTree = "<group>"; };
 		DC6B60C71EFA8613007D1D00 /* SMPlayground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMPlayground.m; sourceTree = "<group>"; };
+		DCE0DFF91F4B09E300AAB030 /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +42,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DCE0DFFA1F4B09E300AAB030 /* SpriteKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -51,6 +54,7 @@
 			children = (
 				DC1A8C4D1EA92D7A00E0DEC2 /* SnakeGame */,
 				DC1A8C4C1EA92D7A00E0DEC2 /* Products */,
+				DCE0DFF81F4B09E300AAB030 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -68,8 +72,8 @@
 				DC6B60C21EFA85D8007D1D00 /* Model */,
 				DC1A8C511EA92D7A00E0DEC2 /* AppDelegate.h */,
 				DC1A8C521EA92D7A00E0DEC2 /* AppDelegate.m */,
-				DC1A8C541EA92D7A00E0DEC2 /* ViewController.h */,
-				DC1A8C551EA92D7A00E0DEC2 /* ViewController.m */,
+				DC1A8C541EA92D7A00E0DEC2 /* SMViewController.h */,
+				DC1A8C551EA92D7A00E0DEC2 /* SMViewController.m */,
 				DC1A8C571EA92D7A00E0DEC2 /* Main.storyboard */,
 				DC1A8C5A1EA92D7A00E0DEC2 /* Assets.xcassets */,
 				DC1A8C5C1EA92D7A00E0DEC2 /* LaunchScreen.storyboard */,
@@ -96,6 +100,14 @@
 				DC6B60C71EFA8613007D1D00 /* SMPlayground.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		DCE0DFF81F4B09E300AAB030 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DCE0DFF91F4B09E300AAB030 /* SpriteKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -173,7 +185,7 @@
 				DC6B60CA1EFA9AB2007D1D00 /* SMSnakeModel.h in Sources */,
 				DC6B60C91EFA8D5E007D1D00 /* SMSnakeModel.m in Sources */,
 				DC6B60C81EFA8613007D1D00 /* SMPlayground.m in Sources */,
-				DC1A8C561EA92D7A00E0DEC2 /* ViewController.m in Sources */,
+				DC1A8C561EA92D7A00E0DEC2 /* SMViewController.m in Sources */,
 				DC1A8C531EA92D7A00E0DEC2 /* AppDelegate.m in Sources */,
 				DC1A8C501EA92D7A00E0DEC2 /* main.m in Sources */,
 			);
