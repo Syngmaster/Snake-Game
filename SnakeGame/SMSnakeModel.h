@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-typedef NS_ENUM(int, SnakeDirectionOption) {
+typedef NS_ENUM(NSInteger, SnakeDirectionOption) {
     
     SnakeDirectionOptionUp = -1,
     SnakeDirectionOptionDown = 1,
@@ -20,7 +20,7 @@ typedef NS_ENUM(int, SnakeDirectionOption) {
 typedef NS_ENUM(NSInteger, SnakePartsOption) {
     
     SnakePartsOptionBody = 1,
-    SnakePartsOptionNewSegment
+    SnakePartsOptionApple
     
 };
 

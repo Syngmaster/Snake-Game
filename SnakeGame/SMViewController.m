@@ -30,7 +30,7 @@
     SMPlayground *playground = [[SMPlayground alloc] initWithView:self.view];
     [self.view addSubview:playground];
     self.playground = playground;
-    self.step = 30;
+    self.step = 25;
     self.timeInterval = 0.25;
 }
 

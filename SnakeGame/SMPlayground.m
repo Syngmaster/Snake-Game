@@ -15,12 +15,13 @@
     self = [super init];
     if (self) {
         
-        CGRect frame = CGRectMake(0, 0, CGRectGetWidth(view.bounds)*0.8, CGRectGetHeight(view.bounds)*0.8);
-        self.frame = frame;
-        self.center = view.center;
+        //CGRect frame = CGRectMake(0, 0, CGRectGetWidth(view.bounds)*0.8, CGRectGetHeight(view.bounds)*0.8);
+        self.frame = view.frame;
         
-        self.layer.borderColor = [UIColor blackColor].CGColor;
-        self.layer.borderWidth = 2.0;
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:view.frame];
+        imageView.contentMode = UIViewContentModeScaleAspectFill;
+        imageView.image = [UIImage imageNamed:@"shore_background.png"];
+        [self addSubview:imageView];
         
     }
     return self;

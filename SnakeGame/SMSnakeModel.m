@@ -15,6 +15,7 @@
 @property (assign, nonatomic) NSInteger newY;
 
 @property (assign, nonatomic) NSInteger snakeBodySize;
+
 @property (assign, nonatomic) CGRect randomViewRect;
 
 @property (assign, nonatomic) CGPoint currentPoint;
@@ -32,9 +33,11 @@
         self.views = [NSMutableArray array];
         //self.playingGround = CGRectMake(0, 0, CGRectGetWidth(view.bounds), CGRectGetHeight(view.bounds));
         
-        NSInteger body = 30;
+        NSInteger body = 25;
+
         self.snakeBodySize = body;
 
+        
         NSInteger startX = body * arc4random_uniform(CGRectGetMaxX(view.bounds)/body);
         NSInteger startY = body * arc4random_uniform(CGRectGetMaxY(view.bounds)/body);
         
@@ -46,6 +49,7 @@
         snakeView.tag = SnakePartsOptionBody;
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:snakeView.bounds];
         imageView.image = [UIImage imageNamed:@"snake_head.png"];
+        imageView.contentMode = UIViewContentModeScaleAspectFill;
         [snakeView addSubview:imageView];
 
         [view addSubview:snakeView];
@@ -66,15 +70,12 @@
     self.newX = newX;
     self.newY = newY;
     
-    NSLog(@"newBodyView - %li %li", (long)newX, (long)newY);
-
-    
     UIView *newBodyView = [[UIView alloc] initWithFrame:CGRectMake(self.newX, self.newY, self.snakeBodySize, self.snakeBodySize)];
 
-    newBodyView.tag = SnakePartsOptionNewSegment;
+    newBodyView.tag = SnakePartsOptionApple;
     
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:newBodyView.bounds];
-    imageView.image = [UIImage imageNamed:@"snake_body.png"];
+    imageView.image = [UIImage imageNamed:@"apple.png"];
     [newBodyView addSubview:imageView];
     
     self.randomViewRect = newBodyView.frame;
@@ -90,6 +91,7 @@
 
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:newSegment.bounds];
     imageView.image = [UIImage imageNamed:@"snake_body.png"];
+    imageView.contentMode = UIViewContentModeScaleAspectFit;
     
     newSegment.tag = SnakePartsOptionBody;
     [newSegment addSubview:imageView];
@@ -138,11 +140,11 @@
     if (CGRectIntersectsRect(headView.frame, self.randomViewRect)) {
         
         [self addOneSegmentToSnake:snake inView:playgroundView];
-        [self removeSnakeViewWithTag:SnakePartsOptionNewSegment inView:playgroundView];
+        [self removeSnakeViewWithTag:SnakePartsOptionApple inView:playgroundView];
         [self generateRandomSnakeBodyInView:playgroundView];
     }
     
-    [self gameOverAfterIntersection:snake withHeadView:headView inView:playgroundView];
+    //[self gameOverAfterIntersection:snake withHeadView:headView inView:playgroundView];
     
 }
 
@@ -187,7 +189,7 @@
                          if (CGRectIntersectsRect(headView.frame, self.randomViewRect)) {
                              
                              [self addOneSegmentToSnake:snake inView:playgroundView];
-                             [self removeSnakeViewWithTag:SnakePartsOptionNewSegment inView:playgroundView];
+                             [self removeSnakeViewWithTag:SnakePartsOptionApple inView:playgroundView];
                              [self generateRandomSnakeBodyInView:playgroundView];
                          }
                          
@@ -228,12 +230,12 @@
     //game stops if the head view goes beyond the playground
     if (!(CGRectContainsRect(playgroundView.bounds, head.frame))) {
 
-        //[self gameOverAlertControllerInView:playgroundView];
-        //[self removeAnimationFromViews:views];
+        [self gameOverAlertControllerInView:playgroundView];
+        [self removeAnimationFromViews:views];
     }
     
     //game stops if head view intersects with a body view
-    for (int i = 0; i < [views count]-1; i++) {
+    for (int i = 2; i < [views count]-1; i++) {
         
         UIView *bodyView = views[i+1];
         
@@ -283,7 +285,7 @@
     UIAlertAction *ac = [UIAlertAction actionWithTitle:@"Restart Game" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
         
         [self removeSnakeViewWithTag:SnakePartsOptionBody inView:playgroundView];
-        [self removeSnakeViewWithTag:SnakePartsOptionNewSegment inView:playgroundView];
+        [self removeSnakeViewWithTag:SnakePartsOptionApple inView:playgroundView];
         [weakMain viewDidAppear:true];
         //[self dismissViewControllerAnimated:YES completion:NULL];
         
