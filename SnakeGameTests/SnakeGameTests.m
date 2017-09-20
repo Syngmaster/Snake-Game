@@ -14,7 +14,7 @@
 
 @property (strong, nonatomic) SMSnakeModel *snakeModel;
 @property (strong, nonatomic) SMViewController *playVC;
-
+@property (assign, nonatomic) CGFloat mainWidth;
 @end
 
 @implementation SnakeGameTests
@@ -28,6 +28,9 @@
     UIView *view = vc.view;
     self.snakeModel = [[SMSnakeModel alloc] initSnakeInView:view];
     self.playVC = vc;
+    CGFloat mainWidth = [UIScreen mainScreen].bounds.size.width;
+    self.mainWidth = mainWidth;
+
 }
 
 - (void)tearDown {
@@ -35,15 +38,19 @@
     [super tearDown];
 }
 
-- (void)testExample {
+- (void)testValidDeviceWidth {
+    
+    XCTAssert((self.mainWidth == 320) || (self.mainWidth == 375) || (self.mainWidth == 414));
+    
+}
+
+- (void)testRandomCoordinatesGenerator {
     
     XCTAssert(self.snakeModel.startX > 0 && self.snakeModel.startX < CGRectGetMaxX(self.playVC.view.frame)-25);
     XCTAssert(self.snakeModel.startY > 0 && self.snakeModel.startY < CGRectGetMaxY(self.playVC.view.frame)-50);
     
     XCTAssert((int)self.snakeModel.startX % 25 == 0);
     XCTAssert((int)self.snakeModel.startY % 25 == 0);
-
-    
 }
 
 - (void)testPerformanceExample {

@@ -34,7 +34,7 @@
         
         self.views = [NSMutableArray array];
         
-        NSInteger body = SNAKE_STEP_IPHONE;
+        NSInteger body = 25;
 
         self.snakeBodySize = body;
         
@@ -110,7 +110,6 @@
         
         [view addSubview:newBodyView];
         [self.arrayOfHazards addObject:newBodyView];
-        NSLog(@"tree - %@", NSStringFromCGRect(newBodyView.frame));
 
     }
     

@@ -26,11 +26,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+        
     SMPlayground *playground = [[SMPlayground alloc] initWithView:self.view];
     [self.view addSubview:playground];
     self.playground = playground;
-    self.step = SNAKE_STEP_IPHONE;
+    self.step = 25;
     self.timeInterval = 0.3;
 }
 

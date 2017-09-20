@@ -8,9 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-#define SNAKE_STEP_IPHONE 25;
-#define SNAKE_STEP_IPHONE_PLUS 30;
-
 typedef NS_ENUM(NSInteger, SnakeDirectionOption) {
     
     SnakeDirectionOptionUp = -1,
