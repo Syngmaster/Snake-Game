@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+#define SNAKE_STEP_IPHONE 25;
+#define SNAKE_STEP_IPHONE_PLUS 30;
+
 typedef NS_ENUM(NSInteger, SnakeDirectionOption) {
     
     SnakeDirectionOptionUp = -1,
@@ -17,10 +20,11 @@ typedef NS_ENUM(NSInteger, SnakeDirectionOption) {
     
 };
 
-typedef NS_ENUM(NSInteger, SnakePartsOption) {
+typedef NS_ENUM(NSInteger, GameElement) {
     
-    SnakePartsOptionBody = 1,
-    SnakePartsOptionApple
+    GameElementSnakeBody = 1,
+    GameElementApple,
+    GameElementTree
     
 };
 
@@ -29,9 +33,13 @@ typedef NS_ENUM(NSInteger, SnakePartsOption) {
 @property (strong, nonatomic) NSMutableArray* views;
 @property (assign, nonatomic) CGRect playingGround;
 
+@property (assign, nonatomic) CGFloat startX;
+@property (assign, nonatomic) CGFloat startY;
+
 - (instancetype)initSnakeInView:(UIView *) view;
 
 - (void)generateRandomSnakeBodyInView:(UIView *) view;
+- (void)generateRandomTreeInView:(UIView *)view;
 
 /************** Method with a timer ******************/
 
@@ -40,6 +48,5 @@ typedef NS_ENUM(NSInteger, SnakePartsOption) {
 /************** Method using animations ******************/
 
 - (void)snakeMovement:(NSArray *) snake inView:(UIView *)playgroundView withDirectionX:(NSInteger) stepX andY:(NSInteger) stepY;
-
 
 @end

@@ -30,19 +30,21 @@
     SMPlayground *playground = [[SMPlayground alloc] initWithView:self.view];
     [self.view addSubview:playground];
     self.playground = playground;
-    self.step = 25;
-    self.timeInterval = 0.25;
+    self.step = SNAKE_STEP_IPHONE;
+    self.timeInterval = 0.3;
 }
 
 - (void) viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
 
     [self.timer invalidate];
-
+    //self.timer = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(testAction) userInfo:nil repeats:true];
+    
     SMSnakeModel *snake = [[SMSnakeModel alloc] initSnakeInView:self.playground];
     
+    [snake generateRandomTreeInView:self.playground];
     [snake generateRandomSnakeBodyInView:self.playground];
-
+    
     self.snakeModel = snake;
     //self.snakeModel.playingGround = self.playground.frame;
     
@@ -112,6 +114,10 @@
 
 - (void)moveSnakeDown {
     [self.snakeModel snakeNewMovement:self.snakeModel.views inView:self.playground withDirectionX:0 andDirectionY:SnakeDirectionOptionDown*self.step];
+}
+
+- (void)testAction {
+    [self.snakeModel generateRandomSnakeBodyInView:self.playground];
 }
 
 @end

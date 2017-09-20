@@ -13,11 +13,22 @@
 		DC1A8C591EA92D7A00E0DEC2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC1A8C571EA92D7A00E0DEC2 /* Main.storyboard */; };
 		DC1A8C5B1EA92D7A00E0DEC2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC1A8C5A1EA92D7A00E0DEC2 /* Assets.xcassets */; };
 		DC1A8C5E1EA92D7A00E0DEC2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC1A8C5C1EA92D7A00E0DEC2 /* LaunchScreen.storyboard */; };
+		DC22DA9C1F72C39800B8E85C /* SnakeGameTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DC22DA9B1F72C39800B8E85C /* SnakeGameTests.m */; };
+		DC22DAA51F72CC8000B8E85C /* SMHazardModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DC22DAA41F72CC8000B8E85C /* SMHazardModel.m */; };
 		DC6B60C81EFA8613007D1D00 /* SMPlayground.m in Sources */ = {isa = PBXBuildFile; fileRef = DC6B60C71EFA8613007D1D00 /* SMPlayground.m */; };
 		DC6B60C91EFA8D5E007D1D00 /* SMSnakeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DC6B60C41EFA8602007D1D00 /* SMSnakeModel.m */; };
 		DC6B60CA1EFA9AB2007D1D00 /* SMSnakeModel.h in Sources */ = {isa = PBXBuildFile; fileRef = DC6B60C31EFA8602007D1D00 /* SMSnakeModel.h */; };
-		DCE0DFFA1F4B09E300AAB030 /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCE0DFF91F4B09E300AAB030 /* SpriteKit.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DC22DA9E1F72C39800B8E85C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DC1A8C431EA92D7A00E0DEC2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DC1A8C4A1EA92D7A00E0DEC2;
+			remoteInfo = SnakeGame;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		DC1A8C4B1EA92D7A00E0DEC2 /* SnakeGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SnakeGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -30,11 +41,15 @@
 		DC1A8C5A1EA92D7A00E0DEC2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DC1A8C5D1EA92D7A00E0DEC2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DC1A8C5F1EA92D7A00E0DEC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DC22DA991F72C39800B8E85C /* SnakeGameTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SnakeGameTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC22DA9B1F72C39800B8E85C /* SnakeGameTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SnakeGameTests.m; sourceTree = "<group>"; };
+		DC22DA9D1F72C39800B8E85C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DC22DAA31F72CC8000B8E85C /* SMHazardModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMHazardModel.h; sourceTree = "<group>"; };
+		DC22DAA41F72CC8000B8E85C /* SMHazardModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMHazardModel.m; sourceTree = "<group>"; };
 		DC6B60C31EFA8602007D1D00 /* SMSnakeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMSnakeModel.h; sourceTree = "<group>"; };
 		DC6B60C41EFA8602007D1D00 /* SMSnakeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMSnakeModel.m; sourceTree = "<group>"; };
 		DC6B60C61EFA8613007D1D00 /* SMPlayground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMPlayground.h; sourceTree = "<group>"; };
 		DC6B60C71EFA8613007D1D00 /* SMPlayground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMPlayground.m; sourceTree = "<group>"; };
-		DCE0DFF91F4B09E300AAB030 /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,7 +57,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DCE0DFFA1F4B09E300AAB030 /* SpriteKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DC22DA961F72C39800B8E85C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -53,6 +74,7 @@
 			isa = PBXGroup;
 			children = (
 				DC1A8C4D1EA92D7A00E0DEC2 /* SnakeGame */,
+				DC22DA9A1F72C39800B8E85C /* SnakeGameTests */,
 				DC1A8C4C1EA92D7A00E0DEC2 /* Products */,
 				DCE0DFF81F4B09E300AAB030 /* Frameworks */,
 			);
@@ -62,6 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				DC1A8C4B1EA92D7A00E0DEC2 /* SnakeGame.app */,
+				DC22DA991F72C39800B8E85C /* SnakeGameTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -91,6 +114,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		DC22DA9A1F72C39800B8E85C /* SnakeGameTests */ = {
+			isa = PBXGroup;
+			children = (
+				DC22DA9B1F72C39800B8E85C /* SnakeGameTests.m */,
+				DC22DA9D1F72C39800B8E85C /* Info.plist */,
+			);
+			path = SnakeGameTests;
+			sourceTree = "<group>";
+		};
 		DC6B60C21EFA85D8007D1D00 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -98,6 +130,8 @@
 				DC6B60C41EFA8602007D1D00 /* SMSnakeModel.m */,
 				DC6B60C61EFA8613007D1D00 /* SMPlayground.h */,
 				DC6B60C71EFA8613007D1D00 /* SMPlayground.m */,
+				DC22DAA31F72CC8000B8E85C /* SMHazardModel.h */,
+				DC22DAA41F72CC8000B8E85C /* SMHazardModel.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -105,7 +139,6 @@
 		DCE0DFF81F4B09E300AAB030 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				DCE0DFF91F4B09E300AAB030 /* SpriteKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -130,6 +163,24 @@
 			productReference = DC1A8C4B1EA92D7A00E0DEC2 /* SnakeGame.app */;
 			productType = "com.apple.product-type.application";
 		};
+		DC22DA981F72C39800B8E85C /* SnakeGameTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DC22DAA21F72C39800B8E85C /* Build configuration list for PBXNativeTarget "SnakeGameTests" */;
+			buildPhases = (
+				DC22DA951F72C39800B8E85C /* Sources */,
+				DC22DA961F72C39800B8E85C /* Frameworks */,
+				DC22DA971F72C39800B8E85C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DC22DA9F1F72C39800B8E85C /* PBXTargetDependency */,
+			);
+			name = SnakeGameTests;
+			productName = SnakeGameTests;
+			productReference = DC22DA991F72C39800B8E85C /* SnakeGameTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -143,6 +194,12 @@
 						CreatedOnToolsVersion = 8.1;
 						DevelopmentTeam = 4PMQKT6K8N;
 						ProvisioningStyle = Automatic;
+					};
+					DC22DA981F72C39800B8E85C = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = 4PMQKT6K8N;
+						ProvisioningStyle = Automatic;
+						TestTargetID = DC1A8C4A1EA92D7A00E0DEC2;
 					};
 				};
 			};
@@ -160,6 +217,7 @@
 			projectRoot = "";
 			targets = (
 				DC1A8C4A1EA92D7A00E0DEC2 /* SnakeGame */,
+				DC22DA981F72C39800B8E85C /* SnakeGameTests */,
 			);
 		};
 /* End PBXProject section */
@@ -175,6 +233,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		DC22DA971F72C39800B8E85C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -184,6 +249,7 @@
 			files = (
 				DC6B60CA1EFA9AB2007D1D00 /* SMSnakeModel.h in Sources */,
 				DC6B60C91EFA8D5E007D1D00 /* SMSnakeModel.m in Sources */,
+				DC22DAA51F72CC8000B8E85C /* SMHazardModel.m in Sources */,
 				DC6B60C81EFA8613007D1D00 /* SMPlayground.m in Sources */,
 				DC1A8C561EA92D7A00E0DEC2 /* SMViewController.m in Sources */,
 				DC1A8C531EA92D7A00E0DEC2 /* AppDelegate.m in Sources */,
@@ -191,7 +257,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		DC22DA951F72C39800B8E85C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC22DA9C1F72C39800B8E85C /* SnakeGameTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DC22DA9F1F72C39800B8E85C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DC1A8C4A1EA92D7A00E0DEC2 /* SnakeGame */;
+			targetProxy = DC22DA9E1F72C39800B8E85C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		DC1A8C571EA92D7A00E0DEC2 /* Main.storyboard */ = {
@@ -327,6 +409,38 @@
 			};
 			name = Release;
 		};
+		DC22DAA01F72C39800B8E85C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				DEVELOPMENT_TEAM = 4PMQKT6K8N;
+				INFOPLIST_FILE = SnakeGameTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = ios.SnakeGameTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SnakeGame.app/SnakeGame";
+			};
+			name = Debug;
+		};
+		DC22DAA11F72C39800B8E85C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				DEVELOPMENT_TEAM = 4PMQKT6K8N;
+				INFOPLIST_FILE = SnakeGameTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = ios.SnakeGameTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SnakeGame.app/SnakeGame";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -347,6 +461,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		DC22DAA21F72C39800B8E85C /* Build configuration list for PBXNativeTarget "SnakeGameTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DC22DAA01F72C39800B8E85C /* Debug */,
+				DC22DAA11F72C39800B8E85C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
