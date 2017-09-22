@@ -9,13 +9,12 @@
 #import "SMViewController.h"
 #import "SMSnakeEngineModel.h"
 #import "SMPlayground.h"
-#import "SMSnakeModel.h"
+#import "SMGameModel.h"
 
 
 @interface SMViewController ()
 
 @property (assign, nonatomic) int step;
-@property (strong, nonatomic) SMSnakeEngineModel *snakeEngineModel;
 @property (strong, nonatomic) SMPlayground *playground;
 
 @property (assign, nonatomic) NSTimeInterval timeInterval;
@@ -33,6 +32,7 @@
     self.playground = playground;
     self.step = 25;
     self.timeInterval = 0.3;
+
 }
 
 - (void) viewDidAppear:(BOOL)animated {
@@ -42,14 +42,14 @@
     //self.timer = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(testAction) userInfo:nil repeats:true];
     
     SMSnakeEngineModel *snake = [[SMSnakeEngineModel alloc] init];
-    self.snakeEngineModel = snake;
     
     [snake generateRandomHazardInView:self.playground];
     [snake generateRandomMealInView:self.playground];
     [snake generateSnakeHeadInView:self.playground];
     
+    self.snakeEngineModel = snake;
+
     [self createSwipes];
-    
 
 }
 
@@ -107,20 +107,20 @@
 }
 
 - (void)moveSnakeRight {
-    [self.snakeEngineModel snakeNewMovement:self.snakeEngineModel.snakeModel.snakeArray inView:self.playground withDirectionX:SnakeDirectionOptionRight*self.step andDirectionY:0];
+    [self.snakeEngineModel snakeNewMovement:self.snakeEngineModel.gameModel.snakeArray inView:self.playground withDirectionX:SnakeDirectionOptionRight*self.step andDirectionY:0];
 }
 
 - (void)moveSnakeLeft {
-    [self.snakeEngineModel snakeNewMovement:self.snakeEngineModel.snakeModel.snakeArray inView:self.playground withDirectionX:SnakeDirectionOptionLeft*self.step andDirectionY:0];
+    [self.snakeEngineModel snakeNewMovement:self.snakeEngineModel.gameModel.snakeArray inView:self.playground withDirectionX:SnakeDirectionOptionLeft*self.step andDirectionY:0];
 }
 
 - (void)moveSnakeUp {
-    [self.snakeEngineModel snakeNewMovement:self.snakeEngineModel.snakeModel.snakeArray inView:self.playground withDirectionX:0 andDirectionY:SnakeDirectionOptionUp*self.step];
+    [self.snakeEngineModel snakeNewMovement:self.snakeEngineModel.gameModel.snakeArray inView:self.playground withDirectionX:0 andDirectionY:SnakeDirectionOptionUp*self.step];
 
 }
 
 - (void)moveSnakeDown {
-    [self.snakeEngineModel snakeNewMovement:self.snakeEngineModel.snakeModel.snakeArray inView:self.playground withDirectionX:0 andDirectionY:SnakeDirectionOptionDown*self.step];
+    [self.snakeEngineModel snakeNewMovement:self.snakeEngineModel.gameModel.snakeArray inView:self.playground withDirectionX:0 andDirectionY:SnakeDirectionOptionDown*self.step];
 }
 
 - (void)testAction {

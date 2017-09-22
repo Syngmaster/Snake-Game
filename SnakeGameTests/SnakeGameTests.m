@@ -9,12 +9,14 @@
 #import <XCTest/XCTest.h>
 #import "SMGameModel.h"
 #import "SMViewController.h"
+#import "SMSnakeEngineModel.h"
 
 @interface SnakeGameTests : XCTestCase
 
 @property (strong, nonatomic) SMGameModel *gameModel;
 @property (strong, nonatomic) SMViewController *playVC;
 @property (assign, nonatomic) CGFloat mainWidth;
+
 @end
 
 @implementation SnakeGameTests
@@ -43,12 +45,22 @@
     
 }
 
+/*- (void)testMaximumQuantityOfGameElements {
+    
+    int maximumGameElements = 0;
+    int maximumGameElementsX = (int)((CGRectGetMaxX(self.playVC.view.frame) - self.gameModel.snakeStep * 2) / self.gameModel.snakeStep);
+    int maximumGameElementsY = (int)((CGRectGetMaxY(self.playVC.view.frame) - self.gameModel.snakeStep) / self.gameModel.snakeStep);
+    maximumGameElements = maximumGameElementsX * maximumGameElementsY;
+
+    XCTAssert([self.playVC.snakeEngineModel.gameModel.takenCoordinates count] <= maximumGameElements * 0.6);
+}*/
+
 - (void)testRandomCoordinatesGenerator {
     
     CGPoint coordinates = [self.gameModel generateRandomCoordinates];
     
-    XCTAssert(coordinates.x > 0 && coordinates.x < CGRectGetMaxX(self.playVC.view.frame)-25);
-    XCTAssert(coordinates.y > 0 && coordinates.y < CGRectGetMaxY(self.playVC.view.frame)-50);
+    XCTAssert(coordinates.x > 0 && coordinates.x < CGRectGetMaxX(self.playVC.view.frame)-self.gameModel.snakeStep);
+    XCTAssert(coordinates.y > 0 && coordinates.y < CGRectGetMaxY(self.playVC.view.frame)-self.gameModel.snakeStep*2);
     
     XCTAssert((int)coordinates.x % 25 == 0);
     XCTAssert((int)coordinates.y % 25 == 0);

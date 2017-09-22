@@ -8,11 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-extern const CGFloat bodySize;
+@class SMSnakeEngineModel;
 
 @interface SMViewController : UIViewController
 
 @property (strong, nonatomic) NSTimer *timer;
+@property (strong, nonatomic) SMSnakeEngineModel *snakeEngineModel;
 
 @end
 

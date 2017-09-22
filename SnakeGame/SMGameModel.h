@@ -23,7 +23,24 @@ typedef NS_ENUM(NSInteger, GameElement) {
 @interface SMGameModel : NSObject
 
 @property (assign, nonatomic) CGFloat snakeStep;
+@property (strong, nonatomic) NSMutableArray *takenCoordinates;
 
 - (CGPoint)generateRandomCoordinates;
+
+
+// snake model
+
+@property (strong, nonatomic) NSMutableArray *snakeArray;
+
+- (UIView *)createSnakeView;
+
+// hazard model
+
+- (UIView *)createHazardView;
+
+// meal model
+
+- (UIView *)createMealView;
+
 
 @end

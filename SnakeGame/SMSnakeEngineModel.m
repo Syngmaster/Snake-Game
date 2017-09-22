@@ -8,9 +8,7 @@
 
 #import "SMSnakeEngineModel.h"
 #import "SMViewController.h"
-#import "SMMealModel.h"
-#import "SMHazardModel.h"
-#import "SMSnakeModel.h"
+#import "SMGameModel.h"
 
 @interface SMSnakeEngineModel ()
 
@@ -25,12 +23,21 @@
 
 #pragma mark - Generate random game elements
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        
+        self.arrayOfHazards = [NSMutableArray array];
+        SMGameModel *gameModel = [[SMGameModel alloc] init];
+        self.gameModel = gameModel;
+    }
+    return self;
+}
+
 - (void)generateSnakeHeadInView:(UIView *)view {
     
-    SMSnakeModel *snakeModel = [[SMSnakeModel alloc] init];
-    self.snakeModel = snakeModel;
-
-    UIView *snakeView = [snakeModel createSnakeView];
+    UIView *snakeView = [self.gameModel createSnakeView];
     
     [view addSubview:snakeView];
     
@@ -39,9 +46,7 @@
 
 - (void)generateRandomMealInView:(UIView *)view {
     
-    SMMealModel *mealModel = [[SMMealModel alloc] init];
-    
-    UIView *mealView = [mealModel createMealView];
+    UIView *mealView = [self.gameModel createMealView];
     
     self.randomViewRect = mealView.frame;
     [view addSubview:mealView];
@@ -50,25 +55,22 @@
 
 - (void)generateRandomHazardInView:(UIView *)view {
         
-    NSUInteger numberOfHazards = 5 + arc4random_uniform(10);
-    self.arrayOfHazards = [NSMutableArray array];
-    SMHazardModel *hazardModel = [[SMHazardModel alloc] init];
+    NSUInteger numberOfHazards = 50;
 
     for (int i = 0; i < numberOfHazards; i++) {
 
-        UIView *hazardView = [hazardModel createHazardView];
+        UIView *hazardView = [self.gameModel createHazardView];
         
         [view addSubview:hazardView];
         [self.arrayOfHazards addObject:hazardView];
 
     }
-    
 
 }
 
 - (void)addOneSegmentToSnake:(NSMutableArray *)snake inView:(UIView *)view {
     
-    UIView *snakeView = [self.snakeModel createSnakeView];
+    UIView *snakeView = [self.gameModel createSnakeView];
     [view addSubview:snakeView];
     
 }
