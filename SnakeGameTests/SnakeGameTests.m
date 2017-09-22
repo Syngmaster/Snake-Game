@@ -7,12 +7,12 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "SMSnakeModel.h"
+#import "SMGameModel.h"
 #import "SMViewController.h"
 
 @interface SnakeGameTests : XCTestCase
 
-@property (strong, nonatomic) SMSnakeModel *snakeModel;
+@property (strong, nonatomic) SMGameModel *gameModel;
 @property (strong, nonatomic) SMViewController *playVC;
 @property (assign, nonatomic) CGFloat mainWidth;
 @end
@@ -25,8 +25,7 @@
     
     UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
     SMViewController *vc = [mainSB instantiateViewControllerWithIdentifier:@"SMViewController"];
-    UIView *view = vc.view;
-    self.snakeModel = [[SMSnakeModel alloc] initSnakeInView:view];
+    self.gameModel = [[SMGameModel alloc] init];
     self.playVC = vc;
     CGFloat mainWidth = [UIScreen mainScreen].bounds.size.width;
     self.mainWidth = mainWidth;
@@ -46,11 +45,13 @@
 
 - (void)testRandomCoordinatesGenerator {
     
-    XCTAssert(self.snakeModel.startX > 0 && self.snakeModel.startX < CGRectGetMaxX(self.playVC.view.frame)-25);
-    XCTAssert(self.snakeModel.startY > 0 && self.snakeModel.startY < CGRectGetMaxY(self.playVC.view.frame)-50);
+    CGPoint coordinates = [self.gameModel generateRandomCoordinates];
     
-    XCTAssert((int)self.snakeModel.startX % 25 == 0);
-    XCTAssert((int)self.snakeModel.startY % 25 == 0);
+    XCTAssert(coordinates.x > 0 && coordinates.x < CGRectGetMaxX(self.playVC.view.frame)-25);
+    XCTAssert(coordinates.y > 0 && coordinates.y < CGRectGetMaxY(self.playVC.view.frame)-50);
+    
+    XCTAssert((int)coordinates.x % 25 == 0);
+    XCTAssert((int)coordinates.y % 25 == 0);
 }
 
 - (void)testPerformanceExample {

@@ -1,16 +1,15 @@
 //
-//  SMHazardModel.h
+//  SMMealModel.h
 //  SnakeGame
 //
 //  Created by Syngmaster on 20/09/2017.
 //  Copyright © 2017 Syngmaster. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "SMGameModel.h"
 
-@interface SMHazardModel : SMGameModel
+@interface SMMealModel : SMGameModel
 
-- (UIView *)createHazardView;
+- (UIView *)createMealView;
 
 @end

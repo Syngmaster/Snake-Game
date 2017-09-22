@@ -16,9 +16,11 @@
 		DC22DA9C1F72C39800B8E85C /* SnakeGameTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DC22DA9B1F72C39800B8E85C /* SnakeGameTests.m */; };
 		DC22DAA51F72CC8000B8E85C /* SMHazardModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DC22DAA41F72CC8000B8E85C /* SMHazardModel.m */; };
 		DC22DAA81F72CFB000B8E85C /* SMGameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DC22DAA71F72CFB000B8E85C /* SMGameModel.m */; };
+		DC22DAAB1F72D78100B8E85C /* SMMealModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DC22DAAA1F72D78100B8E85C /* SMMealModel.m */; };
+		DC22DAAE1F72E26B00B8E85C /* SMSnakeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DC22DAAD1F72E26B00B8E85C /* SMSnakeModel.m */; };
 		DC6B60C81EFA8613007D1D00 /* SMPlayground.m in Sources */ = {isa = PBXBuildFile; fileRef = DC6B60C71EFA8613007D1D00 /* SMPlayground.m */; };
-		DC6B60C91EFA8D5E007D1D00 /* SMSnakeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DC6B60C41EFA8602007D1D00 /* SMSnakeModel.m */; };
-		DC6B60CA1EFA9AB2007D1D00 /* SMSnakeModel.h in Sources */ = {isa = PBXBuildFile; fileRef = DC6B60C31EFA8602007D1D00 /* SMSnakeModel.h */; };
+		DC6B60C91EFA8D5E007D1D00 /* SMSnakeEngineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DC6B60C41EFA8602007D1D00 /* SMSnakeEngineModel.m */; };
+		DC6B60CA1EFA9AB2007D1D00 /* SMSnakeEngineModel.h in Sources */ = {isa = PBXBuildFile; fileRef = DC6B60C31EFA8602007D1D00 /* SMSnakeEngineModel.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,8 +51,12 @@
 		DC22DAA41F72CC8000B8E85C /* SMHazardModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMHazardModel.m; sourceTree = "<group>"; };
 		DC22DAA61F72CFB000B8E85C /* SMGameModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMGameModel.h; sourceTree = "<group>"; };
 		DC22DAA71F72CFB000B8E85C /* SMGameModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMGameModel.m; sourceTree = "<group>"; };
-		DC6B60C31EFA8602007D1D00 /* SMSnakeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMSnakeModel.h; sourceTree = "<group>"; };
-		DC6B60C41EFA8602007D1D00 /* SMSnakeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMSnakeModel.m; sourceTree = "<group>"; };
+		DC22DAA91F72D78100B8E85C /* SMMealModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMMealModel.h; sourceTree = "<group>"; };
+		DC22DAAA1F72D78100B8E85C /* SMMealModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMMealModel.m; sourceTree = "<group>"; };
+		DC22DAAC1F72E26B00B8E85C /* SMSnakeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMSnakeModel.h; sourceTree = "<group>"; };
+		DC22DAAD1F72E26B00B8E85C /* SMSnakeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMSnakeModel.m; sourceTree = "<group>"; };
+		DC6B60C31EFA8602007D1D00 /* SMSnakeEngineModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMSnakeEngineModel.h; sourceTree = "<group>"; };
+		DC6B60C41EFA8602007D1D00 /* SMSnakeEngineModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMSnakeEngineModel.m; sourceTree = "<group>"; };
 		DC6B60C61EFA8613007D1D00 /* SMPlayground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMPlayground.h; sourceTree = "<group>"; };
 		DC6B60C71EFA8613007D1D00 /* SMPlayground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMPlayground.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -131,12 +137,16 @@
 			children = (
 				DC22DAA61F72CFB000B8E85C /* SMGameModel.h */,
 				DC22DAA71F72CFB000B8E85C /* SMGameModel.m */,
-				DC6B60C31EFA8602007D1D00 /* SMSnakeModel.h */,
-				DC6B60C41EFA8602007D1D00 /* SMSnakeModel.m */,
+				DC6B60C31EFA8602007D1D00 /* SMSnakeEngineModel.h */,
+				DC6B60C41EFA8602007D1D00 /* SMSnakeEngineModel.m */,
+				DC22DAAC1F72E26B00B8E85C /* SMSnakeModel.h */,
+				DC22DAAD1F72E26B00B8E85C /* SMSnakeModel.m */,
 				DC6B60C61EFA8613007D1D00 /* SMPlayground.h */,
 				DC6B60C71EFA8613007D1D00 /* SMPlayground.m */,
 				DC22DAA31F72CC8000B8E85C /* SMHazardModel.h */,
 				DC22DAA41F72CC8000B8E85C /* SMHazardModel.m */,
+				DC22DAA91F72D78100B8E85C /* SMMealModel.h */,
+				DC22DAAA1F72D78100B8E85C /* SMMealModel.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -252,10 +262,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DC6B60CA1EFA9AB2007D1D00 /* SMSnakeModel.h in Sources */,
-				DC6B60C91EFA8D5E007D1D00 /* SMSnakeModel.m in Sources */,
+				DC6B60CA1EFA9AB2007D1D00 /* SMSnakeEngineModel.h in Sources */,
+				DC6B60C91EFA8D5E007D1D00 /* SMSnakeEngineModel.m in Sources */,
 				DC22DAA51F72CC8000B8E85C /* SMHazardModel.m in Sources */,
 				DC22DAA81F72CFB000B8E85C /* SMGameModel.m in Sources */,
+				DC22DAAE1F72E26B00B8E85C /* SMSnakeModel.m in Sources */,
+				DC22DAAB1F72D78100B8E85C /* SMMealModel.m in Sources */,
 				DC6B60C81EFA8613007D1D00 /* SMPlayground.m in Sources */,
 				DC1A8C561EA92D7A00E0DEC2 /* SMViewController.m in Sources */,
 				DC1A8C531EA92D7A00E0DEC2 /* AppDelegate.m in Sources */,

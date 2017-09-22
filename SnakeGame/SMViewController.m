@@ -7,14 +7,15 @@
 //
 
 #import "SMViewController.h"
-#import "SMSnakeModel.h"
+#import "SMSnakeEngineModel.h"
 #import "SMPlayground.h"
+#import "SMSnakeModel.h"
 
 
 @interface SMViewController ()
 
 @property (assign, nonatomic) int step;
-@property (strong, nonatomic) SMSnakeModel *snakeModel;
+@property (strong, nonatomic) SMSnakeEngineModel *snakeEngineModel;
 @property (strong, nonatomic) SMPlayground *playground;
 
 @property (assign, nonatomic) NSTimeInterval timeInterval;
@@ -40,13 +41,19 @@
     [self.timer invalidate];
     //self.timer = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(testAction) userInfo:nil repeats:true];
     
-    SMSnakeModel *snake = [[SMSnakeModel alloc] initSnakeInView:self.playground];
+    SMSnakeEngineModel *snake = [[SMSnakeEngineModel alloc] init];
+    self.snakeEngineModel = snake;
     
-    [snake generateRandomTreeInView:self.playground];
-    [snake generateRandomSnakeBodyInView:self.playground];
+    [snake generateRandomHazardInView:self.playground];
+    [snake generateRandomMealInView:self.playground];
+    [snake generateSnakeHeadInView:self.playground];
     
-    self.snakeModel = snake;
-    //self.snakeModel.playingGround = self.playground.frame;
+    [self createSwipes];
+    
+
+}
+
+- (void)createSwipes {
     
     UISwipeGestureRecognizer *swipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeAction:)];
     swipeRight.direction = UISwipeGestureRecognizerDirectionRight;
@@ -100,24 +107,24 @@
 }
 
 - (void)moveSnakeRight {
-    [self.snakeModel snakeNewMovement:self.snakeModel.views inView:self.playground withDirectionX:SnakeDirectionOptionRight*self.step andDirectionY:0];
+    [self.snakeEngineModel snakeNewMovement:self.snakeEngineModel.snakeModel.snakeArray inView:self.playground withDirectionX:SnakeDirectionOptionRight*self.step andDirectionY:0];
 }
 
 - (void)moveSnakeLeft {
-    [self.snakeModel snakeNewMovement:self.snakeModel.views inView:self.playground withDirectionX:SnakeDirectionOptionLeft*self.step andDirectionY:0];
+    [self.snakeEngineModel snakeNewMovement:self.snakeEngineModel.snakeModel.snakeArray inView:self.playground withDirectionX:SnakeDirectionOptionLeft*self.step andDirectionY:0];
 }
 
 - (void)moveSnakeUp {
-    [self.snakeModel snakeNewMovement:self.snakeModel.views inView:self.playground withDirectionX:0 andDirectionY:SnakeDirectionOptionUp*self.step];
+    [self.snakeEngineModel snakeNewMovement:self.snakeEngineModel.snakeModel.snakeArray inView:self.playground withDirectionX:0 andDirectionY:SnakeDirectionOptionUp*self.step];
 
 }
 
 - (void)moveSnakeDown {
-    [self.snakeModel snakeNewMovement:self.snakeModel.views inView:self.playground withDirectionX:0 andDirectionY:SnakeDirectionOptionDown*self.step];
+    [self.snakeEngineModel snakeNewMovement:self.snakeEngineModel.snakeModel.snakeArray inView:self.playground withDirectionX:0 andDirectionY:SnakeDirectionOptionDown*self.step];
 }
 
 - (void)testAction {
-    [self.snakeModel generateRandomSnakeBodyInView:self.playground];
+    [self.snakeEngineModel generateRandomMealInView:self.playground];
 }
 
 @end

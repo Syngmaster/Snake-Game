@@ -8,6 +8,12 @@
 
 #import "SMGameModel.h"
 
+@interface SMGameModel ()
+
+@property (assign, nonatomic) CGRect mainViewRect;
+
+@end
+
 @implementation SMGameModel
 
 - (instancetype)init
@@ -16,23 +22,31 @@
     if (self) {
         
         switch ((int)[UIScreen mainScreen].bounds.size.width) {
-            case 320:
+                
+            case 320: self.snakeStep = 20;
                 break;
-            case 375:
+            case 375: self.snakeStep = SNAKE_STEP_IPHONE;
                 break;
-            case 414:
+            case 414: self.snakeStep = SNAKE_STEP_IPHONE_PLUS;
                 break;
 
         }
-        
-        //320 5,5s,5c
-        NSLog(@"height - %f", [UIScreen mainScreen].bounds.size.width);
-
-        //375 6,6s,7,7s
-        //414 6plus,7plus
+        self.mainViewRect = [UIScreen mainScreen].bounds;
         
     }
     return self;
+}
+
+
+- (CGPoint)generateRandomCoordinates {
+    
+    NSUInteger newX = self.snakeStep + self.snakeStep * arc4random_uniform((CGRectGetMaxX(self.mainViewRect) - self.snakeStep*2)/self.snakeStep);
+    NSUInteger newY = self.snakeStep + self.snakeStep * arc4random_uniform((CGRectGetMaxY(self.mainViewRect) - self.snakeStep)/self.snakeStep);
+    
+    CGPoint newPoint = CGPointMake(newX, newY);
+    
+    return newPoint;
+    
 }
 
 @end

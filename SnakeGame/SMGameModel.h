@@ -12,8 +12,18 @@
 #define SNAKE_STEP_IPHONE 25;
 #define SNAKE_STEP_IPHONE_PLUS 30;
 
+typedef NS_ENUM(NSInteger, GameElement) {
+    
+    GameElementSnakeBody = 1,
+    GameElementApple,
+    GameElementHazard
+    
+};
+
 @interface SMGameModel : NSObject
 
 @property (assign, nonatomic) CGFloat snakeStep;
+
+- (CGPoint)generateRandomCoordinates;
 
 @end
