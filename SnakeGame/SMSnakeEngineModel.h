@@ -23,7 +23,7 @@ typedef NS_ENUM(NSInteger, SnakeDirectionOption) {
 
 @property (strong, nonatomic) SMGameModel *gameModel;
 
-- (void)generateSnakeHeadInView:(UIView *)view;
+- (void)generateSnakeInView:(UIView *)view;
 - (void)generateRandomMealInView:(UIView *) view;
 - (void)generateRandomHazardInView:(UIView *)view;
 

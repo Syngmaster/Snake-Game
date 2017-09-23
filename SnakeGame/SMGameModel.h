@@ -16,7 +16,8 @@ typedef NS_ENUM(NSInteger, GameElement) {
     
     GameElementSnakeBody = 1,
     GameElementApple,
-    GameElementHazard
+    GameElementHazard,
+    GameElementSnakeTail
     
 };
 

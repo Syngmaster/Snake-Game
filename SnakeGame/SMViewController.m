@@ -45,7 +45,7 @@
     
     [snake generateRandomHazardInView:self.playground];
     [snake generateRandomMealInView:self.playground];
-    [snake generateSnakeHeadInView:self.playground];
+    [snake generateSnakeInView:self.playground];
     
     self.snakeEngineModel = snake;
 

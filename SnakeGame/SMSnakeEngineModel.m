@@ -35,11 +35,12 @@
     return self;
 }
 
-- (void)generateSnakeHeadInView:(UIView *)view {
+- (void)generateSnakeInView:(UIView *)view {
     
     UIView *snakeView = [self.gameModel createSnakeView];
-    
     [view addSubview:snakeView];
+    UIView *snakeTailView = [self.gameModel createSnakeView];
+    [view addSubview:snakeTailView];
     
 }
 
@@ -55,7 +56,7 @@
 
 - (void)generateRandomHazardInView:(UIView *)view {
         
-    NSUInteger numberOfHazards = 50;
+    NSUInteger numberOfHazards = 3;
 
     for (int i = 0; i < numberOfHazards; i++) {
 
@@ -71,8 +72,9 @@
 - (void)addOneSegmentToSnake:(NSMutableArray *)snake inView:(UIView *)view {
     
     UIView *snakeView = [self.gameModel createSnakeView];
+
     [view addSubview:snakeView];
-    
+        
 }
 
 #pragma mark - Moving method
@@ -83,41 +85,47 @@
 - (void)snakeNewMovement:(NSMutableArray *) snake inView:(UIView *)playgroundView withDirectionX:(int)directionX andDirectionY:(int)directionY {
     
     UIView *snakeHead = snake[0];
-    
+    CGAffineTransform currentPosition = snakeHead.layer.affineTransform;
+
     if (directionY < 0) {
         snakeHead.layer.affineTransform = CGAffineTransformMakeRotation(0);
     } else if (directionY > 0) {
         snakeHead.layer.affineTransform = CGAffineTransformMakeRotation(M_PI);
-    }
-    
-    if (directionX < 0) {
+    } else if (directionX < 0) {
         snakeHead.layer.affineTransform = CGAffineTransformMakeRotation(-M_PI/2);
     } else if (directionX > 0) {
         snakeHead.layer.affineTransform = CGAffineTransformMakeRotation(M_PI/2);
     }
     
     
-    UIView *headView = snake[0];
-    
-    for (NSInteger i = [snake count]-1; i > 0; i--) {
+    for (NSUInteger i = [snake count]-1; i > 0; i--) {
         
         UIView *view = snake[i-1];
         UIView *nextView = snake[i];
         
         nextView.center = view.center;
+        nextView.layer.affineTransform = view.layer.affineTransform;
+        
     }
     
-    headView.center = CGPointMake(headView.center.x + directionX, headView.center.y + directionY );
+    snakeHead.center = CGPointMake(snakeHead.center.x + directionX, snakeHead.center.y + directionY);
     
+    if (!CGAffineTransformEqualToTransform(currentPosition, snakeHead.layer.affineTransform)) {
+        
+        UIView *nextView = snake[1];
+        nextView.layer.affineTransform = snakeHead.layer.affineTransform;
+        
+        
+    }
     
-    if (CGRectIntersectsRect(headView.frame, self.randomViewRect)) {
+    if (CGRectIntersectsRect(snakeHead.frame, self.randomViewRect)) {
         
         [self addOneSegmentToSnake:snake inView:playgroundView];
         [self removeGameElementWithTag:GameElementApple inView:playgroundView];
         [self generateRandomMealInView:playgroundView];
     }
     
-    [self gameOverAfterIntersection:snake withHeadView:headView inView:playgroundView];
+    [self gameOverAfterIntersection:snake withHeadView:snakeHead inView:playgroundView];
     
 }
 
@@ -269,6 +277,7 @@
         [self removeGameElementWithTag:GameElementSnakeBody inView:playgroundView];
         [self removeGameElementWithTag:GameElementApple inView:playgroundView];
         [self removeGameElementWithTag:GameElementHazard inView:playgroundView];
+        [self removeGameElementWithTag:GameElementSnakeTail inView:playgroundView];
         self.arrayOfHazards = nil;
         
         [weakMain viewDidAppear:true];

@@ -76,8 +76,24 @@
         UIView *snakeView = [[UIView alloc] initWithFrame:CGRectMake(snakeCoordinates.x, snakeCoordinates.y, self.snakeStep, self.snakeStep)];
         snakeView.tag = GameElementSnakeBody;
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:snakeView.bounds];
-        imageView.image = [UIImage imageNamed:@"snake_head.png"];
+        imageView.image = [UIImage imageNamed:@"snake_head_new.png"];
         imageView.contentMode = UIViewContentModeScaleAspectFill;
+        [snakeView addSubview:imageView];
+        [self.snakeArray addObject:snakeView];
+        
+        return snakeView;
+        
+    } else if ([self.snakeArray count] == 1) {
+        
+        UIView *lastBody = self.snakeArray[[self.snakeArray count]-1];
+        
+        UIView *snakeView = [[UIView alloc] initWithFrame:CGRectMake(CGRectGetMinX(lastBody.frame), CGRectGetMinY(lastBody.frame) + self.snakeStep, self.snakeStep, self.snakeStep)];
+        
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:snakeView.bounds];
+        imageView.image = [UIImage imageNamed:@"snake_tail_new.png"];
+        imageView.contentMode = UIViewContentModeScaleAspectFill;
+        
+        snakeView.tag = GameElementSnakeTail;
         [snakeView addSubview:imageView];
         [self.snakeArray addObject:snakeView];
         
@@ -85,19 +101,20 @@
         
     } else {
         
-        UIView *lastBody = self.snakeArray[[self.snakeArray count]-1];
+        UIView *lastBody = self.snakeArray[1];
         
         UIView *snakeView = [[UIView alloc] initWithFrame:CGRectMake(CGRectGetMinX(lastBody.frame), CGRectGetMinY(lastBody.frame), self.snakeStep, self.snakeStep)];
-        
+        snakeView.layer.affineTransform = lastBody.layer.affineTransform;
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:snakeView.bounds];
-        imageView.image = [UIImage imageNamed:@"snake_body2.png"];
+        imageView.image = [UIImage imageNamed:@"snake_body_new.png"];
         imageView.contentMode = UIViewContentModeScaleAspectFit;
         
         snakeView.tag = GameElementSnakeBody;
         [snakeView addSubview:imageView];
-        [self.snakeArray addObject:snakeView];
+        [self.snakeArray insertObject:snakeView atIndex:1];
         
         return snakeView;
+        
     }
     
 }
