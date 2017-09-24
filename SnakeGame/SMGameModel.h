@@ -11,6 +11,9 @@
 
 #define SNAKE_STEP_IPHONE 25;
 #define SNAKE_STEP_IPHONE_PLUS 30;
+#define SNAKE_STEP_IPAD_9_7 45;
+#define SNAKE_STEP_IPAD_10_5 49;
+#define SNAKE_STEP_IPAD_12_9 60;
 
 typedef NS_ENUM(NSInteger, GameElement) {
     

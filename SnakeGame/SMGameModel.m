@@ -29,6 +29,12 @@
                 break;
             case 414: self.snakeStep = SNAKE_STEP_IPHONE_PLUS;
                 break;
+            case 768: self.snakeStep = SNAKE_STEP_IPAD_9_7;
+                break;
+            case 834: self.snakeStep = SNAKE_STEP_IPAD_10_5;
+                break;
+            case 1024: self.snakeStep = SNAKE_STEP_IPAD_12_9;
+                break;
 
         }
         self.mainViewRect = [UIScreen mainScreen].bounds;
@@ -48,7 +54,7 @@
     
     CGPoint newPoint = CGPointMake(newX, newY);
     
-    if ([self.takenCoordinates count] > 0) {
+    /*if ([self.takenCoordinates count] > 0) {
         
         for (NSValue *coord in self.takenCoordinates) {
             
@@ -57,7 +63,7 @@
                 return [self generateRandomCoordinates];
             }
         }
-    }
+    }*/
 
     
     [self.takenCoordinates addObject:[NSValue valueWithCGPoint:newPoint]];

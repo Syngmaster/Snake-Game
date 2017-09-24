@@ -30,8 +30,10 @@
     SMPlayground *playground = [[SMPlayground alloc] initWithView:self.view];
     [self.view addSubview:playground];
     self.playground = playground;
-    self.step = 25;
+    self.step = 49;
     self.timeInterval = 0.3;
+    
+    NSLog(@"%f", [UIScreen mainScreen].bounds.size.width);
 
 }
 
@@ -39,7 +41,7 @@
     [super viewDidAppear:animated];
 
     [self.timer invalidate];
-    //self.timer = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(testAction) userInfo:nil repeats:true];
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(testAction) userInfo:nil repeats:true];
     
     SMSnakeEngineModel *snake = [[SMSnakeEngineModel alloc] init];
     
