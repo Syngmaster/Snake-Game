@@ -7,7 +7,7 @@
 //
 
 #import "SMSnakeEngineModel.h"
-#import "SMViewController.h"
+#import "SMPlayViewController.h"
 #import "SMGameModel.h"
 
 @interface SMSnakeEngineModel ()
@@ -265,10 +265,12 @@
 
 - (void)gameOverAlertControllerInView:(UIView *) playgroundView {
     
-    SMViewController *mainVC = (SMViewController *)[UIApplication sharedApplication].windows.firstObject.rootViewController;
     
-    __weak SMViewController* weakMain = mainVC;
-    [weakMain.timer invalidate];
+    UIViewController *rootVC = [UIApplication sharedApplication].windows.firstObject.rootViewController;
+    
+    SMPlayViewController *mainVC = (SMPlayViewController *)rootVC.presentedViewController;
+
+    [mainVC.timer invalidate];
     
     UIAlertController *contr = [UIAlertController alertControllerWithTitle:@"Game Over!" message:@"" preferredStyle:UIAlertControllerStyleAlert];
     
@@ -280,7 +282,7 @@
         [self removeGameElementWithTag:GameElementSnakeTail inView:playgroundView];
         self.arrayOfHazards = nil;
         
-        [weakMain viewDidAppear:true];
+        [mainVC viewDidAppear:true];
         
     }];
     [contr addAction:ac];

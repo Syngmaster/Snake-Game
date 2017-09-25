@@ -9,12 +9,13 @@
 /* Begin PBXBuildFile section */
 		DC1A8C501EA92D7A00E0DEC2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1A8C4F1EA92D7A00E0DEC2 /* main.m */; };
 		DC1A8C531EA92D7A00E0DEC2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1A8C521EA92D7A00E0DEC2 /* AppDelegate.m */; };
-		DC1A8C561EA92D7A00E0DEC2 /* SMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1A8C551EA92D7A00E0DEC2 /* SMViewController.m */; };
+		DC1A8C561EA92D7A00E0DEC2 /* SMPlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1A8C551EA92D7A00E0DEC2 /* SMPlayViewController.m */; };
 		DC1A8C591EA92D7A00E0DEC2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC1A8C571EA92D7A00E0DEC2 /* Main.storyboard */; };
 		DC1A8C5B1EA92D7A00E0DEC2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC1A8C5A1EA92D7A00E0DEC2 /* Assets.xcassets */; };
 		DC1A8C5E1EA92D7A00E0DEC2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC1A8C5C1EA92D7A00E0DEC2 /* LaunchScreen.storyboard */; };
 		DC22DA9C1F72C39800B8E85C /* SnakeGameTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DC22DA9B1F72C39800B8E85C /* SnakeGameTests.m */; };
 		DC22DAA81F72CFB000B8E85C /* SMGameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DC22DAA71F72CFB000B8E85C /* SMGameModel.m */; };
+		DC22DAB11F7974DD00B8E85C /* SMMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC22DAB01F7974DD00B8E85C /* SMMainViewController.m */; };
 		DC6B60C81EFA8613007D1D00 /* SMPlayground.m in Sources */ = {isa = PBXBuildFile; fileRef = DC6B60C71EFA8613007D1D00 /* SMPlayground.m */; };
 		DC6B60C91EFA8D5E007D1D00 /* SMSnakeEngineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DC6B60C41EFA8602007D1D00 /* SMSnakeEngineModel.m */; };
 		DC6B60CA1EFA9AB2007D1D00 /* SMSnakeEngineModel.h in Sources */ = {isa = PBXBuildFile; fileRef = DC6B60C31EFA8602007D1D00 /* SMSnakeEngineModel.h */; };
@@ -35,8 +36,8 @@
 		DC1A8C4F1EA92D7A00E0DEC2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DC1A8C511EA92D7A00E0DEC2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		DC1A8C521EA92D7A00E0DEC2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		DC1A8C541EA92D7A00E0DEC2 /* SMViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SMViewController.h; sourceTree = "<group>"; };
-		DC1A8C551EA92D7A00E0DEC2 /* SMViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SMViewController.m; sourceTree = "<group>"; };
+		DC1A8C541EA92D7A00E0DEC2 /* SMPlayViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SMPlayViewController.h; sourceTree = "<group>"; };
+		DC1A8C551EA92D7A00E0DEC2 /* SMPlayViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SMPlayViewController.m; sourceTree = "<group>"; };
 		DC1A8C581EA92D7A00E0DEC2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DC1A8C5A1EA92D7A00E0DEC2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DC1A8C5D1EA92D7A00E0DEC2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -46,6 +47,8 @@
 		DC22DA9D1F72C39800B8E85C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DC22DAA61F72CFB000B8E85C /* SMGameModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMGameModel.h; sourceTree = "<group>"; };
 		DC22DAA71F72CFB000B8E85C /* SMGameModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMGameModel.m; sourceTree = "<group>"; };
+		DC22DAAF1F7974DD00B8E85C /* SMMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMMainViewController.h; sourceTree = "<group>"; };
+		DC22DAB01F7974DD00B8E85C /* SMMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMMainViewController.m; sourceTree = "<group>"; };
 		DC6B60C31EFA8602007D1D00 /* SMSnakeEngineModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMSnakeEngineModel.h; sourceTree = "<group>"; };
 		DC6B60C41EFA8602007D1D00 /* SMSnakeEngineModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMSnakeEngineModel.m; sourceTree = "<group>"; };
 		DC6B60C61EFA8613007D1D00 /* SMPlayground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMPlayground.h; sourceTree = "<group>"; };
@@ -95,8 +98,10 @@
 				DC6B60C21EFA85D8007D1D00 /* Model */,
 				DC1A8C511EA92D7A00E0DEC2 /* AppDelegate.h */,
 				DC1A8C521EA92D7A00E0DEC2 /* AppDelegate.m */,
-				DC1A8C541EA92D7A00E0DEC2 /* SMViewController.h */,
-				DC1A8C551EA92D7A00E0DEC2 /* SMViewController.m */,
+				DC1A8C541EA92D7A00E0DEC2 /* SMPlayViewController.h */,
+				DC1A8C551EA92D7A00E0DEC2 /* SMPlayViewController.m */,
+				DC22DAAF1F7974DD00B8E85C /* SMMainViewController.h */,
+				DC22DAB01F7974DD00B8E85C /* SMMainViewController.m */,
 				DC1A8C571EA92D7A00E0DEC2 /* Main.storyboard */,
 				DC1A8C5A1EA92D7A00E0DEC2 /* Assets.xcassets */,
 				DC1A8C5C1EA92D7A00E0DEC2 /* LaunchScreen.storyboard */,
@@ -251,7 +256,8 @@
 				DC6B60C91EFA8D5E007D1D00 /* SMSnakeEngineModel.m in Sources */,
 				DC22DAA81F72CFB000B8E85C /* SMGameModel.m in Sources */,
 				DC6B60C81EFA8613007D1D00 /* SMPlayground.m in Sources */,
-				DC1A8C561EA92D7A00E0DEC2 /* SMViewController.m in Sources */,
+				DC1A8C561EA92D7A00E0DEC2 /* SMPlayViewController.m in Sources */,
+				DC22DAB11F7974DD00B8E85C /* SMMainViewController.m in Sources */,
 				DC1A8C531EA92D7A00E0DEC2 /* AppDelegate.m in Sources */,
 				DC1A8C501EA92D7A00E0DEC2 /* main.m in Sources */,
 			);

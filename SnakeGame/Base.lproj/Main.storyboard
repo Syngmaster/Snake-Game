@@ -1,53 +1,91 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Dpp-Mp-d4M">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Main View Controller-->
         <scene sceneID="8QO-37-umf">
             <objects>
-                <viewController id="Dpp-Mp-d4M" sceneMemberID="viewController">
+                <viewController id="Dpp-Mp-d4M" customClass="SMMainViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="o8h-D5-eeC"/>
                         <viewControllerLayoutGuide type="bottom" id="x7c-ti-db6"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="CcK-w5-q8Q">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="Ycm-aw-4cl">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3td-vX-lVo">
+                                <rect key="frame" x="0.0" y="656" width="414" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="tlh-kZ-7Gc"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="36"/>
+                                <state key="normal" title="Start Game" backgroundImage="StartGameButton">
+                                    <color key="titleColor" red="0.13725490196078433" green="0.45098039215686275" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="showGameAction:" destination="Dpp-Mp-d4M" eventType="touchUpInside" id="Tj4-zt-wGc"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="snake_main_view" translatesAutoresizingMaskIntoConstraints="NO" id="NW9-6O-cbS">
+                                <rect key="frame" x="75" y="490.33333333333326" width="264" height="145.66666666666674"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="NW9-6O-cbS" secondAttribute="height" multiplier="29:16" id="7Dc-df-vOz"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="I8v-gF-Yi1">
+                                <rect key="frame" x="30" y="159.33333333333337" width="354" height="261"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="I8v-gF-Yi1" secondAttribute="height" multiplier="157:116" id="jnr-yp-Acv"/>
+                                </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="bottom" secondItem="3td-vX-lVo" secondAttribute="bottom" id="0Gr-gx-tqa"/>
+                            <constraint firstItem="3td-vX-lVo" firstAttribute="leading" secondItem="CcK-w5-q8Q" secondAttribute="leading" id="29X-eH-Elb"/>
                             <constraint firstItem="x7c-ti-db6" firstAttribute="top" secondItem="Ycm-aw-4cl" secondAttribute="bottom" id="4Gk-OH-km2"/>
+                            <constraint firstItem="NW9-6O-cbS" firstAttribute="top" secondItem="I8v-gF-Yi1" secondAttribute="bottom" constant="70" id="7yj-zo-nhc"/>
                             <constraint firstAttribute="trailing" secondItem="Ycm-aw-4cl" secondAttribute="trailing" id="D0m-x7-Tzi"/>
                             <constraint firstItem="Ycm-aw-4cl" firstAttribute="leading" secondItem="CcK-w5-q8Q" secondAttribute="leading" id="EcU-uk-kql"/>
+                            <constraint firstItem="3td-vX-lVo" firstAttribute="top" secondItem="NW9-6O-cbS" secondAttribute="bottom" constant="20" id="GPC-9F-6hQ"/>
+                            <constraint firstAttribute="trailing" secondItem="3td-vX-lVo" secondAttribute="trailing" id="Ltz-Zx-Lap"/>
                             <constraint firstItem="Ycm-aw-4cl" firstAttribute="top" secondItem="CcK-w5-q8Q" secondAttribute="top" id="V29-IB-U51"/>
+                            <constraint firstItem="NW9-6O-cbS" firstAttribute="leading" secondItem="CcK-w5-q8Q" secondAttribute="leading" constant="75" id="lz8-LY-0ug"/>
+                            <constraint firstItem="I8v-gF-Yi1" firstAttribute="leading" secondItem="CcK-w5-q8Q" secondAttribute="leading" constant="30" id="vhZ-re-EGi"/>
+                            <constraint firstItem="I8v-gF-Yi1" firstAttribute="centerX" secondItem="CcK-w5-q8Q" secondAttribute="centerX" id="wT2-Ke-odb"/>
+                            <constraint firstItem="NW9-6O-cbS" firstAttribute="centerX" secondItem="CcK-w5-q8Q" secondAttribute="centerX" id="x8F-hn-igu"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="show" id="9rV-Rw-QZ8"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dvI-5w-avk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-692" y="104"/>
+            <point key="canvasLocation" x="-692" y="103.89805097451276"/>
         </scene>
-        <!--View Controller-->
+        <!--Play View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="SMViewController" id="BYZ-38-t0r" customClass="SMViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SMPlayViewController" id="BYZ-38-t0r" customClass="SMPlayViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -58,6 +96,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Logo" width="1011" height="753"/>
+        <image name="StartGameButton" width="1125" height="270"/>
         <image name="background" width="1125" height="2001"/>
+        <image name="snake_main_view" width="696" height="384"/>
     </resources>
 </document>

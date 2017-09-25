@@ -1,18 +1,18 @@
 //
-//  SMViewController.m
+//  SMPlayViewController.m
 //  SnakeGame
 //
 //  Created by Syngmaster on 20/04/2017.
 //  Copyright © 2017 Syngmaster. All rights reserved.
 //
 
-#import "SMViewController.h"
+#import "SMPlayViewController.h"
 #import "SMSnakeEngineModel.h"
 #import "SMPlayground.h"
 #import "SMGameModel.h"
 
 
-@interface SMViewController ()
+@interface SMPlayViewController ()
 
 @property (assign, nonatomic) float step;
 @property (strong, nonatomic) SMPlayground *playground;
@@ -21,7 +21,7 @@
 
 @end
 
-@implementation SMViewController
+@implementation SMPlayViewController
 
 
 - (void)viewDidLoad {
@@ -30,7 +30,7 @@
     SMPlayground *playground = [[SMPlayground alloc] initWithView:self.view];
     [self.view addSubview:playground];
     self.playground = playground;
-    self.step = 27;
+    self.step = 25;
     self.timeInterval = 0.3;
     
     NSLog(@"%f", [UIScreen mainScreen].bounds.size.width);
@@ -41,7 +41,7 @@
     [super viewDidAppear:animated];
 
     [self.timer invalidate];
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:0.005 target:self selector:@selector(testAction) userInfo:nil repeats:true];
+    //self.timer = [NSTimer scheduledTimerWithTimeInterval:0.005 target:self selector:@selector(testAction) userInfo:nil repeats:true];
     
     SMSnakeEngineModel *snake = [[SMSnakeEngineModel alloc] init];
     
