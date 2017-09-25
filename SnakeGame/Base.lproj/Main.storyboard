@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Dpp-Mp-d4M">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -9,6 +9,35 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--View Controller-->
+        <scene sceneID="8QO-37-umf">
+            <objects>
+                <viewController id="Dpp-Mp-d4M" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="o8h-D5-eeC"/>
+                        <viewControllerLayoutGuide type="bottom" id="x7c-ti-db6"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="CcK-w5-q8Q">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="Ycm-aw-4cl">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="x7c-ti-db6" firstAttribute="top" secondItem="Ycm-aw-4cl" secondAttribute="bottom" id="4Gk-OH-km2"/>
+                            <constraint firstAttribute="trailing" secondItem="Ycm-aw-4cl" secondAttribute="trailing" id="D0m-x7-Tzi"/>
+                            <constraint firstItem="Ycm-aw-4cl" firstAttribute="leading" secondItem="CcK-w5-q8Q" secondAttribute="leading" id="EcU-uk-kql"/>
+                            <constraint firstItem="Ycm-aw-4cl" firstAttribute="top" secondItem="CcK-w5-q8Q" secondAttribute="top" id="V29-IB-U51"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dvI-5w-avk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-692" y="104"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -25,6 +54,10 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="332" y="104"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="background" width="1125" height="2001"/>
+    </resources>
 </document>

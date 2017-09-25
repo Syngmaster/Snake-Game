@@ -14,7 +14,7 @@
 
 @interface SMViewController ()
 
-@property (assign, nonatomic) int step;
+@property (assign, nonatomic) float step;
 @property (strong, nonatomic) SMPlayground *playground;
 
 @property (assign, nonatomic) NSTimeInterval timeInterval;
@@ -30,7 +30,7 @@
     SMPlayground *playground = [[SMPlayground alloc] initWithView:self.view];
     [self.view addSubview:playground];
     self.playground = playground;
-    self.step = 49;
+    self.step = 27;
     self.timeInterval = 0.3;
     
     NSLog(@"%f", [UIScreen mainScreen].bounds.size.width);
@@ -41,7 +41,7 @@
     [super viewDidAppear:animated];
 
     [self.timer invalidate];
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(testAction) userInfo:nil repeats:true];
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:0.005 target:self selector:@selector(testAction) userInfo:nil repeats:true];
     
     SMSnakeEngineModel *snake = [[SMSnakeEngineModel alloc] init];
     

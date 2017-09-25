@@ -23,7 +23,7 @@
         
         switch ((int)[UIScreen mainScreen].bounds.size.width) {
                 
-            case 320: self.snakeStep = 20;
+            case 320: self.snakeStep = SNAKE_STEP_IPHONE_5_5S;
                 break;
             case 375: self.snakeStep = SNAKE_STEP_IPHONE;
                 break;
@@ -49,8 +49,8 @@
 
 - (CGPoint)generateRandomCoordinates {
     
-    NSUInteger newX = self.snakeStep + self.snakeStep * arc4random_uniform((CGRectGetMaxX(self.mainViewRect) - self.snakeStep*2)/self.snakeStep);
-    NSUInteger newY = self.snakeStep + self.snakeStep * arc4random_uniform((CGRectGetMaxY(self.mainViewRect) - self.snakeStep)/self.snakeStep);
+    NSUInteger newX = self.snakeStep*1.1 + self.snakeStep * arc4random_uniform((CGRectGetMaxX(self.mainViewRect) - self.snakeStep*2)/self.snakeStep);
+    NSUInteger newY = self.snakeStep + self.snakeStep * arc4random_uniform((CGRectGetMaxY(self.mainViewRect) - self.snakeStep*2)/self.snakeStep);
     
     CGPoint newPoint = CGPointMake(newX, newY);
     
@@ -112,7 +112,22 @@
         UIView *snakeView = [[UIView alloc] initWithFrame:CGRectMake(CGRectGetMinX(lastBody.frame), CGRectGetMinY(lastBody.frame), self.snakeStep, self.snakeStep)];
         snakeView.layer.affineTransform = lastBody.layer.affineTransform;
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:snakeView.bounds];
-        imageView.image = [UIImage imageNamed:@"snake_body_new.png"];
+        
+        UIImage *body1 = [UIImage imageNamed:@"snake_body_new.png"];
+        UIImage *body2 = [UIImage imageNamed:@"snake_body_new2.png"];
+        UIImage *body3 = [UIImage imageNamed:@"snake_body_new3.png"];
+        
+        NSUInteger i = 0 + rand()%3;
+        
+        switch (i) {
+            case 0:imageView.image = body1;
+                break;
+            case 1:imageView.image = body2;
+                break;
+            case 2:imageView.image = body3;
+                break;
+        }
+
         imageView.contentMode = UIViewContentModeScaleAspectFit;
         
         snakeView.tag = GameElementSnakeBody;
@@ -139,7 +154,7 @@
     UIImage *tree1 = [UIImage imageNamed:@"spider2.png"];
     UIImage *tree2 = [UIImage imageNamed:@"stone.png"];
     
-    NSInteger num = (arc4random_uniform(1000)/500);
+    NSUInteger num = (arc4random_uniform(1000)/500);
     imageView.image = (num == 0) ? tree1 : tree2;
     
     [newHazardView addSubview:imageView];
@@ -158,7 +173,7 @@
     
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:newMealView.bounds];
     imageView.image = [UIImage imageNamed:@"apple.png"];
-    imageView.contentMode = UIViewContentModeScaleAspectFill;
+    imageView.contentMode = UIViewContentModeScaleAspectFit;
     [newMealView addSubview:imageView];
     
     return newMealView;

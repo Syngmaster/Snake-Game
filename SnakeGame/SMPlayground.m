@@ -20,7 +20,8 @@
         
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:view.frame];
         imageView.contentMode = UIViewContentModeScaleToFill;
-        imageView.image = [UIImage imageNamed:@"shore_background.png"];
+        imageView.image = [UIImage imageNamed:@"shore_background_375.png"];
+        
         [self addSubview:imageView];
         
     }
