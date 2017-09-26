@@ -267,8 +267,8 @@
     
     
     UIViewController *rootVC = [UIApplication sharedApplication].windows.firstObject.rootViewController;
-    
-    SMPlayViewController *mainVC = (SMPlayViewController *)rootVC.presentedViewController;
+    UIViewController *gameModeVC = rootVC.presentedViewController;
+    SMPlayViewController *mainVC = (SMPlayViewController *)gameModeVC.presentedViewController;
 
     [mainVC.timer invalidate];
     

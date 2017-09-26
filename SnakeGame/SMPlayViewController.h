@@ -12,8 +12,15 @@
 
 @interface SMPlayViewController : UIViewController
 
+@property (assign, nonatomic) NSInteger gameMode;
 @property (strong, nonatomic) NSTimer *timer;
 @property (strong, nonatomic) SMSnakeEngineModel *snakeEngineModel;
+
+@property (weak, nonatomic) IBOutlet UIImageView *playgroundView;
+@property (weak, nonatomic) IBOutlet UILabel *levelLabel;
+@property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *scoreImage;
+- (IBAction)settingAction:(UIButton *)sender;
 
 @end
 

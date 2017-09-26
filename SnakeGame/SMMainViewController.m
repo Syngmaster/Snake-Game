@@ -16,7 +16,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage new]
+                             forBarMetrics:UIBarMetricsDefault];
+    self.navigationController.navigationBar.shadowImage = [UIImage new];
+    self.navigationController.navigationBar.translucent = YES;
+    
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    self.navigationItem.backBarButtonItem.title=@"";
+    
+    UIImage *backBtn = [UIImage imageNamed:@"back_button.png"];
+    backBtn = [backBtn imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    self.navigationController.navigationBar.backIndicatorImage = backBtn;
+    self.navigationController.navigationBar.backIndicatorTransitionMaskImage = backBtn;
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -27,7 +40,7 @@
 
 - (IBAction)showGameAction:(UIButton *)sender {
     
-    [self performSegueWithIdentifier:@"show" sender:nil];
+    [self performSegueWithIdentifier:@"gameMode" sender:nil];
     
 }
 

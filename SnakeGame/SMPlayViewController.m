@@ -15,8 +15,6 @@
 @interface SMPlayViewController ()
 
 @property (assign, nonatomic) float step;
-@property (strong, nonatomic) SMPlayground *playground;
-
 @property (assign, nonatomic) NSTimeInterval timeInterval;
 
 @end
@@ -26,14 +24,21 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-        
-    SMPlayground *playground = [[SMPlayground alloc] initWithView:self.view];
-    [self.view addSubview:playground];
-    self.playground = playground;
+    
     self.step = 25;
     self.timeInterval = 0.3;
     
-    NSLog(@"%f", [UIScreen mainScreen].bounds.size.width);
+    if (self.gameMode == 0) {
+        self.scoreLabel.text = @"-/-";
+        self.scoreImage.image = [UIImage imageNamed:@"apple.png"];
+        self.levelLabel.text = @"Level : ";
+        
+    } else {
+        
+        self.scoreLabel.text = @"0/20";
+        self.scoreImage.image = [UIImage imageNamed:@"apple.png"];
+        self.levelLabel.text = @"Level : 1";
+    }
 
 }
 
@@ -45,9 +50,9 @@
     
     SMSnakeEngineModel *snake = [[SMSnakeEngineModel alloc] init];
     
-    [snake generateRandomHazardInView:self.playground];
-    [snake generateRandomMealInView:self.playground];
-    [snake generateSnakeInView:self.playground];
+    [snake generateRandomHazardInView:self.playgroundView];
+    [snake generateRandomMealInView:self.playgroundView];
+    [snake generateSnakeInView:self.playgroundView];
     
     self.snakeEngineModel = snake;
 
@@ -109,24 +114,36 @@
 }
 
 - (void)moveSnakeRight {
-    [self.snakeEngineModel snakeNewMovement:self.snakeEngineModel.gameModel.snakeArray inView:self.playground withDirectionX:SnakeDirectionOptionRight*self.step andDirectionY:0];
+    [self.snakeEngineModel snakeNewMovement:self.snakeEngineModel.gameModel.snakeArray inView:self.playgroundView withDirectionX:SnakeDirectionOptionRight*self.step andDirectionY:0];
 }
 
 - (void)moveSnakeLeft {
-    [self.snakeEngineModel snakeNewMovement:self.snakeEngineModel.gameModel.snakeArray inView:self.playground withDirectionX:SnakeDirectionOptionLeft*self.step andDirectionY:0];
+    [self.snakeEngineModel snakeNewMovement:self.snakeEngineModel.gameModel.snakeArray inView:self.playgroundView withDirectionX:SnakeDirectionOptionLeft*self.step andDirectionY:0];
 }
 
 - (void)moveSnakeUp {
-    [self.snakeEngineModel snakeNewMovement:self.snakeEngineModel.gameModel.snakeArray inView:self.playground withDirectionX:0 andDirectionY:SnakeDirectionOptionUp*self.step];
+    [self.snakeEngineModel snakeNewMovement:self.snakeEngineModel.gameModel.snakeArray inView:self.playgroundView withDirectionX:0 andDirectionY:SnakeDirectionOptionUp*self.step];
 
 }
 
 - (void)moveSnakeDown {
-    [self.snakeEngineModel snakeNewMovement:self.snakeEngineModel.gameModel.snakeArray inView:self.playground withDirectionX:0 andDirectionY:SnakeDirectionOptionDown*self.step];
+    [self.snakeEngineModel snakeNewMovement:self.snakeEngineModel.gameModel.snakeArray inView:self.playgroundView withDirectionX:0 andDirectionY:SnakeDirectionOptionDown*self.step];
 }
 
 - (void)testAction {
-    [self.snakeEngineModel generateRandomMealInView:self.playground];
+    [self.snakeEngineModel generateRandomMealInView:self.playgroundView];
 }
+
+#pragma mark - Action
+
+- (IBAction)settingAction:(UIButton *)sender {
+    
+    [self.timer invalidate];
+
+    
+    
+}
+
+
 
 @end

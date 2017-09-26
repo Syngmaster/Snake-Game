@@ -8,13 +8,13 @@
 
 #import <XCTest/XCTest.h>
 #import "SMGameModel.h"
-#import "SMViewController.h"
+#import "SMPlayViewController.h"
 #import "SMSnakeEngineModel.h"
 
 @interface SnakeGameTests : XCTestCase
 
 @property (strong, nonatomic) SMGameModel *gameModel;
-@property (strong, nonatomic) SMViewController *playVC;
+@property (strong, nonatomic) SMPlayViewController *playVC;
 @property (assign, nonatomic) CGFloat mainWidth;
 
 @end
@@ -26,7 +26,7 @@
     // Put setup code here. This method is called before the invocation of each test method in the class.
     
     UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-    SMViewController *vc = [mainSB instantiateViewControllerWithIdentifier:@"SMViewController"];
+    SMPlayViewController *vc = [mainSB instantiateViewControllerWithIdentifier:@"SMViewController"];
     self.gameModel = [[SMGameModel alloc] init];
     self.playVC = vc;
     CGFloat mainWidth = [UIScreen mainScreen].bounds.size.width;
