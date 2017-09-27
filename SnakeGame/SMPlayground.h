@@ -11,6 +11,9 @@
 
 @interface SMPlayground : UIView
 
+@property (strong, nonatomic) UIView *gridView;
+@property (assign, nonatomic) CGFloat step;
+
 - (instancetype)initWithView:(UIView *) view;
 
 @end

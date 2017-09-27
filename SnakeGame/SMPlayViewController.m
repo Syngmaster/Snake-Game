@@ -7,16 +7,17 @@
 //
 
 #import "SMPlayViewController.h"
+#import "SMSettingsViewController.h"
 #import "SMSnakeEngineModel.h"
 #import "SMPlayground.h"
 #import "SMGameModel.h"
 
 
-@interface SMPlayViewController ()
+@interface SMPlayViewController () <SMSettingsViewDelegate>
 
-@property (assign, nonatomic) float step;
+@property (assign, nonatomic) CGFloat step;
 @property (assign, nonatomic) NSTimeInterval timeInterval;
-
+@property (strong, nonatomic) SMPlayground *playground;
 @end
 
 @implementation SMPlayViewController
@@ -25,8 +26,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.step = 25;
+    SMPlayground *playground = [[SMPlayground alloc] initWithView:self.playgroundView];
+    self.playground = playground;
+    SMSnakeEngineModel *snake = [[SMSnakeEngineModel alloc] initWithGridView:self.playground];
+    self.snakeEngineModel = snake;
+
+    self.step = self.playground.step;
     self.timeInterval = 0.3;
+    self.gameIsStarted = NO;
     
     if (self.gameMode == 0) {
         self.scoreLabel.text = @"-/-";
@@ -45,17 +52,18 @@
 - (void) viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
 
-    [self.timer invalidate];
-    //self.timer = [NSTimer scheduledTimerWithTimeInterval:0.005 target:self selector:@selector(testAction) userInfo:nil repeats:true];
-    
-    SMSnakeEngineModel *snake = [[SMSnakeEngineModel alloc] init];
-    
-    [snake generateRandomHazardInView:self.playgroundView];
-    [snake generateRandomMealInView:self.playgroundView];
-    [snake generateSnakeInView:self.playgroundView];
-    
-    self.snakeEngineModel = snake;
+    if (!self.gameIsStarted) {
+        [self.timer invalidate];
+        //self.timer = [NSTimer scheduledTimerWithTimeInterval:0.005 target:self selector:@selector(testAction) userInfo:nil repeats:true];
+        
+        [self.snakeEngineModel generateRandomHazardInView:self.playgroundView];
+        [self.snakeEngineModel generateRandomMealInView:self.playgroundView];
+        [self.snakeEngineModel generateSnakeInView:self.playgroundView];
+        
+        self.gameIsStarted = YES;
 
+    }
+    
     [self createSwipes];
 
 }
@@ -138,10 +146,19 @@
 
 - (IBAction)settingAction:(UIButton *)sender {
     
+    SMSettingsViewController *settingsVC = [self.storyboard instantiateViewControllerWithIdentifier:@"SMSettingsViewController"];
+    [self presentViewController:settingsVC animated:YES completion:nil];
+    settingsVC.delegate = self;
+    settingsVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    
     [self.timer invalidate];
+    
+}
 
-    
-    
+#pragma mark - SMSettingsViewDelegate
+
+- (void)viewControllerDismissed:(SMSettingsViewController *)viewController {
+    [self dismissViewControllerAnimated:NO completion:nil];
 }
 
 

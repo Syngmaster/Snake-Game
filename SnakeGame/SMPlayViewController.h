@@ -15,8 +15,9 @@
 @property (assign, nonatomic) NSInteger gameMode;
 @property (strong, nonatomic) NSTimer *timer;
 @property (strong, nonatomic) SMSnakeEngineModel *snakeEngineModel;
+@property (assign, nonatomic) BOOL gameIsStarted;
 
-@property (weak, nonatomic) IBOutlet UIImageView *playgroundView;
+@property (weak, nonatomic) IBOutlet UIView *playgroundView;
 @property (weak, nonatomic) IBOutlet UILabel *levelLabel;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *scoreImage;

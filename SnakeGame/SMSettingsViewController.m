@@ -7,6 +7,7 @@
 //
 
 #import "SMSettingsViewController.h"
+#import "SMGameModeViewController.h"
 
 @interface SMSettingsViewController ()
 
@@ -35,8 +36,21 @@
 */
 
 - (IBAction)resumeGameAction:(UIButton *)sender {
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
 }
 
 - (IBAction)quitGameAction:(UIButton *)sender {
+    
+    [self dismissViewControllerAnimated:NO completion:^{
+        
+        [self.delegate viewControllerDismissed:self];
+        
+    }];
+
+    
 }
+
+
 @end

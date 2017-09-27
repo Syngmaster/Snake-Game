@@ -25,13 +25,16 @@ typedef NS_ENUM(NSInteger, GameElement) {
     
 };
 
+@class SMPlayground;
+
 @interface SMGameModel : NSObject
 
 @property (assign, nonatomic) CGFloat snakeStep;
 @property (strong, nonatomic) NSMutableArray *takenCoordinates;
 
-- (CGPoint)generateRandomCoordinates;
+- (instancetype)initWithGridView:(SMPlayground *)gridView;
 
+- (CGPoint)generateRandomCoordinates;
 
 // snake model
 

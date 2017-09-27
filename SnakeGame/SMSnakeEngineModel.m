@@ -9,6 +9,7 @@
 #import "SMSnakeEngineModel.h"
 #import "SMPlayViewController.h"
 #import "SMGameModel.h"
+#import "SMPlayground.h"
 
 @interface SMSnakeEngineModel ()
 
@@ -23,13 +24,13 @@
 
 #pragma mark - Generate random game elements
 
-- (instancetype)init
-{
+- (instancetype)initWithGridView:(SMPlayground *)gridView {
+    
     self = [super init];
     if (self) {
         
         self.arrayOfHazards = [NSMutableArray array];
-        SMGameModel *gameModel = [[SMGameModel alloc] init];
+        SMGameModel *gameModel = [[SMGameModel alloc] initWithGridView:gridView];
         self.gameModel = gameModel;
     }
     return self;
@@ -202,7 +203,7 @@
 
 - (void)gameOverAfterIntersection:(NSArray *) views withHeadView:(UIView *) head inView:(UIView *) playgroundView {
     
-    CGRect intersectionFrame = CGRectMake(15, 15, CGRectGetWidth(playgroundView.bounds) - 30, CGRectGetHeight(playgroundView.bounds) - 30);
+    CGRect intersectionFrame = playgroundView.frame;
     
     //game stops if the head view goes beyond the playground
     if (!(CGRectContainsRect(intersectionFrame, head.frame))) {
@@ -266,8 +267,8 @@
 - (void)gameOverAlertControllerInView:(UIView *) playgroundView {
     
     
-    UIViewController *rootVC = [UIApplication sharedApplication].windows.firstObject.rootViewController;
-    UIViewController *gameModeVC = rootVC.presentedViewController;
+    UINavigationController *rootVC = (UINavigationController *)[UIApplication sharedApplication].windows.firstObject.rootViewController;
+    UIViewController *gameModeVC = rootVC.topViewController;
     SMPlayViewController *mainVC = (SMPlayViewController *)gameModeVC.presentedViewController;
 
     [mainVC.timer invalidate];
@@ -280,7 +281,11 @@
         [self removeGameElementWithTag:GameElementApple inView:playgroundView];
         [self removeGameElementWithTag:GameElementHazard inView:playgroundView];
         [self removeGameElementWithTag:GameElementSnakeTail inView:playgroundView];
-        self.arrayOfHazards = nil;
+        [self.arrayOfHazards removeAllObjects];
+        [self.gameModel.takenCoordinates removeAllObjects];
+        [self.gameModel.snakeArray removeAllObjects];
+        mainVC.gameIsStarted = NO;
+
         
         [mainVC viewDidAppear:true];
         

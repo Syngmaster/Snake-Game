@@ -8,6 +8,14 @@
 
 #import "SMPlayground.h"
 
+@interface SMPlayground ()
+
+@property (assign, nonatomic) CGFloat width;
+@property (assign, nonatomic) CGFloat height;
+
+
+@end
+
 @implementation SMPlayground
 
 - (instancetype)initWithView:(UIView *) view
@@ -15,16 +23,61 @@
     self = [super init];
     if (self) {
         
-        //CGRect frame = CGRectMake(0, 0, CGRectGetWidth(view.bounds)*0.8, CGRectGetHeight(view.bounds)*0.8);
-        self.frame = view.frame;
+        switch ((int)[UIScreen mainScreen].bounds.size.width) {
+         
+            case 320:
+                self.height = 462; //step = 22
+                self.width = 264;
+                self.step = 22;
+                break;
+                
+            case 375:
+                self.height = 552; // step = 24
+                self.width = 312;
+                self.step = 24;
+                break;
+         
+            case 414:
+                self.height = 625; //step = 25
+                self.width = 350;
+                self.step = 25;
+                break;
+                
+            case 768:
+                self.height = 884; //step = 26
+                self.width = 646;
+                self.step = 26;
+                break;
+                
+            case 834:
+                self.height = 960; //step = 32
+                self.width = 704;
+                self.step = 32;
+                break;
+                
+            case 1024:
+                self.height = 1200; //step = 40
+                self.width = 880;
+                self.step = 40;
+                break;
+         
+         }
         
-        UIImageView *imageView = [[UIImageView alloc] initWithFrame:view.frame];
-        imageView.contentMode = UIViewContentModeScaleToFill;
-        imageView.image = [UIImage imageNamed:@"shore_background_375.png"];
         
-        [self addSubview:imageView];
+        UIView *playView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.width, self.height)];
+        playView.backgroundColor = [UIColor clearColor];
+        playView.translatesAutoresizingMaskIntoConstraints = NO;
+        [view addSubview:playView];
         
+        [view addConstraint:[NSLayoutConstraint constraintWithItem:playView attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:view attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0.0]];
+        [view addConstraint:[NSLayoutConstraint constraintWithItem:playView attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:view attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0.0]];
+        
+        [playView addConstraint:[NSLayoutConstraint constraintWithItem:playView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:self.width]];
+        [playView addConstraint:[NSLayoutConstraint constraintWithItem:playView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:self.height]];
+        NSLog(@"%@", NSStringFromCGRect(playView.frame));
+        self.gridView = playView;
     }
+    
     return self;
 }
 

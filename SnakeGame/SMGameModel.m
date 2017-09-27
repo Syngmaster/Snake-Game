@@ -7,6 +7,7 @@
 //
 
 #import "SMGameModel.h"
+#import "SMPlayground.h"
 
 @interface SMGameModel ()
 
@@ -16,31 +17,15 @@
 
 @implementation SMGameModel
 
-- (instancetype)init
-{
+- (instancetype)initWithGridView:(SMPlayground *)gridView {
+    
     self = [super init];
     if (self) {
-        
-        switch ((int)[UIScreen mainScreen].bounds.size.width) {
-                
-            case 320: self.snakeStep = SNAKE_STEP_IPHONE_5_5S;
-                break;
-            case 375: self.snakeStep = SNAKE_STEP_IPHONE;
-                break;
-            case 414: self.snakeStep = SNAKE_STEP_IPHONE_PLUS;
-                break;
-            case 768: self.snakeStep = SNAKE_STEP_IPAD_9_7;
-                break;
-            case 834: self.snakeStep = SNAKE_STEP_IPAD_10_5;
-                break;
-            case 1024: self.snakeStep = SNAKE_STEP_IPAD_12_9;
-                break;
 
-        }
-        self.mainViewRect = [UIScreen mainScreen].bounds;
+        self.mainViewRect = gridView.gridView.frame;
+        self.snakeStep = gridView.step;
         self.takenCoordinates = [NSMutableArray array];
         self.snakeArray = [NSMutableArray array];
-        
         
     }
     return self;
@@ -49,9 +34,9 @@
 
 - (CGPoint)generateRandomCoordinates {
     
-    NSUInteger newX = self.snakeStep*1.1 + self.snakeStep * arc4random_uniform((CGRectGetMaxX(self.mainViewRect) - self.snakeStep*2)/self.snakeStep);
-    NSUInteger newY = self.snakeStep + self.snakeStep * arc4random_uniform((CGRectGetMaxY(self.mainViewRect) - self.snakeStep*2)/self.snakeStep);
-    
+    float newX = self.snakeStep * arc4random_uniform((CGRectGetMaxX(self.mainViewRect) - self.snakeStep)/self.snakeStep);
+    float newY = self.snakeStep * arc4random_uniform((CGRectGetMaxY(self.mainViewRect) - self.snakeStep)/self.snakeStep);
+        
     CGPoint newPoint = CGPointMake(newX, newY);
     
     /*if ([self.takenCoordinates count] > 0) {
