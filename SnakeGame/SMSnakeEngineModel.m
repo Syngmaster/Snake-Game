@@ -57,7 +57,7 @@
 
 - (void)generateRandomHazardInView:(UIView *)view {
         
-    NSUInteger numberOfHazards = 3;
+    NSUInteger numberOfHazards = 1;
 
     for (int i = 0; i < numberOfHazards; i++) {
 
@@ -84,7 +84,6 @@
 /************** Method with a timer ******************/
 
 - (void)snakeNewMovement:(NSMutableArray *) snake inView:(UIView *)playgroundView withDirectionX:(int)directionX andDirectionY:(int)directionY {
-    
     UIView *snakeHead = snake[0];
     CGAffineTransform currentPosition = snakeHead.layer.affineTransform;
 
@@ -108,7 +107,7 @@
         nextView.layer.affineTransform = view.layer.affineTransform;
         
     }
-    
+
     snakeHead.center = CGPointMake(snakeHead.center.x + directionX, snakeHead.center.y + directionY);
     
     if (!CGAffineTransformEqualToTransform(currentPosition, snakeHead.layer.affineTransform)) {
@@ -203,8 +202,7 @@
 
 - (void)gameOverAfterIntersection:(NSArray *) views withHeadView:(UIView *) head inView:(UIView *) playgroundView {
     
-    CGRect intersectionFrame = playgroundView.frame;
-    
+    CGRect intersectionFrame = CGRectMake(playgroundView.bounds.origin.x-5, playgroundView.bounds.origin.y-5, playgroundView.bounds.size.width+10, playgroundView.bounds.size.height+10);
     //game stops if the head view goes beyond the playground
     if (!(CGRectContainsRect(intersectionFrame, head.frame))) {
 

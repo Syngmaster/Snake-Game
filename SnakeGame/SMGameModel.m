@@ -21,8 +21,9 @@
     
     self = [super init];
     if (self) {
+        
 
-        self.mainViewRect = gridView.gridView.frame;
+        self.mainViewRect = gridView.gridView.bounds;
         self.snakeStep = gridView.step;
         self.takenCoordinates = [NSMutableArray array];
         self.snakeArray = [NSMutableArray array];
@@ -33,13 +34,13 @@
 
 
 - (CGPoint)generateRandomCoordinates {
-    
-    float newX = self.snakeStep * arc4random_uniform((CGRectGetMaxX(self.mainViewRect) - self.snakeStep)/self.snakeStep);
-    float newY = self.snakeStep * arc4random_uniform((CGRectGetMaxY(self.mainViewRect) - self.snakeStep)/self.snakeStep);
-        
+
+    CGFloat newX = self.snakeStep * arc4random_uniform((CGRectGetMaxX(self.mainViewRect))/self.snakeStep);
+    CGFloat newY = self.snakeStep * arc4random_uniform((CGRectGetMaxY(self.mainViewRect))/self.snakeStep);
+
     CGPoint newPoint = CGPointMake(newX, newY);
     
-    /*if ([self.takenCoordinates count] > 0) {
+    if ([self.takenCoordinates count] > 0) {
         
         for (NSValue *coord in self.takenCoordinates) {
             
@@ -48,8 +49,7 @@
                 return [self generateRandomCoordinates];
             }
         }
-    }*/
-
+    }
     
     [self.takenCoordinates addObject:[NSValue valueWithCGPoint:newPoint]];
     

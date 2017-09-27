@@ -26,12 +26,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    SMPlayground *playground = [[SMPlayground alloc] initWithView:self.playgroundView];
-    self.playground = playground;
-    SMSnakeEngineModel *snake = [[SMSnakeEngineModel alloc] initWithGridView:self.playground];
-    self.snakeEngineModel = snake;
-
-    self.step = self.playground.step;
     self.timeInterval = 0.3;
     self.gameIsStarted = NO;
     
@@ -51,17 +45,24 @@
 
 - (void) viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-
+    
     if (!self.gameIsStarted) {
+
+        SMPlayground *playground = [[SMPlayground alloc] initWithView:self.playgroundView];
+        self.playground = playground;
+        SMSnakeEngineModel *snake = [[SMSnakeEngineModel alloc] initWithGridView:self.playground];
+        self.snakeEngineModel = snake;
+        self.step = self.playground.step;
+
         [self.timer invalidate];
-        //self.timer = [NSTimer scheduledTimerWithTimeInterval:0.005 target:self selector:@selector(testAction) userInfo:nil repeats:true];
+        self.timer = [NSTimer scheduledTimerWithTimeInterval:0.005 target:self selector:@selector(testAction) userInfo:nil repeats:true];
         
-        [self.snakeEngineModel generateRandomHazardInView:self.playgroundView];
-        [self.snakeEngineModel generateRandomMealInView:self.playgroundView];
-        [self.snakeEngineModel generateSnakeInView:self.playgroundView];
+        [self.snakeEngineModel generateRandomHazardInView:self.playground.gridView];
+        [self.snakeEngineModel generateRandomMealInView:self.playground.gridView];
+        [self.snakeEngineModel generateSnakeInView:self.playground.gridView];
         
         self.gameIsStarted = YES;
-
+        
     }
     
     [self createSwipes];
@@ -122,24 +123,24 @@
 }
 
 - (void)moveSnakeRight {
-    [self.snakeEngineModel snakeNewMovement:self.snakeEngineModel.gameModel.snakeArray inView:self.playgroundView withDirectionX:SnakeDirectionOptionRight*self.step andDirectionY:0];
+    [self.snakeEngineModel snakeNewMovement:self.snakeEngineModel.gameModel.snakeArray inView:self.playground.gridView withDirectionX:SnakeDirectionOptionRight*self.step andDirectionY:0];
 }
 
 - (void)moveSnakeLeft {
-    [self.snakeEngineModel snakeNewMovement:self.snakeEngineModel.gameModel.snakeArray inView:self.playgroundView withDirectionX:SnakeDirectionOptionLeft*self.step andDirectionY:0];
+    [self.snakeEngineModel snakeNewMovement:self.snakeEngineModel.gameModel.snakeArray inView:self.playground.gridView withDirectionX:SnakeDirectionOptionLeft*self.step andDirectionY:0];
 }
 
 - (void)moveSnakeUp {
-    [self.snakeEngineModel snakeNewMovement:self.snakeEngineModel.gameModel.snakeArray inView:self.playgroundView withDirectionX:0 andDirectionY:SnakeDirectionOptionUp*self.step];
+    [self.snakeEngineModel snakeNewMovement:self.snakeEngineModel.gameModel.snakeArray inView:self.playground.gridView withDirectionX:0 andDirectionY:SnakeDirectionOptionUp*self.step];
 
 }
 
 - (void)moveSnakeDown {
-    [self.snakeEngineModel snakeNewMovement:self.snakeEngineModel.gameModel.snakeArray inView:self.playgroundView withDirectionX:0 andDirectionY:SnakeDirectionOptionDown*self.step];
+    [self.snakeEngineModel snakeNewMovement:self.snakeEngineModel.gameModel.snakeArray inView:self.playground.gridView withDirectionX:0 andDirectionY:SnakeDirectionOptionDown*self.step];
 }
 
 - (void)testAction {
-    [self.snakeEngineModel generateRandomMealInView:self.playgroundView];
+    [self.snakeEngineModel generateRandomMealInView:self.playground.gridView];
 }
 
 #pragma mark - Action

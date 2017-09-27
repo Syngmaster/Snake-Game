@@ -74,7 +74,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SnakeGame/SMGameModel.m"
-            timestampString = "528219083.781958"
+            timestampString = "528227093.636204"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "130"
@@ -122,7 +122,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SnakeGame/SMGameModel.m"
-            timestampString = "528219083.781958"
+            timestampString = "528227093.636204"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "62"
@@ -138,11 +138,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SnakeGame/SMSnakeEngineModel.m"
-            timestampString = "528219083.781958"
+            timestampString = "528226458.959385"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "111"
-            endingLineNumber = "111"
+            startingLineNumber = "110"
+            endingLineNumber = "110"
             landmarkName = "-snakeNewMovement:inView:withDirectionX:andDirectionY:"
             landmarkType = "7">
          </BreakpointContent>
@@ -154,27 +154,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SnakeGame/SMSnakeEngineModel.m"
-            timestampString = "528219083.781958"
+            timestampString = "528226458.959385"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "87"
-            endingLineNumber = "87"
-            landmarkName = "-snakeNewMovement:inView:withDirectionX:andDirectionY:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SnakeGame/SMSnakeEngineModel.m"
-            timestampString = "528219083.781958"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "268"
-            endingLineNumber = "268"
+            startingLineNumber = "266"
+            endingLineNumber = "266"
             landmarkName = "-gameOverAlertControllerInView:"
             landmarkType = "7">
          </BreakpointContent>
@@ -186,11 +170,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SnakeGame/SMSnakeEngineModel.m"
-            timestampString = "528219083.781958"
+            timestampString = "528226458.959385"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "272"
-            endingLineNumber = "272"
+            startingLineNumber = "270"
+            endingLineNumber = "270"
             landmarkName = "-gameOverAlertControllerInView:"
             landmarkType = "7">
          </BreakpointContent>
@@ -218,27 +202,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SnakeGame/SMSnakeEngineModel.m"
-            timestampString = "528219083.781958"
+            timestampString = "528226458.959385"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "205"
-            endingLineNumber = "205"
-            landmarkName = "-gameOverAfterIntersection:withHeadView:inView:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SnakeGame/SMSnakeEngineModel.m"
-            timestampString = "528219083.781958"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "233"
-            endingLineNumber = "233"
+            startingLineNumber = "231"
+            endingLineNumber = "231"
             landmarkName = "-gameOverAfterIntersection:withHeadView:inView:"
             landmarkType = "7">
          </BreakpointContent>
@@ -250,12 +218,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SnakeGame/SMGameModel.m"
-            timestampString = "528219491.564803"
+            timestampString = "528227093.636204"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "24"
-            endingLineNumber = "24"
-            landmarkName = "-initWithGridView:"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
+            landmarkName = "-createSnakeView"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
