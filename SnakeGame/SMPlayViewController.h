@@ -21,6 +21,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *levelLabel;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *scoreImage;
+
+
 - (IBAction)settingAction:(UIButton *)sender;
 
 @end

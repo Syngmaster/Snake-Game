@@ -40,6 +40,8 @@
         self.scoreImage.image = [UIImage imageNamed:@"apple.png"];
         self.levelLabel.text = @"Level : 1";
     }
+    
+    [self createSwipes];
 
 }
 
@@ -55,17 +57,14 @@
         self.step = self.playground.step;
 
         [self.timer invalidate];
-        self.timer = [NSTimer scheduledTimerWithTimeInterval:0.005 target:self selector:@selector(testAction) userInfo:nil repeats:true];
+        //self.timer = [NSTimer scheduledTimerWithTimeInterval:0.005 target:self selector:@selector(testAction) userInfo:nil repeats:true];
         
         [self.snakeEngineModel generateRandomHazardInView:self.playground.gridView];
         [self.snakeEngineModel generateRandomMealInView:self.playground.gridView];
         [self.snakeEngineModel generateSnakeInView:self.playground.gridView];
         
         self.gameIsStarted = YES;
-        
     }
-    
-    [self createSwipes];
 
 }
 

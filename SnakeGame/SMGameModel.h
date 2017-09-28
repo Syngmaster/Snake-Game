@@ -9,13 +9,6 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#define SNAKE_STEP_IPHONE_5_5S 21;
-#define SNAKE_STEP_IPHONE 25;
-#define SNAKE_STEP_IPHONE_PLUS 27;
-#define SNAKE_STEP_IPAD_9_7 45;
-#define SNAKE_STEP_IPAD_10_5 49;
-#define SNAKE_STEP_IPAD_12_9 60;
-
 typedef NS_ENUM(NSInteger, GameElement) {
     
     GameElementSnakeBody = 1,

@@ -21,7 +21,6 @@
     
     self = [super init];
     if (self) {
-        
 
         self.mainViewRect = gridView.gridView.bounds;
         self.snakeStep = gridView.step;
