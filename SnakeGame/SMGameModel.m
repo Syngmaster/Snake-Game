@@ -8,16 +8,20 @@
 
 #import "SMGameModel.h"
 #import "SMPlayground.h"
-
+#import "SMFreeGameSettings.h"
+#import "SMArcadeGameSettings.h"
 @interface SMGameModel ()
 
 @property (assign, nonatomic) CGRect mainViewRect;
+
+@property (strong, nonatomic) SMFreeGameSettings *freeGameSettings;
+@property (strong, nonatomic) SMArcadeGameSettings *arcadeGameSettings;
 
 @end
 
 @implementation SMGameModel
 
-- (instancetype)initWithGridView:(SMPlayground *)gridView {
+- (instancetype)initWithGridView:(SMPlayground *)gridView andGameSettings:(id)gameSettings {
     
     self = [super init];
     if (self) {
@@ -27,7 +31,34 @@
         self.takenCoordinates = [NSMutableArray array];
         self.snakeArray = [NSMutableArray array];
         
+        if ([gameSettings isMemberOfClass:[SMFreeGameSettings class]]) {
+            
+            self.freeGameSettings = (SMFreeGameSettings *)gameSettings;
+            
+            NSMutableArray *arrayOfImages = [NSMutableArray array];
+            
+            for (NSNumber *num in self.freeGameSettings.chosenHazards) {
+                if ([num isEqual:@(ChosenHazardSpiderNet)]) {
+                    [arrayOfImages addObject:[UIImage imageNamed:@"spider2"]];
+                } else if ([num isEqual:@(ChosenHazardSpider)]) {
+                    [arrayOfImages addObject:[UIImage imageNamed:@"spider"]];
+                } else if ([num isEqual:@(ChosenHazardStone)]) {
+                    [arrayOfImages addObject:[UIImage imageNamed:@"stone2"]];
+                } else {
+                    [arrayOfImages addObject:[UIImage imageNamed:@"tree2"]];
+                }
+            }
+            
+            self.hazardImages = arrayOfImages;
+            
+        } else {
+            
+            self.arcadeGameSettings = (SMArcadeGameSettings *)gameSettings;
+            
+        }
+        
     }
+    
     return self;
 }
 
@@ -127,6 +158,63 @@
 
 - (UIView *)createHazardView {
     
+    if (self.freeGameSettings) {
+        
+        CGPoint newCoordinates = [self generateRandomCoordinates];
+        
+        UIView *newHazardView = [[UIView alloc] initWithFrame:CGRectMake(newCoordinates.x, newCoordinates.y, self.snakeStep, self.snakeStep)];
+        
+        newHazardView.tag = GameElementHazard;
+        
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:newHazardView.bounds];
+        imageView.contentMode = UIViewContentModeScaleAspectFit;
+        
+        NSInteger num = arc4random_uniform((int)[self.hazardImages count]);
+        imageView.image = self.hazardImages[num];
+        
+        [newHazardView addSubview:imageView];
+        
+        return newHazardView;
+        
+    } else {
+        
+        CGPoint newCoordinates = [self generateRandomCoordinates];
+        
+        UIView *newHazardView = [[UIView alloc] initWithFrame:CGRectMake(newCoordinates.x, newCoordinates.y, self.snakeStep, self.snakeStep)];
+        
+        newHazardView.tag = GameElementHazard;
+        
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:newHazardView.bounds];
+        imageView.contentMode = UIViewContentModeScaleAspectFit;
+        
+        UIImage *image1 = [UIImage imageNamed:@"spider2.png"];
+        UIImage *image2 = [UIImage imageNamed:@"stone2.png"];
+        UIImage *image3 = [UIImage imageNamed:@"tree2.png"];
+        
+        NSInteger i = arc4random_uniform(3);
+        
+        switch (i) {
+            case 0: imageView.image = image1;
+                break;
+            case 1: imageView.image = image2;
+                break;
+            case 2: imageView.image = image3;
+                break;
+            default: imageView.image = image1;
+                break;
+
+        }
+        
+        [newHazardView addSubview:imageView];
+        
+        return newHazardView;
+    }
+    
+
+}
+
+- (UIView *)createMovingView {
+
     CGPoint newCoordinates = [self generateRandomCoordinates];
     
     UIView *newHazardView = [[UIView alloc] initWithFrame:CGRectMake(newCoordinates.x, newCoordinates.y, self.snakeStep, self.snakeStep)];
@@ -134,17 +222,16 @@
     newHazardView.tag = GameElementHazard;
     
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:newHazardView.bounds];
+    imageView.contentMode = UIViewContentModeScaleAspectFit;
     
-    UIImage *tree1 = [UIImage imageNamed:@"spider2.png"];
-    UIImage *tree2 = [UIImage imageNamed:@"stone.png"];
-    
-    NSUInteger num = (arc4random_uniform(1000)/500);
-    imageView.image = (num == 0) ? tree1 : tree2;
+    imageView.image = [UIImage imageNamed:@"spider.png"];
     
     [newHazardView addSubview:imageView];
     
     return newHazardView;
+
 }
+
 
 
 - (UIView *)createMealView {
@@ -153,11 +240,14 @@
     
     UIView *newMealView = [[UIView alloc] initWithFrame:CGRectMake(newCoordinates.x, newCoordinates.y, self.snakeStep, self.snakeStep)];
     
-    newMealView.tag = GameElementApple;
+    newMealView.tag = GameElementMeal;
     
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:newMealView.bounds];
-    imageView.image = [UIImage imageNamed:@"apple.png"];
-    imageView.contentMode = UIViewContentModeScaleAspectFit;
+    
+    (self.freeGameSettings.chosenMeal == 0) ? (imageView.image = [UIImage imageNamed:@"apple.png"]):
+                                          (imageView.image = [UIImage imageNamed:@"pear.png"]);
+    
+    imageView.contentMode = UIViewContentModeScaleAspectFill;
     [newMealView addSubview:imageView];
     
     return newMealView;

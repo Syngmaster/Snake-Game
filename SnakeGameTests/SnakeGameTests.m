@@ -26,7 +26,7 @@
     // Put setup code here. This method is called before the invocation of each test method in the class.
     
     UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-    SMPlayViewController *vc = [mainSB instantiateViewControllerWithIdentifier:@"SMViewController"];
+    SMPlayViewController *vc = [mainSB instantiateViewControllerWithIdentifier:@"SMPlayViewController"];
     self.gameModel = [[SMGameModel alloc] init];
     self.playVC = vc;
     CGFloat mainWidth = [UIScreen mainScreen].bounds.size.width;
@@ -39,32 +39,53 @@
     [super tearDown];
 }
 
-- (void)testValidDeviceWidth {
+
+- (void)testMaximumHazardImages {
     
-    XCTAssert((self.mainWidth == 320) || (self.mainWidth == 375) || (self.mainWidth == 414));
+    XCTAssertTrue([self.playVC.snakeEngineModel.gameModel.hazardImages count] <= 4);
     
 }
 
-/*- (void)testMaximumQuantityOfGameElements {
+- (void)testMaximumQuantityOfElements {
     
-    int maximumGameElements = 0;
-    int maximumGameElementsX = (int)((CGRectGetMaxX(self.playVC.view.frame) - self.gameModel.snakeStep * 2) / self.gameModel.snakeStep);
-    int maximumGameElementsY = (int)((CGRectGetMaxY(self.playVC.view.frame) - self.gameModel.snakeStep) / self.gameModel.snakeStep);
-    maximumGameElements = maximumGameElementsX * maximumGameElementsY;
+    switch ((int)[UIScreen mainScreen].bounds.size.width) {
+            
+        case 320:
+            
+            XCTAssert([self.gameModel.takenCoordinates count] <= (21*12));
+            break;
+            
+        case 375:
+            
+            XCTAssert([self.gameModel.takenCoordinates count] <= (23*13));
+            break;
+            
+        case 414:
 
-    XCTAssert([self.playVC.snakeEngineModel.gameModel.takenCoordinates count] <= maximumGameElements * 0.6);
-}*/
+            XCTAssert([self.gameModel.takenCoordinates count] <= (25*14));
+            break;
+            
+        case 768:
 
-- (void)testRandomCoordinatesGenerator {
+            XCTAssert([self.gameModel.takenCoordinates count] <= (34*25));
+            break;
+            
+        case 834:
+
+            XCTAssert([self.gameModel.takenCoordinates count] <= (30*22));
+            break;
+            
+        case 1024:
+
+            XCTAssert([self.gameModel.takenCoordinates count] <= (30*22));
+            break;
+            
+    }
     
-    CGPoint coordinates = [self.gameModel generateRandomCoordinates];
-    
-    XCTAssert(coordinates.x > 0 && coordinates.x < CGRectGetMaxX(self.playVC.view.frame)-self.gameModel.snakeStep);
-    XCTAssert(coordinates.y > 0 && coordinates.y < CGRectGetMaxY(self.playVC.view.frame)-self.gameModel.snakeStep*2);
-    
-    XCTAssert((int)coordinates.x % 25 == 0);
-    XCTAssert((int)coordinates.y % 25 == 0);
 }
+
+
+
 
 - (void)testPerformanceExample {
     // This is an example of a performance test case.

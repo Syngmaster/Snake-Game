@@ -12,20 +12,21 @@
 typedef NS_ENUM(NSInteger, GameElement) {
     
     GameElementSnakeBody = 1,
-    GameElementApple,
+    GameElementMeal,
     GameElementHazard,
     GameElementSnakeTail
     
 };
 
-@class SMPlayground;
+@class SMPlayground, SMFreeGameSettings;
 
 @interface SMGameModel : NSObject
 
 @property (assign, nonatomic) CGFloat snakeStep;
 @property (strong, nonatomic) NSMutableArray *takenCoordinates;
+@property (strong, nonatomic) NSArray *hazardImages;
 
-- (instancetype)initWithGridView:(SMPlayground *)gridView;
+- (instancetype)initWithGridView:(SMPlayground *)gridView andGameSettings:(id)gameSettings;
 
 - (CGPoint)generateRandomCoordinates;
 
@@ -38,6 +39,7 @@ typedef NS_ENUM(NSInteger, GameElement) {
 // hazard model
 
 - (UIView *)createHazardView;
+- (UIView *)createMovingView;
 
 // meal model
 

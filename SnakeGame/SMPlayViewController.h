@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@class SMSnakeEngineModel;
+@class SMSnakeEngineModel, SMFreeGameSettings, SMArcadeGameSettings;
 
 @interface SMPlayViewController : UIViewController
 
@@ -16,6 +16,9 @@
 @property (strong, nonatomic) NSTimer *timer;
 @property (strong, nonatomic) SMSnakeEngineModel *snakeEngineModel;
 @property (assign, nonatomic) BOOL gameIsStarted;
+
+@property (strong, nonatomic) SMFreeGameSettings *freeGameSettings;
+@property (strong, nonatomic) SMArcadeGameSettings *arcadeGameSettings;
 
 @property (weak, nonatomic) IBOutlet UIView *playgroundView;
 @property (weak, nonatomic) IBOutlet UILabel *levelLabel;

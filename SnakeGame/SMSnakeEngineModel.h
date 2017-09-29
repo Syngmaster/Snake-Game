@@ -23,7 +23,7 @@ typedef NS_ENUM(NSInteger, SnakeDirectionOption) {
 
 @property (strong, nonatomic) SMGameModel *gameModel;
 
-- (instancetype)initWithGridView:(SMPlayground *)gridView;
+- (instancetype)initWithGridView:(SMPlayground *)gridView andGameSettings:(id)gameSettings;
 
 - (void)generateSnakeInView:(UIView *)view;
 - (void)generateRandomMealInView:(UIView *) view;

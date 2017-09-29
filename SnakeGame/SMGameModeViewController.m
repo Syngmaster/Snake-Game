@@ -8,6 +8,8 @@
 
 #import "SMGameModeViewController.h"
 #import "SMPlayViewController.h"
+#import "SMFreeGameSettingsViewController.h"
+#import "SMArcadeGameSettings.h"
 
 @interface SMGameModeViewController ()
 
@@ -34,7 +36,13 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
     if ([segue.identifier isEqualToString:@"game"]) {
+        
         SMPlayViewController *dvc = segue.destinationViewController;
+        dvc.gameMode = self.gameMode;
+        
+    } else if ([segue.identifier isEqualToString:@"freeGameSettings"]) {
+        
+        SMFreeGameSettingsViewController *dvc = segue.destinationViewController;
         dvc.gameMode = self.gameMode;
     }
     
@@ -47,6 +55,7 @@
         self.gameMode = sender.tag;
         [self performSegueWithIdentifier:@"game" sender:nil];
     } else {
+        self.gameMode = sender.tag;
         [self performSegueWithIdentifier:@"freeGameSettings" sender:nil];
     }
 

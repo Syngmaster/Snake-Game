@@ -12,6 +12,9 @@
 #import "SMPlayground.h"
 #import "SMGameModel.h"
 
+#import "SMFreeGameSettings.h"
+#import "SMArcadeGameSettings.h"
+
 
 @interface SMPlayViewController () <SMSettingsViewDelegate>
 
@@ -26,19 +29,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.timeInterval = 0.3;
     self.gameIsStarted = NO;
     
     if (self.gameMode == 0) {
-        self.scoreLabel.text = @"-/-";
+        self.scoreLabel.text = @"0";
         self.scoreImage.image = [UIImage imageNamed:@"apple.png"];
         self.levelLabel.text = @"Level : ";
         
     } else {
         
-        self.scoreLabel.text = @"0/20";
-        self.scoreImage.image = [UIImage imageNamed:@"apple.png"];
-        self.levelLabel.text = @"Level : 1";
+        SMArcadeGameSettings *arcadeGameSettings = [[SMArcadeGameSettings alloc] init];
+        self.arcadeGameSettings = arcadeGameSettings;
     }
     
     [self createSwipes];
@@ -49,21 +50,50 @@
     [super viewDidAppear:animated];
     
     if (!self.gameIsStarted) {
-
-        SMPlayground *playground = [[SMPlayground alloc] initWithView:self.playgroundView];
-        self.playground = playground;
-        SMSnakeEngineModel *snake = [[SMSnakeEngineModel alloc] initWithGridView:self.playground];
-        self.snakeEngineModel = snake;
-        self.step = self.playground.step;
-
-        [self.timer invalidate];
-        //self.timer = [NSTimer scheduledTimerWithTimeInterval:0.005 target:self selector:@selector(testAction) userInfo:nil repeats:true];
         
-        [self.snakeEngineModel generateRandomHazardInView:self.playground.gridView];
-        [self.snakeEngineModel generateRandomMealInView:self.playground.gridView];
-        [self.snakeEngineModel generateSnakeInView:self.playground.gridView];
-        
-        self.gameIsStarted = YES;
+        if (self.gameMode == 0) {
+            
+            SMPlayground *playground = [[SMPlayground alloc] initWithView:self.playgroundView];
+            self.playground = playground;
+            SMSnakeEngineModel *snake = [[SMSnakeEngineModel alloc] initWithGridView:self.playground andGameSettings:self.freeGameSettings];
+            self.snakeEngineModel = snake;
+            self.step = self.playground.step;
+            
+            [self.timer invalidate];
+            //self.timer = [NSTimer scheduledTimerWithTimeInterval:0.005 target:self selector:@selector(testAction) userInfo:nil repeats:true];
+            
+            [self.snakeEngineModel generateRandomHazardInView:self.playground.gridView];
+            [self.snakeEngineModel generateRandomMealInView:self.playground.gridView];
+            [self.snakeEngineModel generateSnakeInView:self.playground.gridView];
+            
+            self.timeInterval = (1 - self.freeGameSettings.speedValue) / 2;
+            self.gameIsStarted = YES;
+            
+        } else {
+            
+            SMPlayground *playground = [[SMPlayground alloc] initWithView:self.playgroundView];
+            self.playground = playground;
+            SMSnakeEngineModel *snake = [[SMSnakeEngineModel alloc] initWithGridView:self.playground andGameSettings:self.arcadeGameSettings];
+            self.snakeEngineModel = snake;
+            self.step = self.playground.step;
+            
+            [self.timer invalidate];
+            //self.timer = [NSTimer scheduledTimerWithTimeInterval:0.005 target:self selector:@selector(testAction) userInfo:nil repeats:true];
+            
+            [self.snakeEngineModel generateRandomHazardInView:self.playground.gridView];
+            [self.snakeEngineModel generateRandomMealInView:self.playground.gridView];
+            [self.snakeEngineModel generateSnakeInView:self.playground.gridView];
+            
+            self.timeInterval = self.arcadeGameSettings.speed;
+            self.gameIsStarted = YES;
+            
+            self.scoreLabel.text = [NSString stringWithFormat:@"0/%i",(int)self.arcadeGameSettings.maxMealValue];
+            self.scoreImage.image = [UIImage imageNamed:@"apple.png"];
+            self.levelLabel.text = [NSString stringWithFormat:@"Level : %i",(int)self.arcadeGameSettings.level];
+            
+        }
+
+
     }
 
 }
@@ -121,21 +151,36 @@
     
 }
 
+- (void)updateScoreLabel:(UILabel *)scoreLabel {
+    
+    if (self.gameMode == 0) {
+        scoreLabel.text = [NSString stringWithFormat:@"%i", (int)[self.snakeEngineModel.gameModel.snakeArray count] - 2];
+    } else {
+        scoreLabel.text = [NSString stringWithFormat:@"%i/%i", (int)[self.snakeEngineModel.gameModel.snakeArray count] - 2, (int)self.arcadeGameSettings.maxMealValue];
+    }
+
+}
+
+
 - (void)moveSnakeRight {
     [self.snakeEngineModel snakeNewMovement:self.snakeEngineModel.gameModel.snakeArray inView:self.playground.gridView withDirectionX:SnakeDirectionOptionRight*self.step andDirectionY:0];
+    [self updateScoreLabel:self.scoreLabel];
 }
 
 - (void)moveSnakeLeft {
     [self.snakeEngineModel snakeNewMovement:self.snakeEngineModel.gameModel.snakeArray inView:self.playground.gridView withDirectionX:SnakeDirectionOptionLeft*self.step andDirectionY:0];
+    [self updateScoreLabel:self.scoreLabel];
 }
 
 - (void)moveSnakeUp {
     [self.snakeEngineModel snakeNewMovement:self.snakeEngineModel.gameModel.snakeArray inView:self.playground.gridView withDirectionX:0 andDirectionY:SnakeDirectionOptionUp*self.step];
+    [self updateScoreLabel:self.scoreLabel];
 
 }
 
 - (void)moveSnakeDown {
     [self.snakeEngineModel snakeNewMovement:self.snakeEngineModel.gameModel.snakeArray inView:self.playground.gridView withDirectionX:0 andDirectionY:SnakeDirectionOptionDown*self.step];
+    [self updateScoreLabel:self.scoreLabel];
 }
 
 - (void)testAction {
