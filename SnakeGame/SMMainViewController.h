@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface SMMainViewController : UIViewController
+
 - (IBAction)showGameAction:(UIButton *)sender;
 
 @end

@@ -22,19 +22,15 @@ typedef NS_ENUM(NSInteger, SnakeDirectionOption) {
 @interface SMSnakeEngineModel : NSObject
 
 @property (strong, nonatomic) SMGameModel *gameModel;
+@property (assign, nonatomic) NSInteger gameMode;
 
-- (instancetype)initWithGridView:(SMPlayground *)gridView;
+- (instancetype)initWithGridView:(SMPlayground *)gridView andGameSettings:(id)gameSettings;
 
 - (void)generateSnakeInView:(UIView *)view;
 - (void)generateRandomMealInView:(UIView *) view;
 - (void)generateRandomHazardInView:(UIView *)view;
 
-/************** Method with a timer ******************/
 
 - (void)snakeNewMovement:(NSMutableArray *)snake inView:(UIView *)playgroundView withDirectionX:(int)directionX andDirectionY:(int)directionY;
-
-/************** Method using animations ******************/
-
-//- (void)snakeMovement:(NSArray *) snake inView:(UIView *)playgroundView withDirectionX:(NSInteger) stepX andY:(NSInteger) stepY;
 
 @end

@@ -10,13 +10,21 @@
 #import "SMPlayViewController.h"
 #import "SMGameModel.h"
 #import "SMPlayground.h"
+#import "SMFreeGameSettings.h"
+#import "SMArcadeGameSettings.h"
 
 @interface SMSnakeEngineModel ()
 
 @property (assign, nonatomic) CGRect randomViewRect;
 @property (assign, nonatomic) CGPoint currentPoint;
-
 @property (strong, nonatomic) NSMutableArray *arrayOfHazards;
+@property (assign, nonatomic) NSInteger numberOfHazards;
+
+@property (assign, nonatomic) SMArcadeGameSettings *arcadeGameSettings;
+@property (assign, nonatomic) SMFreeGameSettings *freeGameSettings;
+
+@property (strong, nonatomic) NSTimer *timerForMovingView;
+
 
 @end
 
@@ -24,14 +32,35 @@
 
 #pragma mark - Generate random game elements
 
-- (instancetype)initWithGridView:(SMPlayground *)gridView {
+- (instancetype)initWithGridView:(SMPlayground *)gridView andGameSettings:(id)gameSettings {
     
     self = [super init];
     if (self) {
         
-        self.arrayOfHazards = [NSMutableArray array];
-        SMGameModel *gameModel = [[SMGameModel alloc] initWithGridView:gridView];
-        self.gameModel = gameModel;
+        if ([gameSettings isMemberOfClass:[SMFreeGameSettings class]]) {
+            
+            SMFreeGameSettings *freeGameSettings = (SMFreeGameSettings *)gameSettings;
+            
+            self.arrayOfHazards = [NSMutableArray array];
+            self.numberOfHazards = freeGameSettings.levelValue * 30;
+            
+            SMGameModel *gameModel = [[SMGameModel alloc] initWithGridView:gridView andGameSettings:freeGameSettings];
+            self.gameModel = gameModel;
+            self.freeGameSettings = freeGameSettings;
+
+        } else {
+            
+            SMArcadeGameSettings *arcadeGameSettings = (SMArcadeGameSettings *)gameSettings;
+            
+            self.arrayOfHazards = [NSMutableArray array];
+            self.numberOfHazards = arcadeGameSettings.numberOfHazards;
+            
+            SMGameModel *gameModel = [[SMGameModel alloc] initWithGridView:gridView andGameSettings:arcadeGameSettings];
+            self.gameModel = gameModel;
+            self.arcadeGameSettings = arcadeGameSettings;
+        }
+        
+        
     }
     return self;
 }
@@ -57,7 +86,7 @@
 
 - (void)generateRandomHazardInView:(UIView *)view {
         
-    NSUInteger numberOfHazards = 1;
+    NSInteger numberOfHazards = self.numberOfHazards;
 
     for (int i = 0; i < numberOfHazards; i++) {
 
@@ -70,16 +99,24 @@
 
 }
 
+
 - (void)addOneSegmentToSnake:(NSMutableArray *)snake inView:(UIView *)view {
     
     UIView *snakeView = [self.gameModel createSnakeView];
-
     [view addSubview:snakeView];
+    
+    if (self.gameMode == 0) {
+        self.freeGameSettings.score++;
+    } else {
+        self.arcadeGameSettings.score++;
         
+        if (self.arcadeGameSettings.score == self.arcadeGameSettings.maxMealValue) {
+            [self nextLevelAlertControllerInView:view];
+        }
+    }
 }
 
 #pragma mark - Moving method
-
 
 /************** Method with a timer ******************/
 
@@ -115,13 +152,12 @@
         UIView *nextView = snake[1];
         nextView.layer.affineTransform = snakeHead.layer.affineTransform;
         
-        
     }
     
     if (CGRectIntersectsRect(snakeHead.frame, self.randomViewRect)) {
         
         [self addOneSegmentToSnake:snake inView:playgroundView];
-        [self removeGameElementWithTag:GameElementApple inView:playgroundView];
+        [self removeGameElementWithTag:GameElementMeal inView:playgroundView];
         [self generateRandomMealInView:playgroundView];
     }
     
@@ -129,74 +165,6 @@
     
 }
 
-
-/************** Method using animations ******************/
-/*
-- (void)snakeMovement:(NSArray *) snake inView:(UIView *)playgroundView withDirectionX:(NSInteger) stepX andY:(NSInteger) stepY {
-    
-    UIView *snakeHead = snake[0];
-    if (stepY == SnakeDirectionOptionUp*40) {
-        snakeHead.layer.affineTransform = CGAffineTransformMakeRotation(0);
-    } else if (stepY == SnakeDirectionOptionDown*40) {
-        snakeHead.layer.affineTransform = CGAffineTransformMakeRotation(M_PI);
-    }
-    
-    if (stepX == SnakeDirectionOptionLeft*40) {
-        snakeHead.layer.affineTransform = CGAffineTransformMakeRotation(-M_PI/2);
-    } else if (stepX == SnakeDirectionOptionRight*40) {
-        snakeHead.layer.affineTransform = CGAffineTransformMakeRotation(M_PI/2);
-    }
-    
-    
-    UIView *headView = snake[0];
-    //[self removeAnimationFromViews:snake];
-    
-
-    
-    [UIView animateWithDuration:0.3 delay:0
-                        options:  UIViewAnimationOptionCurveLinear | UIViewAnimationOptionBeginFromCurrentState
-                     animations:^{
-                         
-                         for (NSInteger i = [snake count]-1; i > 0; i--) {
-                             
-                             UIView *view = snake[i-1];
-                             UIView *nextView = snake[i];
-                             
-                             nextView.center = view.center;
-                         }
-                         
-                         headView.center = CGPointMake(headView.center.x + stepX, headView.center.y + stepY);
-                         
-                         if (CGRectIntersectsRect(headView.frame, self.randomViewRect)) {
-                             
-                             [self addOneSegmentToSnake:snake inView:playgroundView];
-                             [self removeSnakeViewWithTag:GameElementApple inView:playgroundView];
-                             [self generateRandomSnakeBodyInView:playgroundView];
-                         }
-                         
-                         
-                     } completion:^(BOOL finished) {
-                         
-                         
-                         if (finished == YES) {
-                             
-                             //continue to animate if previous animation wasn't canceled
-
-                             __weak SMSnakeEngineModel* weakSelf = self;
-                             [weakSelf snakeMovement:snake inView:playgroundView withDirectionX: stepX andY: stepY];
-                             
-                             //method checks whether a condition for intersection is satisfied
-                             [self gameOverAfterIntersection:snake withHeadView:headView inView:playgroundView];
-
-                         } else {
-                             
-
-
-                         }
-                         
-                     }];
-}
-*/
 
 #pragma mark - GameOver methods
 
@@ -215,14 +183,18 @@
         
         UIView *bodyView = views[i+1];
         
+        CGRect headFrame = CGRectMake(head.frame.origin.x+1, head.frame.origin.y+1, head.frame.size.width-2, head.frame.size.height-2);
+        
         if ([views count] > 1) {
             
-            if (CGRectIntersectsRect(head.frame, bodyView.frame)) {
+            if (CGRectIntersectsRect(headFrame, bodyView.frame)) {
                 
+                NSLog(@"head - %@", NSStringFromCGRect(head.frame));
+                NSLog(@"bodyView - %@", NSStringFromCGRect(bodyView.frame));
+
                 [self gameOverAlertControllerInView:playgroundView];
                 //[self removeAnimationFromViews:views];
             }
-            
         }
     }
     
@@ -232,22 +204,9 @@
 
             [self gameOverAlertControllerInView:playgroundView];
         }
-        
     }
-    
-    
-    
 }
 
-/*
-- (void)removeAnimationFromViews:(NSArray *) views {
-    
-    for (UIView* view in views) {
-        
-        [view.layer removeAllAnimations];
-    }
-}
-*/
 
 - (void)removeGameElementWithTag:(NSInteger) tag inView:(UIView *) playgroundView {
     
@@ -264,7 +223,6 @@
 
 - (void)gameOverAlertControllerInView:(UIView *) playgroundView {
     
-    
     UINavigationController *rootVC = (UINavigationController *)[UIApplication sharedApplication].windows.firstObject.rootViewController;
     UIViewController *gameModeVC = rootVC.topViewController;
     SMPlayViewController *mainVC = (SMPlayViewController *)gameModeVC.presentedViewController;
@@ -276,15 +234,50 @@
     UIAlertAction *ac = [UIAlertAction actionWithTitle:@"Restart Game" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
         
         [self removeGameElementWithTag:GameElementSnakeBody inView:playgroundView];
-        [self removeGameElementWithTag:GameElementApple inView:playgroundView];
+        [self removeGameElementWithTag:GameElementMeal inView:playgroundView];
         [self removeGameElementWithTag:GameElementHazard inView:playgroundView];
         [self removeGameElementWithTag:GameElementSnakeTail inView:playgroundView];
         [self.arrayOfHazards removeAllObjects];
         [self.gameModel.takenCoordinates removeAllObjects];
         [self.gameModel.snakeArray removeAllObjects];
         mainVC.gameIsStarted = NO;
+        self.arcadeGameSettings.score = 0;
+        [self.timerForMovingView invalidate];
 
+        [mainVC viewDidAppear:true];
         
+    }];
+    [contr addAction:ac];
+    
+    [mainVC presentViewController:contr animated:true completion:nil];
+    
+}
+
+- (void)nextLevelAlertControllerInView:(UIView *)playgroundView {
+    
+    UINavigationController *rootVC = (UINavigationController *)[UIApplication sharedApplication].windows.firstObject.rootViewController;
+    UIViewController *gameModeVC = rootVC.topViewController;
+    SMPlayViewController *mainVC = (SMPlayViewController *)gameModeVC.presentedViewController;
+    
+    [mainVC.timer invalidate];
+    
+    UIAlertController *contr = [UIAlertController alertControllerWithTitle:@"Congratulations!" message:@"The level is completed. \nTime to go to the next level!" preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *ac = [UIAlertAction actionWithTitle:@"Go!" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+        [self removeGameElementWithTag:GameElementSnakeBody inView:playgroundView];
+        [self removeGameElementWithTag:GameElementMeal inView:playgroundView];
+        [self removeGameElementWithTag:GameElementHazard inView:playgroundView];
+        [self removeGameElementWithTag:GameElementSnakeTail inView:playgroundView];
+        [self.arrayOfHazards removeAllObjects];
+        [self.gameModel.takenCoordinates removeAllObjects];
+        [self.gameModel.snakeArray removeAllObjects];
+        mainVC.gameIsStarted = NO;
+        self.arcadeGameSettings.score = 0;
+        self.arcadeGameSettings.level++;
+        [self.arcadeGameSettings increaseDifficultyWithLevel:self.arcadeGameSettings.level];
+        [self.timerForMovingView invalidate];
+
         [mainVC viewDidAppear:true];
         
     }];

@@ -45,7 +45,7 @@
                 
             case 768:
                 self.height = 884; //step = 26
-                self.width = 646;
+                self.width = 650;
                 self.step = 26;
                 break;
                 
@@ -67,14 +67,7 @@
         CGPoint centerView = CGPointMake(view.center.x, view.center.y);
         playView.center = centerView;
         playView.backgroundColor = [UIColor clearColor];
-        playView.translatesAutoresizingMaskIntoConstraints = NO;
         [view addSubview:playView];
-        
-        //[view addConstraint:[NSLayoutConstraint constraintWithItem:playView attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:view attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0.0]];
-        //[view addConstraint:[NSLayoutConstraint constraintWithItem:playView attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:view attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0.0]];
-        
-        //[playView addConstraint:[NSLayoutConstraint constraintWithItem:playView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:self.width]];
-        //[playView addConstraint:[NSLayoutConstraint constraintWithItem:playView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:self.height]];
         self.gridView = playView;
     }
     
