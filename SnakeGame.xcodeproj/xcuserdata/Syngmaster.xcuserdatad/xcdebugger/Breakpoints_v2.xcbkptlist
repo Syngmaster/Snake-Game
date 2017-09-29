@@ -63,7 +63,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "59"
             endingLineNumber = "59"
-            landmarkName = "-generateRandomHazardInView:"
+            landmarkName = "-initWithGridView:andGameSettings:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -95,7 +95,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "63"
             endingLineNumber = "63"
-            landmarkName = "-generateRandomHazardInView:"
+            landmarkName = "-initWithGridView:andGameSettings:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -111,7 +111,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "74"
             endingLineNumber = "74"
-            landmarkName = "-addOneSegmentToSnake:inView:"
+            landmarkName = "-generateSnakeInView:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -143,7 +143,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "110"
             endingLineNumber = "110"
-            landmarkName = "-snakeNewMovement:inView:withDirectionX:andDirectionY:"
+            landmarkName = "-addOneSegmentToSnake:inView:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -159,7 +159,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "266"
             endingLineNumber = "266"
-            landmarkName = "-gameOverAlertControllerInView:"
+            landmarkName = "-nextLevelAlertControllerInView:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -175,7 +175,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "270"
             endingLineNumber = "270"
-            landmarkName = "-gameOverAlertControllerInView:"
+            landmarkName = "-nextLevelAlertControllerInView:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -207,7 +207,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "231"
             endingLineNumber = "231"
-            landmarkName = "-gameOverAfterIntersection:withHeadView:inView:"
+            landmarkName = "-gameOverAlertControllerInView:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
