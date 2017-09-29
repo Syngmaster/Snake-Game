@@ -150,11 +150,8 @@
         [self.snakeArray insertObject:snakeView atIndex:1];
         
         return snakeView;
-        
     }
-    
 }
-
 
 - (UIView *)createHazardView {
     
@@ -212,26 +209,6 @@
     
 
 }
-
-- (UIView *)createMovingView {
-
-    CGPoint newCoordinates = [self generateRandomCoordinates];
-    
-    UIView *newHazardView = [[UIView alloc] initWithFrame:CGRectMake(newCoordinates.x, newCoordinates.y, self.snakeStep, self.snakeStep)];
-    
-    newHazardView.tag = GameElementHazard;
-    
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:newHazardView.bounds];
-    imageView.contentMode = UIViewContentModeScaleAspectFit;
-    
-    imageView.image = [UIImage imageNamed:@"spider.png"];
-    
-    [newHazardView addSubview:imageView];
-    
-    return newHazardView;
-
-}
-
 
 
 - (UIView *)createMealView {

@@ -39,6 +39,8 @@
         
         SMPlayViewController *dvc = segue.destinationViewController;
         dvc.gameMode = self.gameMode;
+        SMArcadeGameSettings *arcadeGameSettings = [[SMArcadeGameSettings alloc] init];
+        dvc.arcadeGameSettings = arcadeGameSettings;
         
     } else if ([segue.identifier isEqualToString:@"freeGameSettings"]) {
         

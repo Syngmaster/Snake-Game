@@ -39,7 +39,6 @@ typedef NS_ENUM(NSInteger, GameElement) {
 // hazard model
 
 - (UIView *)createHazardView;
-- (UIView *)createMovingView;
 
 // meal model
 

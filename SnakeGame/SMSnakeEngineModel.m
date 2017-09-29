@@ -17,9 +17,11 @@
 
 @property (assign, nonatomic) CGRect randomViewRect;
 @property (assign, nonatomic) CGPoint currentPoint;
-@property (assign, nonatomic) NSInteger numberOfHazards;
 @property (strong, nonatomic) NSMutableArray *arrayOfHazards;
+@property (assign, nonatomic) NSInteger numberOfHazards;
+
 @property (assign, nonatomic) SMArcadeGameSettings *arcadeGameSettings;
+@property (assign, nonatomic) SMFreeGameSettings *freeGameSettings;
 
 @property (strong, nonatomic) NSTimer *timerForMovingView;
 
@@ -44,7 +46,8 @@
             
             SMGameModel *gameModel = [[SMGameModel alloc] initWithGridView:gridView andGameSettings:freeGameSettings];
             self.gameModel = gameModel;
-            
+            self.freeGameSettings = freeGameSettings;
+
         } else {
             
             SMArcadeGameSettings *arcadeGameSettings = (SMArcadeGameSettings *)gameSettings;
@@ -99,20 +102,21 @@
 
 - (void)addOneSegmentToSnake:(NSMutableArray *)snake inView:(UIView *)view {
     
-    self.arcadeGameSettings.score++;
-    
     UIView *snakeView = [self.gameModel createSnakeView];
-    
     [view addSubview:snakeView];
     
-    if (self.arcadeGameSettings.score == self.arcadeGameSettings.maxMealValue) {
-        [self nextLevelAlertControllerInView:view];
-    }
+    if (self.gameMode == 0) {
+        self.freeGameSettings.score++;
+    } else {
+        self.arcadeGameSettings.score++;
         
+        if (self.arcadeGameSettings.score == self.arcadeGameSettings.maxMealValue) {
+            [self nextLevelAlertControllerInView:view];
+        }
+    }
 }
 
 #pragma mark - Moving method
-
 
 /************** Method with a timer ******************/
 
@@ -179,10 +183,15 @@
         
         UIView *bodyView = views[i+1];
         
+        CGRect headFrame = CGRectMake(head.frame.origin.x+1, head.frame.origin.y+1, head.frame.size.width-2, head.frame.size.height-2);
+        
         if ([views count] > 1) {
             
-            if (CGRectIntersectsRect(head.frame, bodyView.frame)) {
+            if (CGRectIntersectsRect(headFrame, bodyView.frame)) {
                 
+                NSLog(@"head - %@", NSStringFromCGRect(head.frame));
+                NSLog(@"bodyView - %@", NSStringFromCGRect(bodyView.frame));
+
                 [self gameOverAlertControllerInView:playgroundView];
                 //[self removeAnimationFromViews:views];
             }

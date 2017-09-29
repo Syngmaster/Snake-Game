@@ -33,6 +33,21 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    if (self.gameSettings.chosenMeal == ChosenMealApple) {
+        [self.chooseMealViews[0] selectView];
+        [self.chooseMealViews[1] resetView];
+    } else {
+        [self.chooseMealViews[1] selectView];
+        [self.chooseMealViews[0] resetView];
+    }
+    
+    self.gameSettings.speedValue = self.speedSlider.value;
+    self.gameSettings.levelValue = self.levelSlider.value;
+}
+
 
 #pragma mark - Actions
 
@@ -101,37 +116,50 @@
 }
 
 - (IBAction)speedValueChanged:(UISlider *)sender {
-    self.gameSettings.speedValue = sender.value;
     
-    if (sender.value >= 0 && sender.value < 0.25) {
-        self.speedLabel.text = @"easy";
-    } else if (sender.value >= 0.25 && sender.value < 0.5) {
-        self.speedLabel.text = @"medium";
-    } else if (sender.value >= 0.5 && sender.value < 0.75) {
-        self.speedLabel.text = @"hard";
-    } else {
-        self.speedLabel.text = @"extreme";
-    }
+    self.gameSettings.speedValue = sender.value;
+    [self updateLabel:self.speedLabel withSliderValue:sender];
     
 }
 
 - (IBAction)levelValueChanged:(UISlider *)sender {
-    self.gameSettings.levelValue = sender.value;
     
-    if (sender.value >= 0 && sender.value < 0.25) {
-        self.levelLabel.text = @"easy";
-    } else if (sender.value >= 0.25 && sender.value < 0.5) {
-        self.levelLabel.text = @"medium";
-    } else if (sender.value >= 0.5 && sender.value < 0.75) {
-        self.levelLabel.text = @"hard";
+    self.gameSettings.levelValue = sender.value;
+    [self updateLabel:self.levelLabel withSliderValue:sender];
+
+}
+
+- (void)updateLabel:(UILabel *)label withSliderValue:(UISlider *)slider {
+    if (slider.value >= 0 && slider.value < 0.25) {
+        label.text = @"easy";
+    } else if (slider.value >= 0.25 && slider.value < 0.5) {
+        label.text = @"medium";
+    } else if (slider.value >= 0.5 && slider.value < 0.75) {
+        label.text = @"hard";
     } else {
-        self.levelLabel.text = @"extreme";
+        label.text = @"extreme";
     }
 }
 
 - (IBAction)startGameAction:(UIButton *)sender {
     
-    [self performSegueWithIdentifier:@"startGame" sender:nil];
+    if ([self.gameSettings.chosenHazards count] == 0) {
+        [self showAlert];
+    } else {
+        [self performSegueWithIdentifier:@"startGame" sender:nil];
+    }
+    
+    
+}
+
+- (void)showAlert {
+    
+    UIAlertController *contr = [UIAlertController alertControllerWithTitle:@"Warning!" message:@"Please choose at least one hazard!" preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *ac = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleCancel handler:nil];
+    [contr addAction:ac];
+    
+    [self presentViewController:contr animated:YES completion:nil];
     
 }
 

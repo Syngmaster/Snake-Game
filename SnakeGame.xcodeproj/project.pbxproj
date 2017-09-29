@@ -27,6 +27,7 @@
 		DC22DACE1F7D6B9800B8E85C /* SMChooseButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = DC22DACD1F7D6B9800B8E85C /* SMChooseButtonView.m */; };
 		DC22DAD11F7E2E6E00B8E85C /* SMFreeGameSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = DC22DAD01F7E2E6E00B8E85C /* SMFreeGameSettings.m */; };
 		DC22DAD41F7E4F2900B8E85C /* SMArcadeGameSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = DC22DAD31F7E4F2900B8E85C /* SMArcadeGameSettings.m */; };
+		DC22DAD71F7EA30600B8E85C /* SMGameModeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DC22DAD61F7EA30600B8E85C /* SMGameModeButton.m */; };
 		DC6B60C81EFA8613007D1D00 /* SMPlayground.m in Sources */ = {isa = PBXBuildFile; fileRef = DC6B60C71EFA8613007D1D00 /* SMPlayground.m */; };
 		DC6B60C91EFA8D5E007D1D00 /* SMSnakeEngineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DC6B60C41EFA8602007D1D00 /* SMSnakeEngineModel.m */; };
 		DC6B60CA1EFA9AB2007D1D00 /* SMSnakeEngineModel.h in Sources */ = {isa = PBXBuildFile; fileRef = DC6B60C31EFA8602007D1D00 /* SMSnakeEngineModel.h */; };
@@ -82,6 +83,8 @@
 		DC22DAD01F7E2E6E00B8E85C /* SMFreeGameSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMFreeGameSettings.m; sourceTree = "<group>"; };
 		DC22DAD21F7E4F2900B8E85C /* SMArcadeGameSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMArcadeGameSettings.h; sourceTree = "<group>"; };
 		DC22DAD31F7E4F2900B8E85C /* SMArcadeGameSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMArcadeGameSettings.m; sourceTree = "<group>"; };
+		DC22DAD51F7EA30600B8E85C /* SMGameModeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMGameModeButton.h; sourceTree = "<group>"; };
+		DC22DAD61F7EA30600B8E85C /* SMGameModeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMGameModeButton.m; sourceTree = "<group>"; };
 		DC6B60C31EFA8602007D1D00 /* SMSnakeEngineModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMSnakeEngineModel.h; sourceTree = "<group>"; };
 		DC6B60C41EFA8602007D1D00 /* SMSnakeEngineModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMSnakeEngineModel.m; sourceTree = "<group>"; };
 		DC6B60C61EFA8613007D1D00 /* SMPlayground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMPlayground.h; sourceTree = "<group>"; };
@@ -191,6 +194,8 @@
 				DC22DAC71F7D164E00B8E85C /* SMCustomNavigationBar.m */,
 				DC22DACC1F7D6B9800B8E85C /* SMChooseButtonView.h */,
 				DC22DACD1F7D6B9800B8E85C /* SMChooseButtonView.m */,
+				DC22DAD51F7EA30600B8E85C /* SMGameModeButton.h */,
+				DC22DAD61F7EA30600B8E85C /* SMGameModeButton.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -335,6 +340,7 @@
 				DC22DABC1F7A8E6B00B8E85C /* SMCustomView.m in Sources */,
 				DC6B60C81EFA8613007D1D00 /* SMPlayground.m in Sources */,
 				DC1A8C561EA92D7A00E0DEC2 /* SMPlayViewController.m in Sources */,
+				DC22DAD71F7EA30600B8E85C /* SMGameModeButton.m in Sources */,
 				DC22DAB11F7974DD00B8E85C /* SMMainViewController.m in Sources */,
 				DC22DAC21F7AA56F00B8E85C /* SMSettingsButton.m in Sources */,
 				DC1A8C531EA92D7A00E0DEC2 /* AppDelegate.m in Sources */,

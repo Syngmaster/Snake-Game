@@ -15,6 +15,8 @@
     self = [super init];
     if (self) {
         self.chosenHazards = [NSMutableArray array];
+        self.score = 0;
+        self.chosenMeal = ChosenMealApple;
     }
     return self;
 }

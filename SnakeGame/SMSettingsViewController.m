@@ -8,6 +8,7 @@
 
 #import "SMSettingsViewController.h"
 #import "SMGameModeViewController.h"
+#import "SMFreeGameSettings.h"
 
 @interface SMSettingsViewController ()
 
@@ -17,27 +18,42 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+
+    if (!self.gameSettings) {
+        self.speedSlider.enabled = NO;
+    } else {
+        self.speedSlider.value = self.gameSettings.speedValue;
+        [self updateLabel:self.speedLabel withSliderValue:self.speedSlider];
+    }
+
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)updateLabel:(UILabel *)label withSliderValue:(UISlider *)slider {
+    if (slider.value >= 0 && slider.value < 0.25) {
+        label.text = @"easy";
+    } else if (slider.value >= 0.25 && slider.value < 0.5) {
+        label.text = @"medium";
+    } else if (slider.value >= 0.5 && slider.value < 0.75) {
+        label.text = @"hard";
+    } else {
+        label.text = @"extreme";
+    }
 }
 
-/*
-#pragma mark - Navigation
+- (IBAction)speedValueChanged:(UISlider *)sender {
+    self.gameSettings.speedValue = sender.value;
+    [self updateLabel:self.speedLabel withSliderValue:sender];
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
 }
-*/
+
 
 - (IBAction)resumeGameAction:(UIButton *)sender {
     
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:YES completion:^{
+        
+        [self.delegate viewControllerDismissed:self withData:self.gameSettings];
+
+    }];
     
 }
 

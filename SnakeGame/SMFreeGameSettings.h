@@ -24,6 +24,7 @@ typedef NS_ENUM(NSInteger, ChosenHazard) {
 
 @property (assign, nonatomic) NSInteger chosenMeal;
 @property (strong, nonatomic) NSMutableArray *chosenHazards;
+@property (assign, nonatomic) NSInteger score;
 
 @property (assign, nonatomic) float speedValue;
 @property (assign, nonatomic) float levelValue;
