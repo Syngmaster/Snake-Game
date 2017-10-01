@@ -251,6 +251,7 @@
         alertVC.alertTitle = @"Congratulations!";
         alertVC.alertBody = @"The level is completed! \nTime to go to the next level!";
         alertVC.alertType = AlertTypeNextLevel;
+        alertVC.level = self.arcadeGameSettings.level;
         
         self.arcadeGameSettings.level++;
         [self.arcadeGameSettings increaseDifficultyWithLevel:self.arcadeGameSettings.level];
@@ -259,80 +260,7 @@
     
     [mainVC presentViewController:alertVC animated:YES completion:nil];
     
-    
 }
 
-- (void)gameOverAlertControllerInView:(UIView *) playgroundView {
-    
-    /*UINavigationController *rootVC = (UINavigationController *)[UIApplication sharedApplication].windows.firstObject.rootViewController;
-    UIViewController *gameModeVC = rootVC.topViewController;
-    SMPlayViewController *mainVC = (SMPlayViewController *)gameModeVC.presentedViewController;
-
-    [mainVC.timer invalidate];
-    
-    UIAlertController *contr = [UIAlertController alertControllerWithTitle:@"Game Over!" message:@"" preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction *ac = [UIAlertAction actionWithTitle:@"Restart Game" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-        
-        [self removeGameElementWithTag:GameElementSnakeBody inView:playgroundView];
-        [self removeGameElementWithTag:GameElementMeal inView:playgroundView];
-        [self removeGameElementWithTag:GameElementHazard inView:playgroundView];
-        [self removeGameElementWithTag:GameElementSnakeTail inView:playgroundView];
-        [self.arrayOfHazards removeAllObjects];
-        [self.gameModel.takenCoordinates removeAllObjects];
-        [self.gameModel.snakeArray removeAllObjects];
-        mainVC.gameIsStarted = NO;
-        self.arcadeGameSettings.score = 0;
-
-        [mainVC viewDidAppear:true];
-        
-    }];
-    [contr addAction:ac];
-    
-    [mainVC presentViewController:contr animated:true completion:nil];*/
-    
-
-    UINavigationController *rootVC = (UINavigationController *)[UIApplication sharedApplication].windows.firstObject.rootViewController;
-    UIViewController *gameModeVC = rootVC.topViewController;
-    SMPlayViewController *mainVC = (SMPlayViewController *)gameModeVC.presentedViewController;
-    [mainVC.timer invalidate];
-
-    UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-    SMCustomAlertViewController *alertVC = [mainSB instantiateViewControllerWithIdentifier:@"SMCustomAlertViewController"];
-    [mainVC presentViewController:alertVC animated:YES completion:nil];
-    
-}
-
-- (void)nextLevelAlertControllerInView:(UIView *)playgroundView {
-    
-    UINavigationController *rootVC = (UINavigationController *)[UIApplication sharedApplication].windows.firstObject.rootViewController;
-    UIViewController *gameModeVC = rootVC.topViewController;
-    SMPlayViewController *mainVC = (SMPlayViewController *)gameModeVC.presentedViewController;
-    
-    [mainVC.timer invalidate];
-    
-    UIAlertController *contr = [UIAlertController alertControllerWithTitle:@"Congratulations!" message:@"The level is completed. \nTime to go to the next level!" preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction *ac = [UIAlertAction actionWithTitle:@"Go!" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-        
-        [self removeGameElementWithTag:GameElementSnakeBody inView:playgroundView];
-        [self removeGameElementWithTag:GameElementMeal inView:playgroundView];
-        [self removeGameElementWithTag:GameElementHazard inView:playgroundView];
-        [self removeGameElementWithTag:GameElementSnakeTail inView:playgroundView];
-        [self.arrayOfHazards removeAllObjects];
-        [self.gameModel.takenCoordinates removeAllObjects];
-        [self.gameModel.snakeArray removeAllObjects];
-        self.arcadeGameSettings.score = 0;
-        self.arcadeGameSettings.level++;
-        [self.arcadeGameSettings increaseDifficultyWithLevel:self.arcadeGameSettings.level];
-
-        [mainVC viewDidAppear:true];
-        
-    }];
-    [contr addAction:ac];
-    
-    [mainVC presentViewController:contr animated:true completion:nil];
-    
-}
 
 @end

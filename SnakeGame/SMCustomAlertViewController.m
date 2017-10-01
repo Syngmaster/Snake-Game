@@ -10,7 +10,11 @@
 #import "SMSnakeEngineModel.h"
 #import <Social/Social.h>
 
-@interface SMCustomAlertViewController ()
+@import GoogleMobileAds;
+
+@interface SMCustomAlertViewController () <GADInterstitialDelegate>
+
+@property(nonatomic, strong) GADInterstitial *interstitial;
 
 @end
 
@@ -34,12 +38,39 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
+    if (self.alertType == AlertTypeNextLevel) {
+        if (self.level % 2 == 0) {
+            self.interstitial = [self createAndLoadInterstitial];
+        }
+    }
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (GADInterstitial *)createAndLoadInterstitial {
+    
+    GADInterstitial *interstitial =
+    [[GADInterstitial alloc] initWithAdUnitID:@"ca-app-pub-3940256099942544/4411468910"];
+    interstitial.delegate = self;
+    GADRequest *request = [GADRequest request];
+    request.testDevices = @[kGADSimulatorID, @"FNMRT1H6G5MT"];
+    [interstitial loadRequest:request];
+    
+    return interstitial;
+}
+
+
+- (void)interstitialDidReceiveAd:(GADInterstitial *)ad {
+    NSLog(@"interstitialDidReceiveAd");
+    
+    [ad presentFromRootViewController:self];
+    
+}
+
+- (void)interstitial:(GADInterstitial *)ad
+didFailToReceiveAdWithError:(GADRequestError *)error {
+    NSLog(@"interstitial:didFailToReceiveAdWithError: %@", [error localizedDescription]);
+    
+    
 }
 
 - (IBAction)buttonAction:(UIButton *)sender {
@@ -56,9 +87,9 @@
         
         SLComposeViewController *facebookVC = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
         
-        [facebookVC setInitialText:@"I'm playing Advanture of Snake!"];
-        [facebookVC addImage:[UIImage imageNamed:@"main_logo.png"]];
-        
+        [facebookVC addImage:[UIImage imageNamed:@"main_logo_share_facebook.png"]];
+        //[facebookVC addURL:[NSURL URLWithString:@"https://www.google.ie/"]];
+
         [self presentViewController:facebookVC animated:YES completion:nil];
         
     } else {

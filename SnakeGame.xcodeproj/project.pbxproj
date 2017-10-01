@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		503D4DB9B1B503DEACD82369 /* libPods-SnakeGame.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 88C7EF1CCC9AF026BFC59AFC /* libPods-SnakeGame.a */; };
 		DC1A8C501EA92D7A00E0DEC2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1A8C4F1EA92D7A00E0DEC2 /* main.m */; };
 		DC1A8C531EA92D7A00E0DEC2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1A8C521EA92D7A00E0DEC2 /* AppDelegate.m */; };
 		DC1A8C561EA92D7A00E0DEC2 /* SMPlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1A8C551EA92D7A00E0DEC2 /* SMPlayViewController.m */; };
@@ -34,6 +35,7 @@
 		DC6B60C81EFA8613007D1D00 /* SMPlayground.m in Sources */ = {isa = PBXBuildFile; fileRef = DC6B60C71EFA8613007D1D00 /* SMPlayground.m */; };
 		DC6B60C91EFA8D5E007D1D00 /* SMSnakeEngineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DC6B60C41EFA8602007D1D00 /* SMSnakeEngineModel.m */; };
 		DC6B60CA1EFA9AB2007D1D00 /* SMSnakeEngineModel.h in Sources */ = {isa = PBXBuildFile; fileRef = DC6B60C31EFA8602007D1D00 /* SMSnakeEngineModel.h */; };
+		E72F27DFD946FD8A1A2E2C38 /* libPods-SnakeGameTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F551860D97E89FD1C046E970 /* libPods-SnakeGameTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +49,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4B065719CCC3304D4517C41A /* Pods-SnakeGame.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SnakeGame.release.xcconfig"; path = "Pods/Target Support Files/Pods-SnakeGame/Pods-SnakeGame.release.xcconfig"; sourceTree = "<group>"; };
+		7CF1BEBEB9C82E2BFC5D5240 /* Pods-SnakeGame.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SnakeGame.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SnakeGame/Pods-SnakeGame.debug.xcconfig"; sourceTree = "<group>"; };
+		8313EF20AC0DD5F5EDA92745 /* Pods-SnakeGameTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SnakeGameTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SnakeGameTests/Pods-SnakeGameTests.release.xcconfig"; sourceTree = "<group>"; };
+		88C7EF1CCC9AF026BFC59AFC /* libPods-SnakeGame.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SnakeGame.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D1E5B3C507C5F738193302D4 /* Pods-SnakeGameTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SnakeGameTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SnakeGameTests/Pods-SnakeGameTests.debug.xcconfig"; sourceTree = "<group>"; };
 		DC1A8C4B1EA92D7A00E0DEC2 /* SnakeGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SnakeGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC1A8C4F1EA92D7A00E0DEC2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DC1A8C511EA92D7A00E0DEC2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -97,6 +104,7 @@
 		DC6B60C41EFA8602007D1D00 /* SMSnakeEngineModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMSnakeEngineModel.m; sourceTree = "<group>"; };
 		DC6B60C61EFA8613007D1D00 /* SMPlayground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMPlayground.h; sourceTree = "<group>"; };
 		DC6B60C71EFA8613007D1D00 /* SMPlayground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMPlayground.m; sourceTree = "<group>"; };
+		F551860D97E89FD1C046E970 /* libPods-SnakeGameTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SnakeGameTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +113,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC22DAE41F812F9500B8E85C /* Social.framework in Frameworks */,
+				503D4DB9B1B503DEACD82369 /* libPods-SnakeGame.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,12 +121,24 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E72F27DFD946FD8A1A2E2C38 /* libPods-SnakeGameTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6D5C1E175BC4DEC7731E350F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7CF1BEBEB9C82E2BFC5D5240 /* Pods-SnakeGame.debug.xcconfig */,
+				4B065719CCC3304D4517C41A /* Pods-SnakeGame.release.xcconfig */,
+				D1E5B3C507C5F738193302D4 /* Pods-SnakeGameTests.debug.xcconfig */,
+				8313EF20AC0DD5F5EDA92745 /* Pods-SnakeGameTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		DC1A8C421EA92D7900E0DEC2 = {
 			isa = PBXGroup;
 			children = (
@@ -125,6 +146,7 @@
 				DC22DA9A1F72C39800B8E85C /* SnakeGameTests */,
 				DC1A8C4C1EA92D7A00E0DEC2 /* Products */,
 				DCE0DFF81F4B09E300AAB030 /* Frameworks */,
+				6D5C1E175BC4DEC7731E350F /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -234,6 +256,8 @@
 			isa = PBXGroup;
 			children = (
 				DC22DAE31F812F9500B8E85C /* Social.framework */,
+				88C7EF1CCC9AF026BFC59AFC /* libPods-SnakeGame.a */,
+				F551860D97E89FD1C046E970 /* libPods-SnakeGameTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -245,9 +269,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DC1A8C621EA92D7A00E0DEC2 /* Build configuration list for PBXNativeTarget "SnakeGame" */;
 			buildPhases = (
+				3A679A945D9BF825843DB3FE /* [CP] Check Pods Manifest.lock */,
 				DC1A8C471EA92D7A00E0DEC2 /* Sources */,
 				DC1A8C481EA92D7A00E0DEC2 /* Frameworks */,
 				DC1A8C491EA92D7A00E0DEC2 /* Resources */,
+				964AFBFCAC4B1F2967212594 /* [CP] Embed Pods Frameworks */,
+				9C3B05CCCAC41B669BBBCF22 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -262,9 +289,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DC22DAA21F72C39800B8E85C /* Build configuration list for PBXNativeTarget "SnakeGameTests" */;
 			buildPhases = (
+				2B9C3F9A3D2F7C3A8BDC03BD /* [CP] Check Pods Manifest.lock */,
 				DC22DA951F72C39800B8E85C /* Sources */,
 				DC22DA961F72C39800B8E85C /* Frameworks */,
 				DC22DA971F72C39800B8E85C /* Resources */,
+				544AE55BF882C591CF80D0DE /* [CP] Embed Pods Frameworks */,
+				27E13E244D9888CCB75812C9 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -287,6 +317,7 @@
 				TargetAttributes = {
 					DC1A8C4A1EA92D7A00E0DEC2 = {
 						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = RLMXU9393M;
 						ProvisioningStyle = Automatic;
 					};
 					DC22DA981F72C39800B8E85C = {
@@ -335,6 +366,99 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		27E13E244D9888CCB75812C9 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SnakeGameTests/Pods-SnakeGameTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2B9C3F9A3D2F7C3A8BDC03BD /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		3A679A945D9BF825843DB3FE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		544AE55BF882C591CF80D0DE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SnakeGameTests/Pods-SnakeGameTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		964AFBFCAC4B1F2967212594 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SnakeGame/Pods-SnakeGame-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9C3B05CCCAC41B669BBBCF22 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SnakeGame/Pods-SnakeGame-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		DC1A8C471EA92D7A00E0DEC2 /* Sources */ = {
@@ -498,10 +622,11 @@
 		};
 		DC1A8C631EA92D7A00E0DEC2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7CF1BEBEB9C82E2BFC5D5240 /* Pods-SnakeGame.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = RLMXU9393M;
 				INFOPLIST_FILE = SnakeGame/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "XC-com-SnakeGame";
@@ -513,10 +638,11 @@
 		};
 		DC1A8C641EA92D7A00E0DEC2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4B065719CCC3304D4517C41A /* Pods-SnakeGame.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = RLMXU9393M;
 				INFOPLIST_FILE = SnakeGame/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "XC-com-SnakeGame";
@@ -528,6 +654,7 @@
 		};
 		DC22DAA01F72C39800B8E85C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D1E5B3C507C5F738193302D4 /* Pods-SnakeGameTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -544,6 +671,7 @@
 		};
 		DC22DAA11F72C39800B8E85C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8313EF20AC0DD5F5EDA92745 /* Pods-SnakeGameTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;

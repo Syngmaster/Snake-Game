@@ -19,10 +19,10 @@
 @interface SMCustomAlertViewController : UIViewController
 
 @property (assign, nonatomic) NSInteger alertType;
-
 @property (strong, nonatomic) NSString *alertTitle;
 @property (strong, nonatomic) NSString *alertBody;
-@property (strong, nonatomic) NSString *buttonTitleBody;
+
+@property (assign, nonatomic) NSInteger level;
 
 @property (weak, nonatomic) id <SMCustomAlertDelegate> delegate;
 
