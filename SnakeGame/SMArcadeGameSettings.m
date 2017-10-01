@@ -16,7 +16,7 @@
     if (self) {
         
         self.level = 1;
-        self.maxMealValue = 5;
+        self.maxMealValue = 2;
         self.numberOfHazards = 0;
         self.speed = 0.3;
         self.score = 0;
