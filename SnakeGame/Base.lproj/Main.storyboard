@@ -95,7 +95,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PqA-l2-RAx" customClass="SMCustomView">
-                                <rect key="frame" x="59.666666666666657" y="164.33333333333337" width="295" height="260"/>
+                                <rect key="frame" x="59.666666666666629" y="164.33333333333337" width="295" height="260"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f4E-fz-h7F" customClass="SMSettingsButton">
                                         <rect key="frame" x="50" y="204.99999999999997" width="195" height="45"/>
@@ -103,7 +103,7 @@
                                             <constraint firstAttribute="height" constant="45" id="oSI-Oo-dFC"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="20"/>
-                                        <state key="normal" title="Play">
+                                        <state key="normal" title="Ok">
                                             <color key="titleColor" red="0.13725490200000001" green="0.45098039220000002" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
@@ -120,7 +120,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The level is completed! Time to go to the next level!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QdB-H0-kf1">
-                                        <rect key="frame" x="27.333333333333343" y="105.33333333333334" width="241.00000000000003" height="49.333333333333314"/>
+                                        <rect key="frame" x="27.333333333333343" y="105.66666666666666" width="241.00000000000003" height="49.333333333333314"/>
                                         <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="18"/>
                                         <color key="textColor" red="0.13725490200000001" green="0.45098039220000002" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -141,7 +141,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M0n-bH-qZ0" customClass="SMCustomView">
-                                <rect key="frame" x="60" y="432.33333333333331" width="295" height="60"/>
+                                <rect key="frame" x="59.666666666666629" y="432.33333333333331" width="295" height="60"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6sv-AP-Q0H" customClass="SMSettingsButton">
                                         <rect key="frame" x="50" y="10" width="195" height="40"/>
@@ -157,7 +157,7 @@
                                         </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="facebook_social" translatesAutoresizingMaskIntoConstraints="NO" id="ooI-Wl-2lD">
-                                        <rect key="frame" x="10" y="15" width="30" height="30"/>
+                                        <rect key="frame" x="10.000000000000007" y="15" width="30" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="EZV-pe-38c"/>
                                             <constraint firstAttribute="width" secondItem="ooI-Wl-2lD" secondAttribute="height" multiplier="1:1" id="ehP-8W-KW1"/>
@@ -330,7 +330,7 @@
                                                 <rect key="frame" x="10" y="10" width="274" height="142"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose meal" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w3l-gB-UOM">
-                                                        <rect key="frame" x="64.666666666666671" y="0.0" width="145" height="25"/>
+                                                        <rect key="frame" x="64.666666666666686" y="0.0" width="145" height="25"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="25" id="p4D-CO-Woh"/>
                                                         </constraints>
@@ -710,7 +710,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="66"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xfs-pO-2bd">
-                                        <rect key="frame" x="164.66666666666666" y="22.666666666666664" width="85" height="21.999999999999993"/>
+                                        <rect key="frame" x="164.66666666666663" y="22.666666666666664" width="85" height="21.999999999999993"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="22" id="WBT-n0-jvc"/>
                                             <constraint firstAttribute="width" constant="85" id="YGL-bx-Yyr"/>
@@ -755,7 +755,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wXE-bq-hEc">
-                                        <rect key="frame" x="104.66666666666667" y="15" width="125.00000000000001" height="41"/>
+                                        <rect key="frame" x="104.66666666666669" y="15" width="125.00000000000001" height="41"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="125" id="DjY-Yw-DIX"/>
                                         </constraints>

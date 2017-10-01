@@ -30,6 +30,7 @@
 		DC22DAD71F7EA30600B8E85C /* SMGameModeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DC22DAD61F7EA30600B8E85C /* SMGameModeButton.m */; };
 		DC22DADF1F8009C900B8E85C /* SMCustomAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC22DADE1F8009C900B8E85C /* SMCustomAlertViewController.m */; };
 		DC22DAE21F80F37000B8E85C /* SMAlertButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DC22DAE11F80F37000B8E85C /* SMAlertButton.m */; };
+		DC22DAE41F812F9500B8E85C /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC22DAE31F812F9500B8E85C /* Social.framework */; };
 		DC6B60C81EFA8613007D1D00 /* SMPlayground.m in Sources */ = {isa = PBXBuildFile; fileRef = DC6B60C71EFA8613007D1D00 /* SMPlayground.m */; };
 		DC6B60C91EFA8D5E007D1D00 /* SMSnakeEngineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DC6B60C41EFA8602007D1D00 /* SMSnakeEngineModel.m */; };
 		DC6B60CA1EFA9AB2007D1D00 /* SMSnakeEngineModel.h in Sources */ = {isa = PBXBuildFile; fileRef = DC6B60C31EFA8602007D1D00 /* SMSnakeEngineModel.h */; };
@@ -91,6 +92,7 @@
 		DC22DADE1F8009C900B8E85C /* SMCustomAlertViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMCustomAlertViewController.m; sourceTree = "<group>"; };
 		DC22DAE01F80F37000B8E85C /* SMAlertButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMAlertButton.h; sourceTree = "<group>"; };
 		DC22DAE11F80F37000B8E85C /* SMAlertButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMAlertButton.m; sourceTree = "<group>"; };
+		DC22DAE31F812F9500B8E85C /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		DC6B60C31EFA8602007D1D00 /* SMSnakeEngineModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMSnakeEngineModel.h; sourceTree = "<group>"; };
 		DC6B60C41EFA8602007D1D00 /* SMSnakeEngineModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMSnakeEngineModel.m; sourceTree = "<group>"; };
 		DC6B60C61EFA8613007D1D00 /* SMPlayground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMPlayground.h; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC22DAE41F812F9500B8E85C /* Social.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -230,6 +233,7 @@
 		DCE0DFF81F4B09E300AAB030 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DC22DAE31F812F9500B8E85C /* Social.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -283,7 +287,6 @@
 				TargetAttributes = {
 					DC1A8C4A1EA92D7A00E0DEC2 = {
 						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = 4PMQKT6K8N;
 						ProvisioningStyle = Automatic;
 					};
 					DC22DA981F72C39800B8E85C = {
@@ -497,11 +500,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 4PMQKT6K8N;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = SnakeGame/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = ios.SnakeGame;
+				PRODUCT_BUNDLE_IDENTIFIER = "XC-com-SnakeGame";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -509,11 +515,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 4PMQKT6K8N;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = SnakeGame/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = ios.SnakeGame;
+				PRODUCT_BUNDLE_IDENTIFIER = "XC-com-SnakeGame";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
