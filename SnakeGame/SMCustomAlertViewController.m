@@ -60,16 +60,13 @@
 
 
 - (void)interstitialDidReceiveAd:(GADInterstitial *)ad {
-    NSLog(@"interstitialDidReceiveAd");
     
     [ad presentFromRootViewController:self];
     
 }
 
-- (void)interstitial:(GADInterstitial *)ad
-didFailToReceiveAdWithError:(GADRequestError *)error {
+- (void)interstitial:(GADInterstitial *)ad didFailToReceiveAdWithError:(GADRequestError *)error {
     NSLog(@"interstitial:didFailToReceiveAdWithError: %@", [error localizedDescription]);
-    
     
 }
 
