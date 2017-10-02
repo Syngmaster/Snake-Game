@@ -10,8 +10,9 @@
 
 @implementation SMGameModeButton
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
     
     self.layer.borderWidth = 5.0;
     self.layer.borderColor = [UIColor colorWithRed:241/255.0 green:255/255.0 blue:197/255.0 alpha:1.0].CGColor;
@@ -30,7 +31,6 @@
     
     [self layoutIfNeeded];
     [UIView setAnimationsEnabled:YES];
-    
 }
 
 @end
