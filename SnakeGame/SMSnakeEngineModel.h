@@ -19,6 +19,13 @@ typedef NS_ENUM(NSInteger, SnakeDirectionOption) {
     
 };
 
+typedef NS_ENUM(NSInteger, AlertType) {
+    
+    AlertTypeGameOver,
+    AlertTypeNextLevel
+    
+};
+
 @interface SMSnakeEngineModel : NSObject
 
 @property (strong, nonatomic) SMGameModel *gameModel;

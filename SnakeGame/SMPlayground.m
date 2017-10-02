@@ -44,21 +44,21 @@
                 break;
                 
             case 768:
-                self.height = 884; //step = 26
-                self.width = 650;
-                self.step = 26;
+                self.height = 875; //step = 35
+                self.width = 665;
+                self.step = 35;
                 break;
                 
             case 834:
-                self.height = 960; //step = 32
-                self.width = 704;
-                self.step = 32;
+                self.height = 950; //step = 38
+                self.width = 722;
+                self.step = 38;
                 break;
                 
             case 1024:
-                self.height = 1200; //step = 40
+                self.height = 1188; //step = 44
                 self.width = 880;
-                self.step = 40;
+                self.step = 44;
                 break;
          
          }

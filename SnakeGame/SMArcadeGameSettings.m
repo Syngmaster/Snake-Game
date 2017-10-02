@@ -16,9 +16,9 @@
     if (self) {
         
         self.level = 1;
-        self.maxMealValue = 5;
+        self.maxMealValue = 2;
         self.numberOfHazards = 0;
-        self.speed = 0.3;
+        self.speed = 0.4;
         self.score = 0;
 
     }
@@ -28,7 +28,7 @@
 - (void)increaseDifficultyWithLevel:(NSInteger)level {
     
     self.speed = self.speed - 0.01;
-    self.numberOfHazards = self.numberOfHazards + level;
+    self.numberOfHazards = self.numberOfHazards + 2*level/3;
     self.maxMealValue = self.maxMealValue + 1;
     
 }

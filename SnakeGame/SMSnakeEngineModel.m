@@ -12,6 +12,7 @@
 #import "SMPlayground.h"
 #import "SMFreeGameSettings.h"
 #import "SMArcadeGameSettings.h"
+#import "SMCustomAlertViewController.h"
 
 @interface SMSnakeEngineModel ()
 
@@ -59,7 +60,6 @@
             self.gameModel = gameModel;
             self.arcadeGameSettings = arcadeGameSettings;
         }
-        
         
     }
     return self;
@@ -109,10 +109,6 @@
         self.freeGameSettings.score++;
     } else {
         self.arcadeGameSettings.score++;
-        
-        if (self.arcadeGameSettings.score == self.arcadeGameSettings.maxMealValue) {
-            [self nextLevelAlertControllerInView:view];
-        }
     }
 }
 
@@ -154,6 +150,8 @@
         
     }
     
+    [self gameOverAfterIntersection:snake withHeadView:snakeHead inView:playgroundView];
+    
     if (CGRectIntersectsRect(snakeHead.frame, self.randomViewRect)) {
         
         [self addOneSegmentToSnake:snake inView:playgroundView];
@@ -161,8 +159,11 @@
         [self generateRandomMealInView:playgroundView];
     }
     
-    [self gameOverAfterIntersection:snake withHeadView:snakeHead inView:playgroundView];
-    
+    if (self.gameMode == 1) {
+        if (self.arcadeGameSettings.score == self.arcadeGameSettings.maxMealValue) {
+            [self gameOverAlertController:AlertTypeNextLevel inView:playgroundView];
+        }
+    }
 }
 
 
@@ -174,8 +175,8 @@
     //game stops if the head view goes beyond the playground
     if (!(CGRectContainsRect(intersectionFrame, head.frame))) {
 
-        [self gameOverAlertControllerInView:playgroundView];
-        //[self removeAnimationFromViews:views];
+        [self gameOverAlertController:AlertTypeGameOver inView:playgroundView];
+        return;
     }
     
     //game stops if head view intersects with a body view
@@ -189,11 +190,8 @@
             
             if (CGRectIntersectsRect(headFrame, bodyView.frame)) {
                 
-                NSLog(@"head - %@", NSStringFromCGRect(head.frame));
-                NSLog(@"bodyView - %@", NSStringFromCGRect(bodyView.frame));
-
-                [self gameOverAlertControllerInView:playgroundView];
-                //[self removeAnimationFromViews:views];
+                [self gameOverAlertController:AlertTypeGameOver inView:playgroundView];
+                return;
             }
         }
     }
@@ -202,7 +200,8 @@
         
         if (CGRectIntersectsRect(hazardView.frame, head.frame)) {
 
-            [self gameOverAlertControllerInView:playgroundView];
+            [self gameOverAlertController:AlertTypeGameOver inView:playgroundView];
+            return;
         }
     }
 }
@@ -220,71 +219,48 @@
     }
 }
 
-
-- (void)gameOverAlertControllerInView:(UIView *) playgroundView {
+- (void)gameOverAlertController:(NSInteger)alertType inView:(UIView *)playgroundView {
     
     UINavigationController *rootVC = (UINavigationController *)[UIApplication sharedApplication].windows.firstObject.rootViewController;
     UIViewController *gameModeVC = rootVC.topViewController;
     SMPlayViewController *mainVC = (SMPlayViewController *)gameModeVC.presentedViewController;
-
     [mainVC.timer invalidate];
+    mainVC.gameIsStarted = NO;
     
-    UIAlertController *contr = [UIAlertController alertControllerWithTitle:@"Game Over!" message:@"" preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction *ac = [UIAlertAction actionWithTitle:@"Restart Game" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-        
-        [self removeGameElementWithTag:GameElementSnakeBody inView:playgroundView];
-        [self removeGameElementWithTag:GameElementMeal inView:playgroundView];
-        [self removeGameElementWithTag:GameElementHazard inView:playgroundView];
-        [self removeGameElementWithTag:GameElementSnakeTail inView:playgroundView];
-        [self.arrayOfHazards removeAllObjects];
-        [self.gameModel.takenCoordinates removeAllObjects];
-        [self.gameModel.snakeArray removeAllObjects];
-        mainVC.gameIsStarted = NO;
-        self.arcadeGameSettings.score = 0;
-        [self.timerForMovingView invalidate];
+    [self removeGameElementWithTag:GameElementSnakeBody inView:playgroundView];
+    [self removeGameElementWithTag:GameElementMeal inView:playgroundView];
+    [self removeGameElementWithTag:GameElementHazard inView:playgroundView];
+    [self removeGameElementWithTag:GameElementSnakeTail inView:playgroundView];
+    [self.arrayOfHazards removeAllObjects];
+    [self.gameModel.takenCoordinates removeAllObjects];
+    [self.gameModel.snakeArray removeAllObjects];
+    self.arcadeGameSettings.score = 0;
 
-        [mainVC viewDidAppear:true];
-        
-    }];
-    [contr addAction:ac];
-    
-    [mainVC presentViewController:contr animated:true completion:nil];
-    
-}
 
-- (void)nextLevelAlertControllerInView:(UIView *)playgroundView {
+    UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    SMCustomAlertViewController *alertVC = [mainSB instantiateViewControllerWithIdentifier:@"SMCustomAlertViewController"];
     
-    UINavigationController *rootVC = (UINavigationController *)[UIApplication sharedApplication].windows.firstObject.rootViewController;
-    UIViewController *gameModeVC = rootVC.topViewController;
-    SMPlayViewController *mainVC = (SMPlayViewController *)gameModeVC.presentedViewController;
-    
-    [mainVC.timer invalidate];
-    
-    UIAlertController *contr = [UIAlertController alertControllerWithTitle:@"Congratulations!" message:@"The level is completed. \nTime to go to the next level!" preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction *ac = [UIAlertAction actionWithTitle:@"Go!" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+    if (alertType == AlertTypeGameOver) {
         
-        [self removeGameElementWithTag:GameElementSnakeBody inView:playgroundView];
-        [self removeGameElementWithTag:GameElementMeal inView:playgroundView];
-        [self removeGameElementWithTag:GameElementHazard inView:playgroundView];
-        [self removeGameElementWithTag:GameElementSnakeTail inView:playgroundView];
-        [self.arrayOfHazards removeAllObjects];
-        [self.gameModel.takenCoordinates removeAllObjects];
-        [self.gameModel.snakeArray removeAllObjects];
-        mainVC.gameIsStarted = NO;
-        self.arcadeGameSettings.score = 0;
+        alertVC.alertTitle = @"Oops... :(";
+        alertVC.alertBody = @"Game over";
+        alertVC.alertType = AlertTypeGameOver;
+
+    } else {
+        
+        alertVC.alertTitle = @"Congratulations!";
+        alertVC.alertBody = @"The level is completed! \nTime to go to the next level!";
+        alertVC.alertType = AlertTypeNextLevel;
+        alertVC.level = self.arcadeGameSettings.level;
+        
         self.arcadeGameSettings.level++;
         [self.arcadeGameSettings increaseDifficultyWithLevel:self.arcadeGameSettings.level];
-        [self.timerForMovingView invalidate];
 
-        [mainVC viewDidAppear:true];
-        
-    }];
-    [contr addAction:ac];
+    }
     
-    [mainVC presentViewController:contr animated:true completion:nil];
+    [mainVC presentViewController:alertVC animated:YES completion:nil];
     
 }
+
 
 @end

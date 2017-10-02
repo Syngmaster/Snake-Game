@@ -156,24 +156,26 @@
 
 
 - (void)moveSnakeRight {
-    [self.snakeEngineModel snakeNewMovement:self.snakeEngineModel.gameModel.snakeArray inView:self.playground.gridView withDirectionX:SnakeDirectionOptionRight*self.step andDirectionY:0];
     [self updateScoreLabel:self.scoreLabel];
+
+    [self.snakeEngineModel snakeNewMovement:self.snakeEngineModel.gameModel.snakeArray inView:self.playground.gridView withDirectionX:SnakeDirectionOptionRight*self.step andDirectionY:0];
 }
 
 - (void)moveSnakeLeft {
-    [self.snakeEngineModel snakeNewMovement:self.snakeEngineModel.gameModel.snakeArray inView:self.playground.gridView withDirectionX:SnakeDirectionOptionLeft*self.step andDirectionY:0];
     [self updateScoreLabel:self.scoreLabel];
+
+    [self.snakeEngineModel snakeNewMovement:self.snakeEngineModel.gameModel.snakeArray inView:self.playground.gridView withDirectionX:SnakeDirectionOptionLeft*self.step andDirectionY:0];
 }
 
 - (void)moveSnakeUp {
-    [self.snakeEngineModel snakeNewMovement:self.snakeEngineModel.gameModel.snakeArray inView:self.playground.gridView withDirectionX:0 andDirectionY:SnakeDirectionOptionUp*self.step];
     [self updateScoreLabel:self.scoreLabel];
+    [self.snakeEngineModel snakeNewMovement:self.snakeEngineModel.gameModel.snakeArray inView:self.playground.gridView withDirectionX:0 andDirectionY:SnakeDirectionOptionUp*self.step];
 
 }
 
 - (void)moveSnakeDown {
-    [self.snakeEngineModel snakeNewMovement:self.snakeEngineModel.gameModel.snakeArray inView:self.playground.gridView withDirectionX:0 andDirectionY:SnakeDirectionOptionDown*self.step];
     [self updateScoreLabel:self.scoreLabel];
+    [self.snakeEngineModel snakeNewMovement:self.snakeEngineModel.gameModel.snakeArray inView:self.playground.gridView withDirectionX:0 andDirectionY:SnakeDirectionOptionDown*self.step];
 }
 
 - (void)testAction {
@@ -196,7 +198,10 @@
 #pragma mark - SMSettingsViewDelegate
 
 - (void)viewControllerDismissed:(SMSettingsViewController *)viewController withData:(SMFreeGameSettings *)settings {
-    self.timeInterval = (1 - settings.speedValue) / 2;
+    
+    if (self.gameMode == 0) {
+        self.timeInterval = (1 - settings.speedValue) / 2;
+    }
 
 }
 
