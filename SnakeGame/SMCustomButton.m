@@ -10,9 +10,9 @@
 
 @implementation SMCustomButton
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    
     [UIView setAnimationsEnabled:NO];
     
     CGFloat fontSize = CGRectGetHeight(self.frame)*0.35;
@@ -25,7 +25,6 @@
     
     [self layoutIfNeeded];
     [UIView setAnimationsEnabled:YES];
-    
 }
 
 @end

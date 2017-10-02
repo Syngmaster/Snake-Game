@@ -68,7 +68,7 @@
 
     CGPoint newPoint = CGPointMake(newX, newY);
     
-    if ([self.takenCoordinates count] > 0) {
+    /*if ([self.takenCoordinates count] > 0) {
         
         for (NSValue *coord in self.takenCoordinates) {
             
@@ -77,7 +77,7 @@
                 return [self generateRandomCoordinates];
             }
         }
-    }
+    }*/
     
     [self.takenCoordinates addObject:[NSValue valueWithCGPoint:newPoint]];
     

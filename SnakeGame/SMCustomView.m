@@ -10,8 +10,8 @@
 
 @implementation SMCustomView
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
+- (void)layoutSubviews {
+    [super layoutSubviews];
     
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
         self.layer.borderWidth = 1.0;
@@ -29,6 +29,7 @@
     self.layer.shadowColor = [UIColor grayColor].CGColor;
     self.layer.shadowOpacity = 0.7;
     self.layer.shadowRadius = 1.0;
+    
 }
 
 @end

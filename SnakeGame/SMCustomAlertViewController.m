@@ -28,10 +28,24 @@
     
     if (self.alertType == AlertTypeGameOver) {
         self.facebookButtonContainerView.hidden = YES;
-        UIFont *font = [UIFont fontWithName:@"Avenir-Heavy" size:32];
+        UIFont *font = [[UIFont alloc] init];
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+            font = [UIFont fontWithName:@"Avenir-Heavy" size:32];
+        } else if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+            font = [UIFont fontWithName:@"Avenir-Heavy" size:42];
+        } else {
+            font = [UIFont fontWithName:@"Avenir-Heavy" size:32];
+        }
         self.alertBodyLabel.font = font;
     } else {
-        UIFont *font = [UIFont fontWithName:@"Avenir-Heavy" size:18];
+        UIFont *font = [[UIFont alloc] init];
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+            font = [UIFont fontWithName:@"Avenir-Heavy" size:18];
+        } else if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+            font = [UIFont fontWithName:@"Avenir-Heavy" size:22];
+        } else {
+            font = [UIFont fontWithName:@"Avenir-Heavy" size:18];
+        }
         self.alertBodyLabel.font = font;
     }
 }
@@ -99,7 +113,7 @@
 
 - (void)showAlertMessage:(NSString *)myMessage{
     
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"SocialShare" message:myMessage preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Adventure of Snake" message:myMessage preferredStyle:UIAlertControllerStyleAlert];
     
     [alertController addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil]];
     [self presentViewController:alertController animated:YES completion:nil];

@@ -10,8 +10,9 @@
 
 @implementation SMAlertButton
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
     
     self.layer.borderWidth = 2.0;
     self.layer.borderColor = [UIColor colorWithRed:35/255.0 green:115/255.0 blue:0/255.0 alpha:1.0].CGColor;
@@ -30,7 +31,6 @@
     
     [self layoutIfNeeded];
     [UIView setAnimationsEnabled:YES];
-    
 }
 
 
