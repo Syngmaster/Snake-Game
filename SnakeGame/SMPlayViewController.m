@@ -71,11 +71,12 @@
             SMSnakeEngineModel *snake = [[SMSnakeEngineModel alloc] initWithGridView:self.playground andGameSettings:self.arcadeGameSettings];
             self.snakeEngineModel = snake;
 
+            self.levelLabel.text = [NSString stringWithFormat:@"Level : %i",(int)self.arcadeGameSettings.level];
 
         }
         
         self.snakeEngineModel.gameMode = self.gameMode;
-        self.step = self.playground.step;
+        self.step = self.playground.snakeStep;
         [self.timer invalidate];
         //self.timer = [NSTimer scheduledTimerWithTimeInterval:0.005 target:self selector:@selector(testAction) userInfo:nil repeats:true];
         self.gameIsStarted = YES;
@@ -86,7 +87,6 @@
 
     }
     
-    self.levelLabel.text = [NSString stringWithFormat:@"Level : %i",(int)self.arcadeGameSettings.level];
     [self updateScoreLabel:self.scoreLabel];
 
 }

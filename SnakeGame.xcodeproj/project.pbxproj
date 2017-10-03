@@ -625,6 +625,7 @@
 			baseConfigurationReference = 7CF1BEBEB9C82E2BFC5D5240 /* Pods-SnakeGame.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = RLMXU9393M;
 				INFOPLIST_FILE = SnakeGame/Info.plist;
@@ -641,6 +642,7 @@
 			baseConfigurationReference = 4B065719CCC3304D4517C41A /* Pods-SnakeGame.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = RLMXU9393M;
 				INFOPLIST_FILE = SnakeGame/Info.plist;

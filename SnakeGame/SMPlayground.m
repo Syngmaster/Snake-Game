@@ -28,37 +28,37 @@
             case 320:
                 self.height = 462; //step = 22
                 self.width = 264;
-                self.step = 22;
+                self.snakeStep = 22;
                 break;
                 
             case 375:
                 self.height = 552; // step = 24
                 self.width = 312;
-                self.step = 24;
+                self.snakeStep = 24;
                 break;
          
             case 414:
                 self.height = 625; //step = 25
                 self.width = 350;
-                self.step = 25;
+                self.snakeStep = 25;
                 break;
                 
             case 768:
                 self.height = 875; //step = 35
                 self.width = 665;
-                self.step = 35;
+                self.snakeStep = 35;
                 break;
                 
             case 834:
                 self.height = 950; //step = 38
                 self.width = 722;
-                self.step = 38;
+                self.snakeStep = 38;
                 break;
                 
             case 1024:
                 self.height = 1188; //step = 44
                 self.width = 880;
-                self.step = 44;
+                self.snakeStep = 44;
                 break;
          
          }

@@ -12,7 +12,7 @@
 #import "SMArcadeGameSettings.h"
 @interface SMGameModel ()
 
-@property (assign, nonatomic) CGRect mainViewRect;
+@property (assign, nonatomic) CGRect playgroundViewRect;
 
 @property (strong, nonatomic) SMFreeGameSettings *freeGameSettings;
 @property (strong, nonatomic) SMArcadeGameSettings *arcadeGameSettings;
@@ -26,8 +26,8 @@
     self = [super init];
     if (self) {
 
-        self.mainViewRect = gridView.gridView.bounds;
-        self.snakeStep = gridView.step;
+        self.playgroundViewRect = gridView.gridView.bounds;
+        self.snakeStep = gridView.snakeStep;
         self.takenCoordinates = [NSMutableArray array];
         self.snakeArray = [NSMutableArray array];
         
@@ -63,12 +63,12 @@
 
 - (CGPoint)generateRandomCoordinates {
 
-    CGFloat newX = self.snakeStep * arc4random_uniform((CGRectGetMaxX(self.mainViewRect))/self.snakeStep);
-    CGFloat newY = self.snakeStep * arc4random_uniform((CGRectGetMaxY(self.mainViewRect))/self.snakeStep);
+    CGFloat newX = self.snakeStep * arc4random_uniform((CGRectGetMaxX(self.playgroundViewRect))/self.snakeStep);
+    CGFloat newY = self.snakeStep * arc4random_uniform((CGRectGetMaxY(self.playgroundViewRect))/self.snakeStep);
 
     CGPoint newPoint = CGPointMake(newX, newY);
     
-    /*if ([self.takenCoordinates count] > 0) {
+    if ([self.takenCoordinates count] > 0) {
         
         for (NSValue *coord in self.takenCoordinates) {
             
@@ -77,7 +77,7 @@
                 return [self generateRandomCoordinates];
             }
         }
-    }*/
+    }
     
     [self.takenCoordinates addObject:[NSValue valueWithCGPoint:newPoint]];
     

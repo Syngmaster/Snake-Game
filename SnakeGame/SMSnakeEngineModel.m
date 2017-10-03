@@ -198,7 +198,9 @@
     
     for (UIView *hazardView in self.arrayOfHazards) {
         
-        if (CGRectIntersectsRect(hazardView.frame, head.frame)) {
+        CGRect headFrame = CGRectMake(head.frame.origin.x+1, head.frame.origin.y+1, head.frame.size.width-2, head.frame.size.height-2);
+        
+        if (CGRectIntersectsRect(hazardView.frame, headFrame)) {
 
             [self gameOverAlertController:AlertTypeGameOver inView:playgroundView];
             return;

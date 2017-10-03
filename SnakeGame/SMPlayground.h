@@ -12,7 +12,7 @@
 @interface SMPlayground : UIView
 
 @property (strong, nonatomic) UIView *gridView;
-@property (assign, nonatomic) CGFloat step;
+@property (assign, nonatomic) CGFloat snakeStep;
 
 - (instancetype)initWithView:(UIView *) view;
 
