@@ -28,10 +28,10 @@ typedef NS_ENUM(NSInteger, AlertType) {
 
 @interface SMSnakeEngineModel : NSObject
 
-@property (strong, nonatomic) SMGameModel *gameModel;
+@property (strong, nonatomic) SMPlayground *gridView;
 @property (assign, nonatomic) NSInteger gameMode;
 
-- (instancetype)initWithGridView:(SMPlayground *)gridView andGameSettings:(id)gameSettings;
+- (instancetype)initWithGridView:(SMPlayground *)gridView;
 
 - (void)generateSnakeInView:(UIView *)view;
 - (void)generateRandomMealInView:(UIView *) view;

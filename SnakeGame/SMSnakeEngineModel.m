@@ -8,7 +8,6 @@
 
 #import "SMSnakeEngineModel.h"
 #import "SMPlayViewController.h"
-#import "SMGameModel.h"
 #import "SMPlayground.h"
 #import "SMFreeGameSettings.h"
 #import "SMArcadeGameSettings.h"
@@ -21,9 +20,6 @@
 @property (strong, nonatomic) NSMutableArray *arrayOfHazards;
 @property (assign, nonatomic) NSInteger numberOfHazards;
 
-@property (assign, nonatomic) SMArcadeGameSettings *arcadeGameSettings;
-@property (assign, nonatomic) SMFreeGameSettings *freeGameSettings;
-
 @property (strong, nonatomic) NSTimer *timerForMovingView;
 
 
@@ -33,33 +29,24 @@
 
 #pragma mark - Generate random game elements
 
-- (instancetype)initWithGridView:(SMPlayground *)gridView andGameSettings:(id)gameSettings {
+- (instancetype)initWithGridView:(SMPlayground *)gridView {
     
     self = [super init];
     if (self) {
         
-        if ([gameSettings isMemberOfClass:[SMFreeGameSettings class]]) {
-            
-            SMFreeGameSettings *freeGameSettings = (SMFreeGameSettings *)gameSettings;
+        if (gridView.freeGameSettings) {
             
             self.arrayOfHazards = [NSMutableArray array];
-            self.numberOfHazards = freeGameSettings.levelValue * 30;
-            
-            SMGameModel *gameModel = [[SMGameModel alloc] initWithGridView:gridView andGameSettings:freeGameSettings];
-            self.gameModel = gameModel;
-            self.freeGameSettings = freeGameSettings;
+            self.numberOfHazards = gridView.freeGameSettings.levelValue * 30;
 
-        } else {
-            
-            SMArcadeGameSettings *arcadeGameSettings = (SMArcadeGameSettings *)gameSettings;
+        } else if (gridView.arcadeGameSettings) {
             
             self.arrayOfHazards = [NSMutableArray array];
-            self.numberOfHazards = arcadeGameSettings.numberOfHazards;
-            
-            SMGameModel *gameModel = [[SMGameModel alloc] initWithGridView:gridView andGameSettings:arcadeGameSettings];
-            self.gameModel = gameModel;
-            self.arcadeGameSettings = arcadeGameSettings;
+            self.numberOfHazards = gridView.arcadeGameSettings.numberOfHazards;
+        
         }
+        
+        self.gridView = gridView;
         
     }
     return self;
@@ -67,9 +54,9 @@
 
 - (void)generateSnakeInView:(UIView *)view {
     
-    UIView *snakeView = [self.gameModel createSnakeView];
+    UIView *snakeView = [self.gridView createSnakeView];
     [view addSubview:snakeView];
-    UIView *snakeTailView = [self.gameModel createSnakeView];
+    UIView *snakeTailView = [self.gridView createSnakeView];
     [view addSubview:snakeTailView];
     
 }
@@ -77,7 +64,7 @@
 
 - (void)generateRandomMealInView:(UIView *)view {
     
-    UIView *mealView = [self.gameModel createMealView];
+    UIView *mealView = [self.gridView createMealView];
     
     self.randomViewRect = mealView.frame;
     [view addSubview:mealView];
@@ -90,7 +77,7 @@
 
     for (int i = 0; i < numberOfHazards; i++) {
 
-        UIView *hazardView = [self.gameModel createHazardView];
+        UIView *hazardView = [self.gridView createHazardView];
         
         [view addSubview:hazardView];
         [self.arrayOfHazards addObject:hazardView];
@@ -102,13 +89,13 @@
 
 - (void)addOneSegmentToSnake:(NSMutableArray *)snake inView:(UIView *)view {
     
-    UIView *snakeView = [self.gameModel createSnakeView];
+    UIView *snakeView = [self.gridView createSnakeView];
     [view addSubview:snakeView];
     
     if (self.gameMode == 0) {
-        self.freeGameSettings.score++;
+        self.gridView.freeGameSettings.score++;
     } else {
-        self.arcadeGameSettings.score++;
+        self.gridView.arcadeGameSettings.score++;
     }
 }
 
@@ -160,7 +147,7 @@
     }
     
     if (self.gameMode == 1) {
-        if (self.arcadeGameSettings.score == self.arcadeGameSettings.maxMealValue) {
+        if (self.gridView.arcadeGameSettings.score == self.gridView.arcadeGameSettings.maxMealValue) {
             [self gameOverAlertController:AlertTypeNextLevel inView:playgroundView];
         }
     }
@@ -234,9 +221,9 @@
     [self removeGameElementWithTag:GameElementHazard inView:playgroundView];
     [self removeGameElementWithTag:GameElementSnakeTail inView:playgroundView];
     [self.arrayOfHazards removeAllObjects];
-    [self.gameModel.takenCoordinates removeAllObjects];
-    [self.gameModel.snakeArray removeAllObjects];
-    self.arcadeGameSettings.score = 0;
+    [self.gridView.takenCoordinates removeAllObjects];
+    [self.gridView.snakeArray removeAllObjects];
+    self.gridView.arcadeGameSettings.score = 0;
 
 
     UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
@@ -253,10 +240,10 @@
         alertVC.alertTitle = @"Congratulations!";
         alertVC.alertBody = @"The level is completed! \nTime to go to the next level!";
         alertVC.alertType = AlertTypeNextLevel;
-        alertVC.level = self.arcadeGameSettings.level;
+        alertVC.level = self.gridView.arcadeGameSettings.level;
         
-        self.arcadeGameSettings.level++;
-        [self.arcadeGameSettings increaseDifficultyWithLevel:self.arcadeGameSettings.level];
+        self.gridView.arcadeGameSettings.level++;
+        [self.gridView.arcadeGameSettings increaseDifficultyWithLevel:self.gridView.arcadeGameSettings.level];
 
     }
     

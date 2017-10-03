@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SnakeGame/SMSnakeEngineModel.m"
-            timestampString = "528655602.70116"
+            timestampString = "528745516.41722"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "245"
-            endingLineNumber = "245"
+            startingLineNumber = "232"
+            endingLineNumber = "232"
             landmarkName = "-gameOverAlertController:inView:"
             landmarkType = "7">
          </BreakpointContent>
