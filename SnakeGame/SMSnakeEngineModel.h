@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@class SMGameModel, SMPlayground;
+@class SMGameModel;
 
 typedef NS_ENUM(NSInteger, SnakeDirectionOption) {
     
@@ -28,15 +28,14 @@ typedef NS_ENUM(NSInteger, AlertType) {
 
 @interface SMSnakeEngineModel : NSObject
 
-@property (strong, nonatomic) SMPlayground *gridView;
+@property (strong, nonatomic) SMGameModel *gameModel;
 @property (assign, nonatomic) NSInteger gameMode;
 
-- (instancetype)initWithGridView:(SMPlayground *)gridView;
+- (instancetype)initWithGameModel:(SMGameModel *)gameModel;
 
 - (void)generateSnakeInView:(UIView *)view;
-- (void)generateRandomMealInView:(UIView *) view;
+- (void)generateRandomMealInView:(UIView *)view;
 - (void)generateRandomHazardInView:(UIView *)view;
-
 
 - (void)snakeNewMovement:(NSMutableArray *)snake inView:(UIView *)playgroundView withDirectionX:(int)directionX andDirectionY:(int)directionY;
 

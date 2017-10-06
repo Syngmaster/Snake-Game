@@ -1,25 +1,23 @@
 //
-//  SMPlayground.m
+//  SMGameModel.m
 //  SnakeGame
 //
 //  Created by Syngmaster on 21/06/2017.
 //  Copyright © 2017 Syngmaster. All rights reserved.
 //
 
-#import "SMPlayground.h"
+#import "SMGameModel.h"
 #import "SMFreeGameSettings.h"
 #import "SMArcadeGameSettings.h"
 
-@interface SMPlayground ()
+@interface SMGameModel ()
 
 @property (assign, nonatomic) CGFloat width;
 @property (assign, nonatomic) CGFloat height;
 
-
-
 @end
 
-@implementation SMPlayground
+@implementation SMGameModel
 
 - (instancetype)initWithView:(UIView *) view andGameSettings:(id)gameSettings {
     
@@ -99,12 +97,12 @@
         } else {
             self.arcadeGameSettings = (SMArcadeGameSettings *)gameSettings;
         }
-        
-        
     }
     
     return self;
 }
+
+
 
 - (CGPoint)generateRandomCoordinates {
     

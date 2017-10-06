@@ -75,7 +75,7 @@
 
 - (void)interstitialDidReceiveAd:(GADInterstitial *)ad {
     
-    [ad presentFromRootViewController:self];
+    //[ad presentFromRootViewController:self];
     
 }
 

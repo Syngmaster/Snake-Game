@@ -31,7 +31,7 @@
 		DC22DADF1F8009C900B8E85C /* SMCustomAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC22DADE1F8009C900B8E85C /* SMCustomAlertViewController.m */; };
 		DC22DAE21F80F37000B8E85C /* SMAlertButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DC22DAE11F80F37000B8E85C /* SMAlertButton.m */; };
 		DC22DAE41F812F9500B8E85C /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC22DAE31F812F9500B8E85C /* Social.framework */; };
-		DC6B60C81EFA8613007D1D00 /* SMPlayground.m in Sources */ = {isa = PBXBuildFile; fileRef = DC6B60C71EFA8613007D1D00 /* SMPlayground.m */; };
+		DC6B60C81EFA8613007D1D00 /* SMGameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DC6B60C71EFA8613007D1D00 /* SMGameModel.m */; };
 		DC6B60C91EFA8D5E007D1D00 /* SMSnakeEngineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DC6B60C41EFA8602007D1D00 /* SMSnakeEngineModel.m */; };
 		DC6B60CA1EFA9AB2007D1D00 /* SMSnakeEngineModel.h in Sources */ = {isa = PBXBuildFile; fileRef = DC6B60C31EFA8602007D1D00 /* SMSnakeEngineModel.h */; };
 		E72F27DFD946FD8A1A2E2C38 /* libPods-SnakeGameTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F551860D97E89FD1C046E970 /* libPods-SnakeGameTests.a */; };
@@ -99,8 +99,8 @@
 		DC22DAE31F812F9500B8E85C /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		DC6B60C31EFA8602007D1D00 /* SMSnakeEngineModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMSnakeEngineModel.h; sourceTree = "<group>"; };
 		DC6B60C41EFA8602007D1D00 /* SMSnakeEngineModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMSnakeEngineModel.m; sourceTree = "<group>"; };
-		DC6B60C61EFA8613007D1D00 /* SMPlayground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMPlayground.h; sourceTree = "<group>"; };
-		DC6B60C71EFA8613007D1D00 /* SMPlayground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMPlayground.m; sourceTree = "<group>"; };
+		DC6B60C61EFA8613007D1D00 /* SMGameModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMGameModel.h; sourceTree = "<group>"; };
+		DC6B60C71EFA8613007D1D00 /* SMGameModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMGameModel.m; sourceTree = "<group>"; };
 		F551860D97E89FD1C046E970 /* libPods-SnakeGameTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SnakeGameTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -237,8 +237,8 @@
 			children = (
 				DC6B60C31EFA8602007D1D00 /* SMSnakeEngineModel.h */,
 				DC6B60C41EFA8602007D1D00 /* SMSnakeEngineModel.m */,
-				DC6B60C61EFA8613007D1D00 /* SMPlayground.h */,
-				DC6B60C71EFA8613007D1D00 /* SMPlayground.m */,
+				DC6B60C61EFA8613007D1D00 /* SMGameModel.h */,
+				DC6B60C71EFA8613007D1D00 /* SMGameModel.m */,
 				DC22DACF1F7E2E6E00B8E85C /* SMFreeGameSettings.h */,
 				DC22DAD01F7E2E6E00B8E85C /* SMFreeGameSettings.m */,
 				DC22DAD21F7E4F2900B8E85C /* SMArcadeGameSettings.h */,
@@ -470,7 +470,7 @@
 				DC22DAD11F7E2E6E00B8E85C /* SMFreeGameSettings.m in Sources */,
 				DC22DABC1F7A8E6B00B8E85C /* SMCustomView.m in Sources */,
 				DC22DAE21F80F37000B8E85C /* SMAlertButton.m in Sources */,
-				DC6B60C81EFA8613007D1D00 /* SMPlayground.m in Sources */,
+				DC6B60C81EFA8613007D1D00 /* SMGameModel.m in Sources */,
 				DC1A8C561EA92D7A00E0DEC2 /* SMPlayViewController.m in Sources */,
 				DC22DAD71F7EA30600B8E85C /* SMGameModeButton.m in Sources */,
 				DC22DAB11F7974DD00B8E85C /* SMMainViewController.m in Sources */,
@@ -547,6 +547,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -596,6 +597,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;

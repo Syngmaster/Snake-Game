@@ -13,8 +13,10 @@
 
 @interface SnakeGameTests : XCTestCase
 
-@property (strong, nonatomic) SMGameModel *gameModel;
+@property (strong, nonatomic) SMGameModel *gameModelFree;
+@property (strong, nonatomic) SMGameModel *gameModelArcade;
 @property (strong, nonatomic) SMPlayViewController *playVC;
+@property (strong, nonatomic) SMSnakeEngineModel *engineModel;
 @property (assign, nonatomic) CGFloat mainWidth;
 
 @end
@@ -27,10 +29,10 @@
     
     UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
     SMPlayViewController *vc = [mainSB instantiateViewControllerWithIdentifier:@"SMPlayViewController"];
-    self.gameModel = [[SMGameModel alloc] init];
+    self.gameModelFree = [[SMGameModel alloc] initWithView:vc.playgroundView andGameSettings:vc.freeGameSettings];
+    self.gameModelArcade = [[SMGameModel alloc] initWithView:vc.playgroundView andGameSettings:vc.arcadeGameSettings];
     self.playVC = vc;
-    CGFloat mainWidth = [UIScreen mainScreen].bounds.size.width;
-    self.mainWidth = mainWidth;
+    self.engineModel = [[SMSnakeEngineModel alloc] initWithGameModel:self.gameModelFree];
 
 }
 
@@ -40,50 +42,31 @@
 }
 
 
-- (void)testMaximumHazardImages {
+- (void)testGameModelValuesAfterViewDisappeared {
+    [self.playVC viewDidDisappear:YES];
+    NSInteger numberOfTakenCoordinates = [self.playVC.snakeEngineModel.gameModel.takenCoordinates count];
+    NSInteger numberOfSnakeElements = [self.playVC.snakeEngineModel.gameModel.snakeArray count];
     
-    XCTAssertTrue([self.playVC.snakeEngineModel.gameModel.hazardImages count] <= 4);
-    
+    XCTAssertEqual(numberOfTakenCoordinates, 0);
+    XCTAssertEqual(numberOfSnakeElements, 0);
+
 }
 
-- (void)testMaximumQuantityOfElements {
+- (void)testGameModelValuesBeforeViewAppeared {
+    [self.playVC viewDidAppear:YES];
     
-    switch ((int)[UIScreen mainScreen].bounds.size.width) {
-            
-        case 320:
-            
-            XCTAssert([self.gameModel.takenCoordinates count] <= (21*12));
-            break;
-            
-        case 375:
-            
-            XCTAssert([self.gameModel.takenCoordinates count] <= (23*13));
-            break;
-            
-        case 414:
-
-            XCTAssert([self.gameModel.takenCoordinates count] <= (25*14));
-            break;
-            
-        case 768:
-
-            XCTAssert([self.gameModel.takenCoordinates count] <= (34*25));
-            break;
-            
-        case 834:
-
-            XCTAssert([self.gameModel.takenCoordinates count] <= (30*22));
-            break;
-            
-        case 1024:
-
-            XCTAssert([self.gameModel.takenCoordinates count] <= (30*22));
-            break;
-            
+    NSInteger numberOfSnakeElements = [self.playVC.snakeEngineModel.gameModel.snakeArray count];
+    NSInteger numberOfMeals = 0;
+    for (UIView *view in self.playVC.snakeEngineModel.gameModel.gridView.subviews) {
+        if (view.tag == GameElementMeal) {
+            numberOfMeals = numberOfMeals + 1;
+        }
     }
-    
-}
 
+    XCTAssertEqual(numberOfSnakeElements, 2);
+    XCTAssertEqual(numberOfMeals, 1);
+
+}
 
 
 
