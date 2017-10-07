@@ -54,7 +54,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    
+
     if (!self.gameIsStarted) {
         
         if (self.gameMode == 0) {
@@ -80,7 +80,6 @@
         [self.snakeEngineModel generateSnakeInView:self.gameModel.gridView];
 
     }
-    
     [self updateScoreLabel:self.scoreLabel];
 
 }

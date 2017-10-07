@@ -13,8 +13,7 @@
 
 @interface SnakeGameTests : XCTestCase
 
-@property (strong, nonatomic) SMGameModel *gameModelFree;
-@property (strong, nonatomic) SMGameModel *gameModelArcade;
+@property (strong, nonatomic) SMGameModel *gameModel;
 @property (strong, nonatomic) SMPlayViewController *playVC;
 @property (strong, nonatomic) SMSnakeEngineModel *engineModel;
 @property (assign, nonatomic) CGFloat mainWidth;
@@ -29,10 +28,9 @@
     
     UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
     SMPlayViewController *vc = [mainSB instantiateViewControllerWithIdentifier:@"SMPlayViewController"];
-    self.gameModelFree = [[SMGameModel alloc] initWithView:vc.playgroundView andGameSettings:vc.freeGameSettings];
-    self.gameModelArcade = [[SMGameModel alloc] initWithView:vc.playgroundView andGameSettings:vc.arcadeGameSettings];
+    self.gameModel = [[SMGameModel alloc] initWithView:vc.playgroundView andGameSettings:nil];
     self.playVC = vc;
-    self.engineModel = [[SMSnakeEngineModel alloc] initWithGameModel:self.gameModelFree];
+    self.engineModel = [[SMSnakeEngineModel alloc] initWithGameModel:self.gameModel];
 
 }
 
@@ -62,12 +60,11 @@
             numberOfMeals = numberOfMeals + 1;
         }
     }
-
+    
     XCTAssertEqual(numberOfSnakeElements, 2);
     XCTAssertEqual(numberOfMeals, 1);
 
 }
-
 
 
 - (void)testPerformanceExample {
