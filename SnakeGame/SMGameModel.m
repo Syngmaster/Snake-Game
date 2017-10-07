@@ -2,32 +2,75 @@
 //  SMGameModel.m
 //  SnakeGame
 //
-//  Created by Syngmaster on 20/09/2017.
+//  Created by Syngmaster on 21/06/2017.
 //  Copyright © 2017 Syngmaster. All rights reserved.
 //
 
 #import "SMGameModel.h"
-#import "SMPlayground.h"
 #import "SMFreeGameSettings.h"
 #import "SMArcadeGameSettings.h"
+
 @interface SMGameModel ()
 
-@property (assign, nonatomic) CGRect mainViewRect;
-
-@property (strong, nonatomic) SMFreeGameSettings *freeGameSettings;
-@property (strong, nonatomic) SMArcadeGameSettings *arcadeGameSettings;
+@property (assign, nonatomic) CGFloat width;
+@property (assign, nonatomic) CGFloat height;
 
 @end
 
 @implementation SMGameModel
 
-- (instancetype)initWithGridView:(SMPlayground *)gridView andGameSettings:(id)gameSettings {
+- (instancetype)initWithView:(UIView *) view andGameSettings:(id)gameSettings {
     
     self = [super init];
     if (self) {
+        
+        switch ((int)[UIScreen mainScreen].bounds.size.width) {
+         
+            case 320:
+                self.height = 462; //step = 22
+                self.width = 264;
+                self.snakeStep = 22;
+                break;
+                
+            case 375:
+                self.height = 552; // step = 24
+                self.width = 312;
+                self.snakeStep = 24;
+                break;
+         
+            case 414:
+                self.height = 625; //step = 25
+                self.width = 350;
+                self.snakeStep = 25;
+                break;
+                
+            case 768:
+                self.height = 875; //step = 35
+                self.width = 665;
+                self.snakeStep = 35;
+                break;
+                
+            case 834:
+                self.height = 950; //step = 38
+                self.width = 722;
+                self.snakeStep = 38;
+                break;
+                
+            case 1024:
+                self.height = 1188; //step = 44
+                self.width = 880;
+                self.snakeStep = 44;
+                break;
+         
+         }
 
-        self.mainViewRect = gridView.gridView.bounds;
-        self.snakeStep = gridView.step;
+        UIView *playView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.width, self.height)];
+        CGPoint centerView = CGPointMake(view.center.x, view.center.y);
+        playView.center = centerView;
+        playView.backgroundColor = [UIColor clearColor];
+        [view addSubview:playView];
+        self.gridView = playView;
+        
         self.takenCoordinates = [NSMutableArray array];
         self.snakeArray = [NSMutableArray array];
         
@@ -52,7 +95,6 @@
             self.hazardImages = arrayOfImages;
             
         } else {
-            
             self.arcadeGameSettings = (SMArcadeGameSettings *)gameSettings;
         }
     }
@@ -61,14 +103,15 @@
 }
 
 
+
 - (CGPoint)generateRandomCoordinates {
-
-    CGFloat newX = self.snakeStep * arc4random_uniform((CGRectGetMaxX(self.mainViewRect))/self.snakeStep);
-    CGFloat newY = self.snakeStep * arc4random_uniform((CGRectGetMaxY(self.mainViewRect))/self.snakeStep);
-
+    
+    CGFloat newX = self.snakeStep * arc4random_uniform((CGRectGetMaxX(self.gridView.bounds))/self.snakeStep);
+    CGFloat newY = self.snakeStep * arc4random_uniform((CGRectGetMaxY(self.gridView.bounds))/self.snakeStep);
+    
     CGPoint newPoint = CGPointMake(newX, newY);
     
-    /*if ([self.takenCoordinates count] > 0) {
+    if ([self.takenCoordinates count] > 0) {
         
         for (NSValue *coord in self.takenCoordinates) {
             
@@ -77,14 +120,13 @@
                 return [self generateRandomCoordinates];
             }
         }
-    }*/
+    }
     
     [self.takenCoordinates addObject:[NSValue valueWithCGPoint:newPoint]];
     
     return newPoint;
     
 }
-
 
 - (UIView *)createSnakeView {
     
@@ -140,7 +182,7 @@
             case 2:imageView.image = body3;
                 break;
         }
-
+        
         imageView.contentMode = UIViewContentModeScaleAspectFit;
         
         snakeView.tag = GameElementSnakeBody;
@@ -184,7 +226,7 @@
                 break;
             default: imageView.image = image1;
                 break;
-
+                
         }
     }
     
@@ -205,12 +247,13 @@
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:newMealView.bounds];
     
     (self.freeGameSettings.chosenMeal == 0) ? (imageView.image = [UIImage imageNamed:@"apple.png"]):
-                                          (imageView.image = [UIImage imageNamed:@"pear.png"]);
+    (imageView.image = [UIImage imageNamed:@"pear.png"]);
     
     imageView.contentMode = UIViewContentModeScaleAspectFill;
     [newMealView addSubview:imageView];
     
     return newMealView;
 }
+
 
 @end

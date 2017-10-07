@@ -9,7 +9,6 @@
 #import "SMSnakeEngineModel.h"
 #import "SMPlayViewController.h"
 #import "SMGameModel.h"
-#import "SMPlayground.h"
 #import "SMFreeGameSettings.h"
 #import "SMArcadeGameSettings.h"
 #import "SMCustomAlertViewController.h"
@@ -21,45 +20,30 @@
 @property (strong, nonatomic) NSMutableArray *arrayOfHazards;
 @property (assign, nonatomic) NSInteger numberOfHazards;
 
-@property (assign, nonatomic) SMArcadeGameSettings *arcadeGameSettings;
-@property (assign, nonatomic) SMFreeGameSettings *freeGameSettings;
-
-@property (strong, nonatomic) NSTimer *timerForMovingView;
-
-
 @end
 
 @implementation SMSnakeEngineModel
 
 #pragma mark - Generate random game elements
 
-- (instancetype)initWithGridView:(SMPlayground *)gridView andGameSettings:(id)gameSettings {
+- (instancetype)initWithGameModel:(SMGameModel *)gameModel {
     
     self = [super init];
     if (self) {
         
-        if ([gameSettings isMemberOfClass:[SMFreeGameSettings class]]) {
-            
-            SMFreeGameSettings *freeGameSettings = (SMFreeGameSettings *)gameSettings;
+        if (gameModel.freeGameSettings) {
             
             self.arrayOfHazards = [NSMutableArray array];
-            self.numberOfHazards = freeGameSettings.levelValue * 30;
-            
-            SMGameModel *gameModel = [[SMGameModel alloc] initWithGridView:gridView andGameSettings:freeGameSettings];
-            self.gameModel = gameModel;
-            self.freeGameSettings = freeGameSettings;
+            self.numberOfHazards = gameModel.freeGameSettings.levelValue * 30;
 
-        } else {
-            
-            SMArcadeGameSettings *arcadeGameSettings = (SMArcadeGameSettings *)gameSettings;
+        } else if (gameModel.arcadeGameSettings) {
             
             self.arrayOfHazards = [NSMutableArray array];
-            self.numberOfHazards = arcadeGameSettings.numberOfHazards;
-            
-            SMGameModel *gameModel = [[SMGameModel alloc] initWithGridView:gridView andGameSettings:arcadeGameSettings];
-            self.gameModel = gameModel;
-            self.arcadeGameSettings = arcadeGameSettings;
+            self.numberOfHazards = gameModel.arcadeGameSettings.numberOfHazards;
+        
         }
+        
+        self.gameModel = gameModel;
         
     }
     return self;
@@ -68,8 +52,9 @@
 - (void)generateSnakeInView:(UIView *)view {
     
     UIView *snakeView = [self.gameModel createSnakeView];
-    [view addSubview:snakeView];
     UIView *snakeTailView = [self.gameModel createSnakeView];
+
+    [view addSubview:snakeView];
     [view addSubview:snakeTailView];
     
 }
@@ -106,9 +91,9 @@
     [view addSubview:snakeView];
     
     if (self.gameMode == 0) {
-        self.freeGameSettings.score++;
+        self.gameModel.freeGameSettings.score++;
     } else {
-        self.arcadeGameSettings.score++;
+        self.gameModel.arcadeGameSettings.score++;
     }
 }
 
@@ -160,7 +145,7 @@
     }
     
     if (self.gameMode == 1) {
-        if (self.arcadeGameSettings.score == self.arcadeGameSettings.maxMealValue) {
+        if (self.gameModel.arcadeGameSettings.score == self.gameModel.arcadeGameSettings.maxMealValue) {
             [self gameOverAlertController:AlertTypeNextLevel inView:playgroundView];
         }
     }
@@ -172,9 +157,9 @@
 - (void)gameOverAfterIntersection:(NSArray *) views withHeadView:(UIView *) head inView:(UIView *) playgroundView {
     
     CGRect intersectionFrame = CGRectMake(playgroundView.bounds.origin.x-5, playgroundView.bounds.origin.y-5, playgroundView.bounds.size.width+10, playgroundView.bounds.size.height+10);
+    
     //game stops if the head view goes beyond the playground
     if (!(CGRectContainsRect(intersectionFrame, head.frame))) {
-
         [self gameOverAlertController:AlertTypeGameOver inView:playgroundView];
         return;
     }
@@ -189,7 +174,6 @@
         if ([views count] > 1) {
             
             if (CGRectIntersectsRect(headFrame, bodyView.frame)) {
-                
                 [self gameOverAlertController:AlertTypeGameOver inView:playgroundView];
                 return;
             }
@@ -198,8 +182,9 @@
     
     for (UIView *hazardView in self.arrayOfHazards) {
         
-        if (CGRectIntersectsRect(hazardView.frame, head.frame)) {
-
+        CGRect headFrame = CGRectMake(head.frame.origin.x+1, head.frame.origin.y+1, head.frame.size.width-2, head.frame.size.height-2);
+        
+        if (CGRectIntersectsRect(hazardView.frame, headFrame)) {
             [self gameOverAlertController:AlertTypeGameOver inView:playgroundView];
             return;
         }
@@ -207,14 +192,13 @@
 }
 
 
-- (void)removeGameElementWithTag:(NSInteger) tag inView:(UIView *) playgroundView {
+- (void)removeGameElementWithTag:(NSInteger)tag inView:(UIView *)playgroundView {
     
     NSArray *viewsToRemove = [playgroundView subviews];
-    for (UIView *v in viewsToRemove) {
+    for (UIView *view in viewsToRemove) {
         
-        if ([v viewWithTag:tag]) {
-            
-            [v removeFromSuperview];
+        if ([view viewWithTag:tag]) {
+            [view removeFromSuperview];
         }
     }
 }
@@ -234,7 +218,7 @@
     [self.arrayOfHazards removeAllObjects];
     [self.gameModel.takenCoordinates removeAllObjects];
     [self.gameModel.snakeArray removeAllObjects];
-    self.arcadeGameSettings.score = 0;
+    self.gameModel.arcadeGameSettings.score = 0;
 
 
     UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
@@ -251,11 +235,10 @@
         alertVC.alertTitle = @"Congratulations!";
         alertVC.alertBody = @"The level is completed! \nTime to go to the next level!";
         alertVC.alertType = AlertTypeNextLevel;
-        alertVC.level = self.arcadeGameSettings.level;
+        alertVC.level = self.gameModel.arcadeGameSettings.level;
         
-        self.arcadeGameSettings.level++;
-        [self.arcadeGameSettings increaseDifficultyWithLevel:self.arcadeGameSettings.level];
-
+        self.gameModel.arcadeGameSettings.level++;
+        [self.gameModel.arcadeGameSettings increaseDifficultyWithLevel:self.gameModel.arcadeGameSettings.level];
     }
     
     [mainVC presentViewController:alertVC animated:YES completion:nil];

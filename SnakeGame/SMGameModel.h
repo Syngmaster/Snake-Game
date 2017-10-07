@@ -2,11 +2,10 @@
 //  SMGameModel.h
 //  SnakeGame
 //
-//  Created by Syngmaster on 20/09/2017.
+//  Created by Syngmaster on 21/06/2017.
 //  Copyright © 2017 Syngmaster. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
 typedef NS_ENUM(NSInteger, GameElement) {
@@ -18,15 +17,20 @@ typedef NS_ENUM(NSInteger, GameElement) {
     
 };
 
-@class SMPlayground, SMFreeGameSettings;
+@class SMFreeGameSettings, SMArcadeGameSettings;
 
-@interface SMGameModel : NSObject
+@interface SMGameModel : UIView
 
+@property (strong, nonatomic) UIView *gridView;
 @property (assign, nonatomic) CGFloat snakeStep;
+
 @property (strong, nonatomic) NSMutableArray *takenCoordinates;
 @property (strong, nonatomic) NSArray *hazardImages;
 
-- (instancetype)initWithGridView:(SMPlayground *)gridView andGameSettings:(id)gameSettings;
+@property (strong, nonatomic) SMFreeGameSettings *freeGameSettings;
+@property (strong, nonatomic) SMArcadeGameSettings *arcadeGameSettings;
+
+- (instancetype)initWithView:(UIView *) view andGameSettings:(id)gameSettings;
 
 - (CGPoint)generateRandomCoordinates;
 
